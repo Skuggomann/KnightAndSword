@@ -16,7 +16,7 @@ function menu:draw()
 end
 
 function menu:keyreleased(key)
-    if key == 'return' then
+    if key == 'return' or key == 'kpenter' then
         Gamestate.switch(Gamestate.levelselect)
     end
 end
