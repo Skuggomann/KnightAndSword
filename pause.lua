@@ -19,6 +19,7 @@ function pause:keyreleased(key)
     if key == 'p' then
         Gamestate.pop()
     elseif key == 'escape' then
+        self.from:leave()
     	Gamestate.switch(Gamestate.menu)    	
     end
 end
