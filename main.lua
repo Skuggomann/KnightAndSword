@@ -5,8 +5,12 @@ Camera = require "libs.hump.camera"
 HC = require 'libs.HardonCollider'
 inspect = require 'libs.inspect.inspect'
 
-local menu = require 'menu'
+require 'menu'
+require 'game'
+require 'pause'
+require 'levelselect'
+
 function love.load()
     Gamestate.registerEvents()
-	Gamestate.switch(menu)
+	Gamestate.switch(Gamestate.menu)
 end
