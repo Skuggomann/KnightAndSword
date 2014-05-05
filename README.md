@@ -6,3 +6,11 @@ Knight &amp; Sword
 * [Tiled](http://www.mapeditor.org/)
 * [Piazza link](https://piazza.com/class/huibikeqsjs1ja)
 * [Terello board link](https://trello.com/b/Y22NWyIg/knight-sword)
+
+
+
+## Commands:
+'"C:\Forrit\LOVE\love.exe" "$(CURRENT_DIRECTORY)" --console'
+
+
+
