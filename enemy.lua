@@ -3,22 +3,16 @@ Enemy = Class{
         --self.pos = {["x"] = x, ["y"] = y}
         self.x = x
         self.y = y
-    end,
-    speed = 50,
-    hp = 3,
-    mana = 0,
-    canAttack = true,
-    canMove = true,
-    canJump = true,
-    jumping = false,
-    velocity = {["x"] = 0, ["y"] = 0},
-    status = nil,
-    getX = function(self)
-		return self.x
-	end,
-    getY = function(self)
-		return self.y
-	end
+        self.speed = 50
+        self.hp = 3
+        self.mana = 0
+        self.canAttack = true
+        self.canMove = true
+        self.canJump = true
+        self.jumping = false
+        self.velocity = {["x"] = 0, ["y"] = 0}
+        self.status = nil  --frozen/whatevs
+    end
 }
 
 function Enemy:update(dt)
