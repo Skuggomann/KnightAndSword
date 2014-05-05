@@ -4,6 +4,7 @@ Class = require "libs.hump.class"
 Camera = require "libs.hump.camera"
 HC = require 'libs.HardonCollider'
 inspect = require 'libs.inspect.inspect'
+anim8 = require 'libs.anim8.anim8'
 
 require 'menu'
 require 'game'
