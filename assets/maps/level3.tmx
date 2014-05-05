@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="160" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="duotone" tilewidth="32" tileheight="32">
+  <image source="../simpleGraphics_tiles32x32_0.png" width="256" height="160"/>
+ </tileset>
+ <layer name="ground" width="160" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1yEKwDAAQ9Gqmqnd/7JTM4XCTPfNe5AbhEDmGGOKhIGC/lHSP0q7/l1L4AT7R+ntn52jYP8o6R+ltX8+B3+yf5S+9M8mcortA4DGLRLmAUfCD2k=
+  </data>
+ </layer>
+</map>
