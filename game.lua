@@ -13,6 +13,7 @@ local enemies = {}
 local ui = nil
 local spawnPoint = {}
 local rip = nil
+local goal = nil
 
 function game:init() -- run only once
 	rip = RIP()
@@ -82,9 +83,16 @@ end
 function game:leave()
 end
 
-
+function winGame()
+	Gamestate.switch(Gamestate.levelselect)
+end
 function drawWorld()
 	map:draw()
+  	-- draw goal
+    love.graphics.setColor(0,0,255, 255)
+ 	goal:draw("fill")
+    love.graphics.setColor(255,255,255, 255)
+    -- draw the rest
 	knight:draw()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
@@ -112,6 +120,9 @@ function mapSetup(map)
 			knight = Player(spawnPoint.x,spawnPoint.y,collider)
 		elseif obj.name == 'skeleton' then
 			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider)
+		elseif obj.name == 'end' then
+			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
+			goal.type = "end"
 		end
 	end
 

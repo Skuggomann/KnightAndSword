@@ -18,6 +18,7 @@ Player = Class{
 	    self.jumping = true
 	    self.velocity = {["x"] = 0, ["y"] = 0}
 	    self.invuln = 0
+		self.sprite = love.graphics.newImage('/assets/art/player1.png')
     end
 }
 function Player:update(dt)
@@ -56,6 +57,10 @@ function Player:draw()
 	end
     self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
+	
+	local x,y = self.bbox:center()
+	love.graphics.draw(self.sprite, x - 16, y - 32)
+	
 end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
@@ -97,6 +102,8 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 				self.bbox:move(0, mtv_y-5)
 			end
 		end
+	elseif other.type == "end" then
+		winGame()
 	end
 
     function Player:isDead()

@@ -12,5 +12,6 @@
   <object name="player" type="player" gid="4" x="353" y="447"/>
   <object name="skeleton" type="skeleton" gid="1" x="223" y="447"/>
   <object name="skeleton" type="skeleton" gid="1" x="64" y="96"/>
+  <object name="end" type="end" gid="34" x="512" y="478"/>
  </objectgroup>
 </map>

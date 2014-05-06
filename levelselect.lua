@@ -46,7 +46,7 @@ end
 
 function levelselect:keyreleased(key)
 	--todo select a level and send it with the game state switch.
-    if key == 'return' then
+    if key == 'return' or key == 'kpenter' then
     	local filename = levels[selected].filename
         Gamestate.switch(Gamestate.game,filename)
     elseif key == 'up' then
