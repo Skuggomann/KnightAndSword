@@ -73,8 +73,6 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-    love.graphics.print(string.format("You are now playing"),40,40)
-	
 end
 
 function mapSetup(map)
