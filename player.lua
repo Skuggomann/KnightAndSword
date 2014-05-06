@@ -4,7 +4,7 @@ Player = Class{
 		self.bbox.type = "player"
 		self.bbox.ref = self
 	    self.speed = 200
-	    self.hp = 2
+	    self.hp = 3
         self.maxhp = 3
 	    self.mana = 10
         self.maxmana = 100
@@ -110,6 +110,10 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		end
 	end
 
-
+    function Player:isDead()
+        if self.hp <=0 then
+            return true
+        end
+    end
 
 end

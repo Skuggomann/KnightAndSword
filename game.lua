@@ -10,6 +10,8 @@ require 'skeleton'
 local knight = nil
 local enemies = {}
 local ui = nil
+local spawnPoint = {}
+local rips = {}
 
 function game:init() -- run only once
 end
@@ -49,6 +51,14 @@ function game:update(dt)
 
 	--update UI
 	ui:update(dt)
+
+	if knight:isDead() then 
+		collider:remove(knight.bbox)
+		
+		knight = Player(spawnPoint.x, spawnPoint.y, collider)
+		ui = UI(knight)
+		resetEnemies(map)
+	end
 end
 
 function game:draw()
@@ -75,12 +85,25 @@ function drawWorld()
     	enemies[#enemies - (i-1)]:draw()
     end
 end
+function resetEnemies(map)
+	for i = 1,#enemies do
+		collider:remove(enemies[#enemies - (i-1)].bbox)
+	end
+	enemies = {}
+	for i, obj in pairs( map("spawns").objects ) do
+		if obj.name == 'skeleton' then
+			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider)
+		end
+	end
 
+end
 function mapSetup(map)
 
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'player' then
-			knight = Player(obj.x,obj.y-32,collider)
+			spawnPoint.x = obj.x
+			spawnPoint.y = obj.y-32
+			knight = Player(spawnPoint.x,spawnPoint.y,collider)
 		elseif obj.name == 'skeleton' then
 			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider)
 		end
