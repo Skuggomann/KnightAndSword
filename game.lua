@@ -6,14 +6,16 @@ require 'player'
 require 'ui'
 require 'enemy'
 require 'skeleton'
+require 'rip'
 
 local knight = nil
 local enemies = {}
 local ui = nil
 local spawnPoint = {}
-local rips = {}
+local rip = nil
 
 function game:init() -- run only once
+	rip = RIP()
 end
 
 function game:enter(previous,filename) -- run every time the state is entered
@@ -54,7 +56,10 @@ function game:update(dt)
 
 	if knight:isDead() then 
 		collider:remove(knight.bbox)
-		
+		x,y = knight.bbox:center()
+		x = x-8
+		y = y+5 -- magic 5px
+		rip:addRip(x,y)
 		knight = Player(spawnPoint.x, spawnPoint.y, collider)
 		ui = UI(knight)
 		resetEnemies(map)
@@ -84,6 +89,7 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
+    rip:draw()
 end
 function resetEnemies(map)
 	for i = 1,#enemies do
