@@ -3,8 +3,10 @@ local game = Gamestate.game
 local collider
 local map
 require 'player'
+require 'ui'
 
 local knight = nil
+local ui = nil
 function game:init() -- run only once
 end
 
@@ -15,6 +17,8 @@ function game:enter(previous,filename) -- run every time the state is entered
 	map:setDrawRange(-10,-10,5400,620)
 	map.drawObjects = false
 	mapSetup(map)
+	ui = UI(knight)
+	ui:addToTable({"Sir Sword", "Hello INSERT PLAYER NAME HERE, welcome to the cursed keep", 3})
 	cam = Camera(456, 256,1.40)
 end
 
@@ -37,6 +41,7 @@ end
 
 function game:draw()
 	cam:draw(drawWorld)
+	ui:draw()
 end
 
 
