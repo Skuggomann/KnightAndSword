@@ -88,11 +88,13 @@ function mapSetup(map)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	--[[if shape_a.type == "player" or shape_b.type == "player" then
+	if shape_a.type == "player" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	end]]--
+	elseif shape_b.type == "player" then
+		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
+	end
 
-    collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
+    --collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
     collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 end
 
@@ -125,7 +127,7 @@ function collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 	end
 end
 
-function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
+--[[function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 
     -- find which is the player
     local player_shape, tileshape
@@ -147,4 +149,4 @@ function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 	else
 		player_shape.ref.velocity.y = 0
 	end
-end
+end]]--

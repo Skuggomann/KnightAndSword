@@ -9,6 +9,7 @@ Enemy = Class{
         self.jumping = false
         self.velocity = {["x"] = 0, ["y"] = 0}
         self.status = nil  --frozen/whatevs
+        self.damage = 1
     end
 }
 

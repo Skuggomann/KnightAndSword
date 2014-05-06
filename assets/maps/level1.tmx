@@ -5,11 +5,11 @@
  </tileset>
  <layer name="ground" width="160" height="16">
   <data encoding="base64" compression="zlib">
-   eJzt1zEKhDAQQNEcIZVr7/3vqFtsI0GTMeyAvAfTDhafUWsppU4aGDWrG/0RoT8y6Y9M3262wLT2wKin3fx61B8R3r9k0h+ZIt20vgX1R4T7R6aebq7+e0f2wJn7R6ZWNz33rmcP3HH/yKQ/Mi3HrBPm8+8H5xV2LxYIIQ==
+   eJzt0sEJgDAABMGUkJfaf6XaQiS4IDNw/3vsHGPMTYNVu7rRH2/oj5L+KOmPkv4o6Y+S/ijpj5L+KOmPkv4o6Y+S/ijpj9Lx7Nqw8+vj/MINoBAEtg==
   </data>
  </layer>
  <objectgroup name="spawns" width="160" height="16">
-  <object name="player" type="player" gid="4" x="65" y="96"/>
-  <object name="skeleton" type="skeleton" gid="1" x="65" y="447"/>
+  <object name="player" type="player" gid="4" x="353" y="447"/>
+  <object name="skeleton" type="skeleton" gid="1" x="223" y="447"/>
  </objectgroup>
 </map>
