@@ -4,7 +4,7 @@ Skeleton = Class{__includes = Enemy,
         self.bbox = collider:addRectangle(x,y,32,64)
         self.bbox.type = "skeleton"
         self.bbox.ref = self
-        self.velocity.x = 10
+        self.velocity.x = 3
     end
 }
 
