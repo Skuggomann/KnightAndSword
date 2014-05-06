@@ -4,16 +4,37 @@ Skeleton = Class{__includes = Enemy,
         self.bbox = collider:addRectangle(x,y,32,64)
         self.bbox.type = "skeleton"
         self.bbox.ref = self
+        self.velocity.x = 10
     end
 }
 
 
 function Skeleton:update(dt)
-    print("Skeleton update not implemented")
+    if self.jumping then
+        self.velocity.y = self.velocity.y + self.speed/4*dt
+    end
+    -- update movement
+    self.bbox:move(self.velocity.x,self.velocity.y)
 end
 
 function Skeleton:draw()
     love.graphics.setColor(255,0,0, 255)
     self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
+end
+function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
+    if other.type == "tile" then
+        -- collision with tile(ground)
+        self.bbox:move(mtv_x, 0)
+        self.bbox:move(0, mtv_y)
+        if mtv_x ~= 0 then
+            self.velocity.x = -self.velocity.x
+        end
+        if mtv_y < 0 and self.jumping then
+            self.jumping = false
+            self.velocity.y = 0
+        else
+            self.velocity.y = 0
+        end
+    end
 end

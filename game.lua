@@ -30,6 +30,10 @@ function game:update(dt)
 	-- update player object
 	knight:update(dt)
 
+	-- update enemies
+    for i = 1,#enemies do
+    	enemies[#enemies - (i-1)]:update(dt)
+    end
 	-- Collision detection
 	collider:update(dt)
 
@@ -68,7 +72,6 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-    love.graphics.print(string.format("You are now playing"),40,40)
 	ui:draw()
 end
 
@@ -98,7 +101,13 @@ function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
 	end
-
+	if shape_a.type == "skeleton" then
+		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
+	elseif shape_b.type == "skeleton" then
+		mtv_x = mtv_x*-1
+		mtv_y = mtv_y*-1
+		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
+	end
     --collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
     --collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 end

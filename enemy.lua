@@ -6,7 +6,7 @@ Enemy = Class{
         self.canAttack = true
         self.canMove = true
         self.canJump = true
-        self.jumping = false
+        self.jumping = true
         self.velocity = {["x"] = 0, ["y"] = 0}
         self.status = nil  --frozen/whatevs
         self.damage = 1
