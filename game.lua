@@ -78,7 +78,9 @@ end
 function game:leave()
 end
 
-
+function winGame()
+	Gamestate.switch(Gamestate.levelselect)
+end
 function drawWorld()
 	map:draw()
   	-- draw goal
@@ -113,7 +115,8 @@ function mapSetup(map)
 		elseif obj.name == 'skeleton' then
 			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider)
 		elseif obj.name == 'end' then
-			goal = collider:addRectangle(obj.x,obj.y-32,32,32)	
+			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
+			goal.type = "end"
 		end
 	end
 

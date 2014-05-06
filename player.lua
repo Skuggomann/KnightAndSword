@@ -102,6 +102,8 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 				self.bbox:move(0, mtv_y-5)
 			end
 		end
+	elseif other.type == "end" then
+		winGame()
 	end
 
     function Player:isDead()
