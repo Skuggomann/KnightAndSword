@@ -47,7 +47,17 @@ function UI:draw()
             love.graphics.draw(self.deadHeart, i*self.deadHeart:getWidth(), 20)
         end
     end
-    --Draw Manabar?
+    --Draw Manabar
+    --love.graphics.setColor(128,128,128,255)
+    --love.graphics.rectangle("fill", 32,50, 100,32)
+    love.graphics.setColor(0,0,255,196)
+    love.graphics.rectangle("fill", 32,64, 100*self.player.mana/self.player.maxmana,32)
+
+    love.graphics.setColor(255,255,255,196)
+    love.graphics.rectangle("line", 32,64, 100,32)
+
+
+
 
     --Draw Abilities/Weapon
     love.graphics.setColor(0,0,0,128)
