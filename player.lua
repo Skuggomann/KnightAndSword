@@ -6,9 +6,12 @@ Player = Class{
 	    self.speed = 150
 	    self.hp = 2
         self.maxhp = 3
-	    self.mana = 0
+	    self.mana = 10
+        self.maxmana = 100
 	    self.weapons = {["sword"] = true, ["mace"] = false}
 	    self.abilities = {["frostbolt"] = true, ["cape"] = false}
+        self.currentWeapon = "sword"
+        self.currentAbility = "frostbolt"
 	    self.canAttack = true
 	    self.canMove = true
 	    self.canJump = true

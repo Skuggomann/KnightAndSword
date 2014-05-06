@@ -52,6 +52,7 @@ end
 
 function game:draw()
 	cam:draw(drawWorld)
+	ui:draw()
 end
 
 
@@ -72,7 +73,12 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
+<<<<<<< HEAD
 	ui:draw()
+=======
+    love.graphics.print(string.format("You are now playing"),40,40)
+	
+>>>>>>> 4f02c7d3b1212e35e302d2178b11df8a9a686958
 end
 
 function mapSetup(map)
