@@ -11,5 +11,6 @@
  <objectgroup name="spawns" width="160" height="16">
   <object name="player" type="player" gid="4" x="353" y="447"/>
   <object name="skeleton" type="skeleton" gid="1" x="223" y="447"/>
+  <object name="skeleton" type="skeleton" gid="1" x="128" y="446"/>
  </objectgroup>
 </map>
