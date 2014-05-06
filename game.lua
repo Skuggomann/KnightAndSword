@@ -3,8 +3,10 @@ local game = Gamestate.game
 local collider
 local map
 require 'player'
-
+require 'enemy'
+require 'skeleton'
 local knight = nil
+local enemies = {}
 function game:init() -- run only once
 end
 
@@ -54,6 +56,9 @@ end
 function drawWorld()
 	map:draw()
 	knight:draw()
+    for i = 1,#enemies do
+    	enemies[#enemies - (i-1)]:draw()
+    end
     love.graphics.print(string.format("You are now playing"),40,40)
 end
 
@@ -63,7 +68,7 @@ function mapSetup(map)
 		if obj.name == 'player' then
 			knight = Player(obj.x,obj.y-32,collider)
 		elseif obj.name == 'skeleton' then
-
+			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider)
 		end
 	end
 
@@ -76,34 +81,63 @@ function mapSetup(map)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
+	--[[if shape_a.type == "player" or shape_b.type == "player" then
+		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
+	end]]--
+
     collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
+    collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 end
 
 function stop_collide(dt, shape_a, shape_b)
+	--if shape_a.type == "player"
 	knight.jumping = true
 end
 
-function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
+function collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 
-    -- sort out which one our hero shape is
-    local hero_shape, tileshape
-    if shape_a == knight.bbox and shape_b.type == "tile" then
-        hero_shape = shape_a
-    elseif shape_b == knight.bbox and shape_a.type == "tile" then
-        hero_shape = shape_b
+    -- find which is a skeleton
+    local skeleton_shape, tileshape
+    if shape_a.type == "skeleton" and shape_b.type == "tile" then
+        skeleton_shape = shape_a
+    elseif shape_b == "skeleton" and shape_a.type == "tile" then
+        skeleton_shape = shape_b
     else
         -- none of the two shapes is a tile, return to upper function
         return
     end
 
-    hero_shape:move(mtv_x, 0)
-    hero_shape:move(0, mtv_y)
+    skeleton_shape:move(mtv_x, 0)
+    skeleton_shape:move(0, mtv_y)
 
-    if mtv_y < 0 and knight.jumping then
-    	knight.jumping = false
-    	knight.velocity.y = 0
+    if mtv_y < 0 and skeleton_shape.ref.jumping then
+    	skeleton_shape.ref.jumping = false
+    	skeleton_shape.ref.velocity.y = 0
 	else
-		knight.velocity.y = 0
+		skeleton_shape.ref.velocity.y = 0
 	end
+end
 
+function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
+
+    -- find which is the player
+    local player_shape, tileshape
+    if shape_a.type == "player" and shape_b.type == "tile" then
+        player_shape = shape_a
+    elseif shape_b == "player" and shape_a.type == "tile" then
+        player_shape = shape_b
+    else
+        -- none of the two shapes is a tile, return to upper function
+        return
+    end
+
+    player_shape:move(mtv_x, 0)
+    player_shape:move(0, mtv_y)
+
+    if mtv_y < 0 and player_shape.ref.jumping then
+    	player_shape.ref.jumping = false
+    	player_shape.ref.velocity.y = 0
+	else
+		player_shape.ref.velocity.y = 0
+	end
 end

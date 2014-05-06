@@ -5,7 +5,6 @@ function pause:enter(from)
 end
 
 function pause:draw()
-    local W, H = love.graphics.getWidth(), love.graphics.getHeight()
     -- draw previous screen
     self.from:draw()
     -- overlay with pause message

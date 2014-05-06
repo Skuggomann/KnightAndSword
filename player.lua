@@ -1,9 +1,8 @@
 Player = Class{
     init = function(self, x, y,collider)
-        --self.pos = {["x"] = x, ["y"] = y}
-        --self.x = x
-        --self.y = y
 		self.bbox = collider:addRectangle(x,y,32,64)
+		self.bbox.type = "player"
+		self.bbox.ref = self
 	    self.speed = 150
 	    self.hp = 3
         self.maxhp = 3
