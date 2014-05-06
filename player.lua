@@ -9,6 +9,8 @@ Player = Class{
 	    self.mana = 0
 	    self.weapons = {["sword"] = true, ["mace"] = false}
 	    self.abilities = {["frostbolt"] = true, ["cape"] = false}
+        self.currentWeapon = "sword"
+        self.currentAbility = "frostbolt"
 	    self.canAttack = true
 	    self.canMove = true
 	    self.canJump = true
