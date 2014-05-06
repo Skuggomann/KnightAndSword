@@ -48,7 +48,6 @@ end
 
 function game:draw()
 	cam:draw(drawWorld)
-	ui:draw()
 end
 
 
@@ -70,6 +69,7 @@ function drawWorld()
     	enemies[#enemies - (i-1)]:draw()
     end
     love.graphics.print(string.format("You are now playing"),40,40)
+	ui:draw()
 end
 
 function mapSetup(map)
@@ -94,16 +94,25 @@ function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	if shape_a.type == "player" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	elseif shape_b.type == "player" then
+		mtv_x = mtv_x*-1
+		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
 	end
 
     --collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
-    collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
+    --collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 end
 
 function stop_collide(dt, shape_a, shape_b)
-	--if shape_a.type == "player"
-	knight.jumping = true
+    if shape_a.type == "player" and shape_b.type == "tile" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "tile" then
+        shape_b.ref.jumping = true
+    elseif shape_a.type == "player" and shape_b.type == "skeleton" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "skeleton" then
+        shape_b.ref.jumping = true
+    end
 end
 
 function collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)

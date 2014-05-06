@@ -16,43 +16,56 @@ Player = Class{
 	    self.canJump = true
 	    self.jumping = false
 	    self.velocity = {["x"] = 0, ["y"] = 0}
+	    self.invuln = 0
     end
 }
 function Player:update(dt)
     if love.keyboard.isDown("left") then
-        --hero:move(-hero.speed*dt, 0)
         self.velocity.x = -self.speed*dt
     end
     if love.keyboard.isDown("right") then
-        --hero:move(hero.speed*dt, 0)
         self.velocity.x = self.speed*dt
     end
     if love.keyboard.isDown("up") and not self.jumping then
 
         self.velocity.y = -self.speed*5*dt
-    	--hero:move(0,-dt*100)
     	self.jumping = true
     end
     if love.keyboard.isDown("down") then
-    	--hero:move(0,dt*50)
         self.velocity.y = self.speed*dt
     end
     if self.jumping then
     	self.velocity.y = self.velocity.y + self.speed/4*dt
     end
+    -- update movement
     self.bbox:move(self.velocity.x,self.velocity.y)
-    --self.velocity.x = 0
+
+    -- update invulnerability
+    if self.invuln > 0 then
+    	self.invuln = self.invuln-dt
+    	if self.invuln <0 then
+    		self.invuln = 0
+    	end
+    end
 end
 
 function Player:draw()
-	--love.graphics.print(string.format("x: "..tostring(self.weapons.sword)),100,100)
-	self.bbox:draw("fill")
+	if self:isInvuln() then
+	    love.graphics.setColor(0,255,0, 255)
+	end
+    self.bbox:draw("fill")
+    love.graphics.setColor(255,255,255, 255)
 end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
+	self.invuln = 2
+end
+function Player:isInvuln()
+	return self.invuln > 0
 end
 function Player:collide(dt, me, other, mtv_x, mtv_y)
 	if other.type == "tile" then
+		-- collision with tile(ground)
 		self.bbox:move(mtv_x, 0)
 		self.bbox:move(0, mtv_y)
 	    if mtv_y < 0 and self.jumping then
@@ -64,13 +77,38 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 			self.velocity.x = 0
 		end
 	elseif other.type == "skeleton" then
-		self:takeDamage(other.ref.damage)
-		self.bbox:move(mtv_x,mtv_y)
-		if mtv_x < 0 then
-			self.velocity.x = -dt*self.speed*2
+		-- collision with skeleton
+		if not self:isInvuln() then
+			self:takeDamage(other.ref.damage)
+			if mtv_x < 0 then
+				self.velocity.x = -dt*self.speed*2
+				self.bbox:move(mtv_x-5, 0)
+			else
+				self.velocity.x = dt*self.speed*2
+				self.bbox:move(mtv_x+5, 0)
+			end
+			self.velocity.y = -dt*self.speed*3
+
+			-- move
+			if mtv_y < 0 then
+				self.bbox:move(0, mtv_y-5)
+			else
+				self.bbox:move(0, mtv_y+5)
+			end
 		else
-			self.velocity.x = dt*self.speed*2
+		    if mtv_y < 0 and self.jumping then
+		    	self.jumping = false
+		    	self.velocity.y = 0
+		    	self.velocity.x = 0
+			else
+				self.velocity.y = 0
+				self.velocity.x = 0
+			end
+			self.bbox:move(mtv_x, 0)
+			self.bbox:move(0, mtv_y)
 		end
-		self.velocity.y = -dt*self.speed*3
 	end
+
+
+
 end
