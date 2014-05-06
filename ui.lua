@@ -30,7 +30,7 @@ function UI:draw()
         love.graphics.rectangle("fill", 164,H-132, 512+256,64)
         love.graphics.setColor(128,128,128,255)
         love.graphics.rectangle("line", 100,H-132, 64,64)
-        love.graphics.rectangle("line", 164,H-132, 512+256,64)
+        love.graphics.rectangle("line", 164,H-132, 1016,64)
         love.graphics.setColor(255,255,255,255)
 
         love.graphics.print(self.textTable[1], 100, H-100) -- Placeholder for image of talker
