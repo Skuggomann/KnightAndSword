@@ -33,7 +33,11 @@ function UI:draw()
         love.graphics.rectangle("line", 164,H-132, 1016,64)
         love.graphics.setColor(255,255,255,255)
 
-        love.graphics.print(self.textTable[1], 100, H-100) -- Placeholder for image of talker
+        if self.textTable[1] == "sword" then 
+            love.graphics.draw(self.sword, 118, H-68, math.pi * 1.5, 2, 2)
+        else
+            love.graphics.print(self.textTable[1], 100, H-100) -- Placeholder for image of talker
+        end
         love.graphics.print(self.textTable[2], 170, H-128) -- Print what he says
         
 
