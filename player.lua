@@ -6,6 +6,7 @@ Player = Class{
 		self.bbox = collider:addRectangle(x,y,32,64)
 	    self.speed = 150
 	    self.hp = 3
+        self.maxhp = 3
 	    self.mana = 0
 	    self.weapons = {["sword"] = true, ["mace"] = false}
 	    self.abilities = {["frostbolt"] = true, ["cape"] = false}
