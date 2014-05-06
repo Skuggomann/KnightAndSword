@@ -3,14 +3,17 @@ local game = Gamestate.game
 local collider
 local map
 require 'player'
+
+local knight = nil
 function game:init() -- run only once
 end
 
-function game:enter(previous) -- run every time the state is entered
+function game:enter(previous,filename) -- run every time the state is entered
+	local filepath = "assets/maps/"..filename
 	collider = HC(100, on_collide, stop_collide)
-	knight = Player(128,415,collider)
-	map = loader.load("assets/maps/level3.tmx")
+	map = loader.load(filepath)
 	map:setDrawRange(-10,-10,5400,620)
+	map.drawObjects = false
 	mapSetup(map)
 	cam = Camera(456, 256,1.40)
 end
@@ -27,6 +30,8 @@ function game:update(dt)
     local dx,dy = tempx - cam.x, tempy - cam.y
     if cam.x+dx > 456 then
 	    cam:move(dx/2, 0)
+    else
+		cam.x = 456    	
 	end
 end
 
@@ -53,6 +58,15 @@ function drawWorld()
 end
 
 function mapSetup(map)
+
+	for i, obj in pairs( map("spawns").objects ) do
+		if obj.name == 'player' then
+			knight = Player(obj.x,obj.y-32,collider)
+		elseif obj.name == 'skeleton' then
+
+		end
+	end
+
     for x, y, tile in map("ground"):iterate() do
 		local ctile = collider:addRectangle((x)*32,(y)*32,32,32)
         ctile.type = "tile"

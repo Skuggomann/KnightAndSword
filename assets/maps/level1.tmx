@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="160" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="realtiles" tilewidth="32" tileheight="32">
+  <image source="simpleGraphics_tiles32x32_0.png" width="256" height="160"/>
+ </tileset>
+ <layer name="ground" width="160" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKhDAQQNEcIZVr7/3vqFtsI0GTMeyAvAfTDhafUWsppU4aGDWrG/0RoT8y6Y9M3262wLT2wKin3fx61B8R3r9k0h+ZIt20vgX1R4T7R6aebq7+e0f2wJn7R6ZWNz33rmcP3HH/yKQ/Mi3HrBPm8+8H5xV2LxYIIQ==
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="160" height="16">
+  <object name="player" type="player" gid="4" x="65" y="96"/>
+  <object name="skeleton" type="skeleton" gid="1" x="58" y="415"/>
+ </objectgroup>
+</map>
