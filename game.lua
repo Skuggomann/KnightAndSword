@@ -15,6 +15,7 @@ function game:init() -- run only once
 end
 
 function game:enter(previous,filename) -- run every time the state is entered
+	enemies = {}
 	local filepath = "assets/maps/"..filename
 	collider = HC(100, on_collide, stop_collide)
 	map = loader.load(filepath)
@@ -108,14 +109,16 @@ function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
 	end
-    --collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
-    --collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 end
 
 function stop_collide(dt, shape_a, shape_b)
     if shape_a.type == "player" and shape_b.type == "tile" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "tile" then
+        shape_b.ref.jumping = true
+    elseif shape_a.type == "skeleton" and shape_b.type == "tile" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "skeleton" and shape_a.type == "tile" then
         shape_b.ref.jumping = true
     elseif shape_a.type == "player" and shape_b.type == "skeleton" then
         shape_a.ref.jumping = true
