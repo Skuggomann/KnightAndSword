@@ -10,6 +10,6 @@
  </layer>
  <objectgroup name="spawns" width="160" height="16">
   <object name="player" type="player" gid="4" x="65" y="96"/>
-  <object name="skeleton" type="skeleton" gid="1" x="58" y="415"/>
+  <object name="skeleton" type="skeleton" gid="1" x="65" y="447"/>
  </objectgroup>
 </map>

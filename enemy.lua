@@ -1,10 +1,7 @@
 Enemy = Class{
     init = function(self, x, y)
-        --self.pos = {["x"] = x, ["y"] = y}
-        self.x = x
-        self.y = y
         self.speed = 50
-        self.hp = 3
+        self.hp = 2
         self.mana = 0
         self.canAttack = true
         self.canMove = true
@@ -16,9 +13,9 @@ Enemy = Class{
 }
 
 function Enemy:update(dt)
-
+    print("Enemy update not implemented")
 end
 
 function Enemy:draw()
-
+    print("Enemy draw not implemented")
 end

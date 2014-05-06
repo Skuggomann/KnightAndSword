@@ -3,6 +3,7 @@ local levelselect = Gamestate.levelselect
 local levels = {}
 local selected = 1
 local levelnr = 1
+W, H = love.graphics.getWidth(), love.graphics.getHeight()
 function levelselect:init() -- run only once
 	local file = io.open("assets/maps/levels.txt")
 	if file then
@@ -30,7 +31,6 @@ function levelselect:update(dt)
 end
 
 function levelselect:draw()
-	local W, H = love.graphics.getWidth(), love.graphics.getHeight()
     love.graphics.print(string.format("Select a level and press enter"),10,10)
     love.graphics.print(string.format("levels:"..levelnr),50,50)
     for k, v in pairs(levels) do
