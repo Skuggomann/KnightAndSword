@@ -82,31 +82,20 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		if not self:isInvuln() then
 			self:takeDamage(other.ref.damage)
 			if mtv_x < 0 then
-				self.velocity.x = -dt*self.speed*2
+				self.velocity.x = -dt*self.speed
 				self.bbox:move(mtv_x-5, 0)
 			else
-				self.velocity.x = dt*self.speed*2
+				self.velocity.x = dt*self.speed
 				self.bbox:move(mtv_x+5, 0)
 			end
-			self.velocity.y = -dt*self.speed*3
+			self.velocity.y = -dt*self.speed*2
 
 			-- move
-			if mtv_y < 0 then
-				self.bbox:move(0, mtv_y-5)
-			else
+			if mtv_y > 0 then
 				self.bbox:move(0, mtv_y+5)
-			end
-		else
-		    if mtv_y < 0 and self.jumping then
-		    	self.jumping = false
-		    	self.velocity.y = 0
-		    	self.velocity.x = 0
 			else
-				self.velocity.y = 0
-				self.velocity.x = 0
+				self.bbox:move(0, mtv_y-5)
 			end
-			self.bbox:move(mtv_x, 0)
-			self.bbox:move(0, mtv_y)
 		end
 	end
 
