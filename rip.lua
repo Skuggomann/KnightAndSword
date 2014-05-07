@@ -6,7 +6,7 @@ RIP = Class{
 }
 
 function RIP:update(dt)
-    print("Enemy update not implemented")
+    print("RIP update not implemented")
 end
 
 function RIP:draw()

@@ -122,7 +122,7 @@ function resetEnemies(map)
 
 end
 function mapSetup(map)
-
+	rip = RIP()
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'player' then
 			spawnPoint.x = obj.x
