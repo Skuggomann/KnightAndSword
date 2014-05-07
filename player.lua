@@ -126,7 +126,7 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		end
 	elseif other.type == "skeleton" then
 		-- collision with skeleton
-		if not self:isInvuln() then
+		if not self:isInvuln() and not other.ref:isFrozen() then
 			self:takeDamage(other.ref.damage)
 			if mtv_x < 0 then
 				self.velocity.x = -dt*self.speed
@@ -142,6 +142,18 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 				self.bbox:move(0, mtv_y+5)
 			else
 				self.bbox:move(0, mtv_y-5)
+			end
+		elseif other.ref:isFrozen() then
+			-- collision with frozen skeleton same as tile(ground)
+			self.bbox:move(mtv_x, 0)
+			self.bbox:move(0, mtv_y)
+		    if mtv_y < 0 and self.jumping then
+		    	self.jumping = false
+		    	self.velocity.y = 0
+		    	self.velocity.x = 0
+			else
+				self.velocity.y = 0
+				self.velocity.x = 0
 			end
 		end
 	elseif other.type == "end" then

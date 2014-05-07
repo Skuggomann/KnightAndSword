@@ -12,6 +12,13 @@ Skeleton = Class{__includes = Enemy,
 
 
 function Skeleton:update(dt)
+    --update status effects
+    if self.thaw > 0 then
+        self.thaw = self.thaw-dt
+        if self.thaw < 0 then
+            self.thaw = 0
+        end
+    end
     if self.jumping then
         self.velocity.y = self.velocity.y + self.speed/4*dt
     end
@@ -21,14 +28,22 @@ function Skeleton:update(dt)
         self.velocity.x = -self.speed*dt
     end
     -- update movement
-    self.bbox:move(self.velocity.x,self.velocity.y)
+    if not self:isFrozen() then
+        self.bbox:move(self.velocity.x,self.velocity.y)
+    end
 end
+
+function Skeleton:isFrozen()
+    if self.thaw > 0 then
+        return true
+    end
+    return false
+end 
 
 function Skeleton:draw()
     love.graphics.setColor(255,0,0, 255)
-    self.bbox:draw("fill")
+    --self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
-	
 	local x,y = self.bbox:center()
 	love.graphics.draw(self.sprite, x - 16, y - 32)
 	
@@ -48,6 +63,6 @@ function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
             self.velocity.y = 0
         end
     elseif other.type == "frostbolt" then
-        self.status = "frozen"
+        self.thaw = self.MAXTHAW
     end
 end
