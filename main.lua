@@ -10,6 +10,7 @@ require 'menu'
 require 'game'
 require 'pause'
 require 'levelselect'
+require 'controls'
 
 function love.load()
 	--Loading fonts
