@@ -93,11 +93,12 @@ function drawWorld()
  	goal:draw("fill")
     love.graphics.setColor(255,255,255, 255)
     -- draw the rest
+    rip:draw()
 	knight:draw()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-    rip:draw()
+    
 end
 function resetEnemies(map)
 	for i = 1,#enemies do
