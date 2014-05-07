@@ -64,5 +64,7 @@ function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
         end
     elseif other.type == "frostbolt" then
         self.thaw = self.MAXTHAW
+    elseif other.type == "sword" then
+        
     end
 end
