@@ -38,8 +38,16 @@ function game:update(dt)
 	knight:update(dt)
 
 	-- update enemies
-    for i = 1,#enemies do
-    	enemies[#enemies - (i-1)]:update(dt)
+	local i = 1
+    while i <= #enemies do
+
+    	if	enemies[i]:isDead() then
+    		collider:remove(enemies[i].bbox)
+    		table.remove(enemies,i)
+    	else
+    		enemies[i]:update(dt)
+    		i = i + 1
+    	end
     end
 	-- Collision detection
 	collider:update(dt)

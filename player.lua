@@ -37,7 +37,7 @@ function Player:update(dt)
     end
     if love.keyboard.isDown("up") and not self.jumping then
 
-        self.velocity.y = -20
+        self.velocity.y = -1000*dt
     	self.jumping = true
     end
     if love.keyboard.isDown("down") then
@@ -111,6 +111,15 @@ end
 function Player:isInvuln()
 	return self.invuln > 0
 end
+
+function Player:isDead()
+    if self.hp <=0 then
+        return true
+    end
+    return false
+end
+
+
 function Player:collide(dt, me, other, mtv_x, mtv_y)
 	if other.type == "tile" then
 		-- collision with tile(ground)
@@ -159,12 +168,4 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 	elseif other.type == "end" then
 		winGame()
 	end
-
-    function Player:isDead()
-        if self.hp <=0 then
-            return true
-        end
-        return false
-    end
-
 end

@@ -11,6 +11,8 @@ Enemy = Class{
         self.damage = 1
         self.MAXTHAW = 3
         self.thaw = 0
+        self.invuln = 0
+        self.MAXINVULN = 1
     end
 }
 
