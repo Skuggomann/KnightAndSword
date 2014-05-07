@@ -1,11 +1,12 @@
 Sword = Class{
-    init = function(self, x, y, collider)
-        self.bbox = collider:addRectangle(x,y,32,16)
+    init = function(self, x, y, collider, player)
+        self.bbox = collider:addRectangle(x,y,40,40)
         self.bbox.type = "sword"
         self.bbox.ref = self
         self.collider = collider
         self.collider:setGhost(self.bbox)
-        self.MAXCOOLDOWN = 2
+        self.player = player
+        self.MAXCOOLDOWN = 1
         self.cooldown = 0
         self.image = love.graphics.newImage("assets/art/sword.png")
         --self.bbox:setRotation(math.pi*1.5)
@@ -14,7 +15,7 @@ Sword = Class{
 
 
 function Sword:update(dt,x,y)
-    self.bbox:moveTo(x,y)
+    self.bbox:moveTo(x,y-16)
     if self.cooldown > 0 then
         self.cooldown = self.cooldown-dt
         if self.cooldown <= 0 then
@@ -28,9 +29,16 @@ end
 
 function Sword:draw()
     love.graphics.setColor(255,0,255, 255)
-    self.bbox:draw("fill")
+    --self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
-    --love.graphics.draw(self.image, )
+    x,y = self.bbox:center()
+    if self.player.facingRight then
+        love.graphics.draw(self.image, x-16, y+8, math.pi*1.5+math.pi*0.5*self.cooldown/self.MAXCOOLDOWN, 1, 1, 8)
+    else
+        love.graphics.draw(self.image, x+16, y+8, -math.pi*1.5-math.pi*0.5*self.cooldown/self.MAXCOOLDOWN, -1, 1, 8)
+    end
+
+
 end
 
 function Sword:attack()

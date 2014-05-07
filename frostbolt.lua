@@ -77,7 +77,7 @@ function Frostbolt:draw()
     --self.animation:draw(self.fimage,x, y)
     x, y = self.player.bbox:center()
     if not self.player.facingRight then
-        x = x - 8
+        x = x - 16
     end
     love.graphics.draw(self.image,x,y-10)
 

@@ -20,7 +20,7 @@ Player = Class{
 	    self.velocity = {["x"] = 0, ["y"] = 0}
 	    self.invuln = 0
 		self.sprite = love.graphics.newImage('/assets/art/player1.png')
-		self.sword = Sword(x,y,collider)
+		self.sword = Sword(x,y,collider, self)
         self.frostbolt = Frostbolt(collider, self)
         self.facingRight = true
     end
@@ -46,7 +46,7 @@ function Player:update(dt)
     if self.jumping then
     	self.velocity.y = self.velocity.y + self.speed/4*dt
     end
-    if love.keyboard.isDown("space") and self.sword:canAttack() then
+    if love.keyboard.isDown(" ") and self.sword:canAttack() then
     	self.sword:attack()
     end
     -- update movement
