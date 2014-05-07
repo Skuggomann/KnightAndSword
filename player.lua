@@ -20,7 +20,7 @@ Player = Class{
 	    self.invuln = 0
 		self.sprite = love.graphics.newImage('/assets/art/player1.png')
 		self.sword = Sword(x,y,collider)
-        self.activeAbilities = {}
+        self.frostbolt = Frostbolt(collider, self)
         self.facingRight = true
     end
 }
@@ -58,6 +58,13 @@ function Player:update(dt)
     	x = x+25
     end
     self.sword:update(dt,x,y)
+
+    if love.keyboard.isDown("w") then
+        if self.currentAbility == "frostbolt" then
+            self.frostbolt:addBolt()
+            --self.activeAbilities[#self.activeAbilities+1] = Frostbolt(x,y,self.collider,self.facingRight)
+        end
+    end
     -- update invulnerability
     if self.invuln > 0 then
     	self.invuln = self.invuln-dt
@@ -66,9 +73,7 @@ function Player:update(dt)
     	end
     end
 
-    for i = 1,#self.activeAbilities do
-        self.activeAbilities[i]:update(dt)
-    end
+    self.frostbolt:update(dt)
 end
 
 function Player:draw()
@@ -87,9 +92,7 @@ function Player:draw()
 
 	-- draw weapon... (just sword now)
 	self.sword:draw()
-	for i = 1,#self.activeAbilities do
-        self.activeAbilities[i]:draw()
-    end
+	self.frostbolt:draw()
 end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
