@@ -7,6 +7,7 @@ Sword = Class{
         self.collider:setGhost(self.bbox)
         self.player = player
         self.MAXCOOLDOWN = 1
+        self.damage = 1
         self.cooldown = 0
         self.image = love.graphics.newImage("assets/art/sword.png")
         --self.bbox:setRotation(math.pi*1.5)
