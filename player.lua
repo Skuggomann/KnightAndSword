@@ -8,6 +8,7 @@ Player = Class{
         self.maxhp = 3
 	    self.mana = 10
         self.maxmana = 100
+        self.manaregen = 10
 	    self.weapons = {["sword"] = true, ["mace"] = false}
 	    self.abilities = {["frostbolt"] = true, ["cape"] = false}
         self.currentWeapon = "sword"
@@ -61,8 +62,11 @@ function Player:update(dt)
 
     if love.keyboard.isDown("w") then
         if self.currentAbility == "frostbolt" then
-            self.frostbolt:addBolt()
-            --self.activeAbilities[#self.activeAbilities+1] = Frostbolt(x,y,self.collider,self.facingRight)
+            if self.frostbolt.cooldown == 0 and self.mana >= self.frostbolt.manacost then
+                self.frostbolt:addBolt()
+                self.frostbolt.cooldown = self.frostbolt.MAXCOOLDOWN
+                self.mana = self.mana - self.frostbolt.manacost
+            end
         end
     end
     -- update invulnerability
@@ -71,6 +75,12 @@ function Player:update(dt)
     	if self.invuln <0 then
     		self.invuln = 0
     	end
+    end
+
+    --update mana
+    self.mana = self.mana + self.manaregen*dt
+    if self.mana >= self.maxmana then 
+        self.mana = self.maxmana
     end
 
     self.frostbolt:update(dt)

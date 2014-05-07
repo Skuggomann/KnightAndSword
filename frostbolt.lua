@@ -6,6 +6,10 @@ Frostbolt = Class{
         self.player = player
         self.collider = collider
 
+        self.manacost = 50
+        self.MAXCOOLDOWN = 1
+        self.cooldown = 0
+
         self.image = love.graphics.newImage('assets/art/FrostboltHand.png')
         self.fimage = love.graphics.newImage('assets/art/Frostbolt-animation.png')
         self.g = anim8.newGrid(32, 32, 68, 34, -1,-1,2)
@@ -41,6 +45,12 @@ function Frostbolt:update(dt)
     ]]--
     --self.bbox:move(self.velocity.x/dt,self.velocity.y/dt)
     --self.animation:update(dt)
+    if self.cooldown ~= 0 then
+        self.cooldown = self.cooldown - dt
+        if self.cooldown <= 0 then 
+            self.cooldown = 0
+        end
+    end
 
     local i = 1
     while i <= #self.activeFrostbolts do
