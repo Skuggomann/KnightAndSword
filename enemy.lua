@@ -1,6 +1,6 @@
 Enemy = Class{
     init = function(self, x, y)
-        self.speed = 50
+        self.speed = 150
         self.hp = 2
         self.mana = 0
         self.canAttack = true
@@ -10,6 +10,8 @@ Enemy = Class{
         self.velocity = {["x"] = 0, ["y"] = 0}
         self.status = nil  --frozen/whatevs
         self.damage = 1
+        self.MAXTHAW = 3
+        self.thaw = 0
     end
 }
 
