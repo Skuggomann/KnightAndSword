@@ -2,7 +2,8 @@ Controls = Class{
     init = function(self)		
 		self.x = {false, false}
 		self.left = {false, false}
-		self.right = {false, false}		
+		self.right = {false, false}	
+		self.up = {false, false}			
     end
 }
 function Controls:isDown(player, key)
@@ -11,6 +12,7 @@ function Controls:isDown(player, key)
 	if     key == "x" then return self.x[player]	
 	elseif key == "left" then return self.left[player] 	
 	elseif key == "right" then return self.right[player]
+	elseif key == "up" then return self.up[player]
 	end
 	
 end
@@ -77,11 +79,14 @@ local id, trash = joystick:getID()
 	elseif axis == 1 and value == -1 then --print("Left Down")	
 		controls.left[id] = true
 	--elseif axis == 2 and value == 1 then print("Down Down")
-	--elseif axis == 2 and value == -1 then print("Up Down")	
+	elseif axis == 2 and value == -1 then --print("Up Down")	
+		controls.up[id] = true	
 	elseif axis == 1 and value == -0.0078125 then --print("Right/Left Relesed")
 		controls.right[id] = false
 		controls.left[id] = false
-	--elseif axis == 2 and value == -0.0078125 then print("Up/Down Relesed")	
+	elseif axis == 2 and value == -0.0078125 then --print("Up/Down Relesed")
+		controls.up[id] = false	
+	
     end
 end
 

@@ -27,15 +27,15 @@ Player = Class{
 }
 function Player:update(dt)
 	-- update controls
-    if love.keyboard.isDown("left") then
+    if love.keyboard.isDown("left") or controls:isDown(2, "left") then
         self.velocity.x = -self.speed*dt
         self.facingRight = false
     end
-    if love.keyboard.isDown("right") then
+    if love.keyboard.isDown("right") or controls:isDown(2, "right") then
         self.velocity.x = self.speed*dt
         self.facingRight = true
     end
-    if love.keyboard.isDown("up") and not self.jumping then
+    if (love.keyboard.isDown("up") or controls:isDown(2, "up")) and not self.jumping then
 
         self.velocity.y = -1000*dt
     	self.jumping = true
@@ -46,7 +46,7 @@ function Player:update(dt)
     if self.jumping then
     	self.velocity.y = self.velocity.y + self.speed/4*dt
     end
-    if love.keyboard.isDown(" ") and self.sword:canAttack() then
+    if (love.keyboard.isDown(" ") or controls:isDown(2, "x")) and self.sword:canAttack() then
     	self.sword:attack()
     end
     -- update movement
