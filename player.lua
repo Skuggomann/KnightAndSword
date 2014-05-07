@@ -19,9 +19,11 @@ Player = Class{
 	    self.velocity = {["x"] = 0, ["y"] = 0}
 	    self.invuln = 0
 		self.sprite = love.graphics.newImage('/assets/art/player1.png')
+		self.sword = Sword(x,y,collider)
     end
 }
 function Player:update(dt)
+	-- update controls
     if love.keyboard.isDown("left") then
         self.velocity.x = -self.speed*dt
     end
@@ -39,9 +41,19 @@ function Player:update(dt)
     if self.jumping then
     	self.velocity.y = self.velocity.y + self.speed/4*dt
     end
+    if love.keyboard.isDown("space") and self.sword:canAttack() then
+    	self.sword:attack()
+    end
     -- update movement
     self.bbox:move(self.velocity.x,self.velocity.y)
-
+    -- update weapon
+    local x,y = self.bbox:center()
+    if self.velocity.x < 0 then
+    	x = x-30
+    else
+    	x = x+30
+    end
+    self.sword:update(dt,x,y)
     -- update invulnerability
     if self.invuln > 0 then
     	self.invuln = self.invuln-dt
@@ -60,6 +72,8 @@ function Player:draw()
 	
 	local x,y = self.bbox:center()
 	love.graphics.draw(self.sprite, x - 16, y - 32)
+	-- draw weapon... (just sword now)
+	self.sword:draw()
 	
 end
 function Player:takeDamage(damage)
