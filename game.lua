@@ -8,6 +8,7 @@ require 'enemy'
 require 'skeleton'
 require 'rip'
 require 'sword'
+require 'frostbolt'
 local knight = nil
 local enemies = {}
 local ui = nil
