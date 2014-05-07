@@ -12,7 +12,7 @@ Frostbolt = Class{
 
         self.image = love.graphics.newImage('assets/art/FrostboltHand.png')
         self.fimage = love.graphics.newImage('assets/art/Frostbolt-animation.png')
-        self.g = anim8.newGrid(32, 32, 68, 34, -1,-1,2)
+        self.g = anim8.newGrid(30, 30, 68, 34, -2,-2,4)
         --self.animation = anim8.newAnimation(self.g('1-2',1), 0.2)
         self.activeFrostbolts = {}
     end,
@@ -27,7 +27,7 @@ function Frostbolt:addBolt()
     local bbbox = self.collider:addRectangle(x,y-12,16,16)
     bbbox.type = "frostbolt"
     bbbox.ref = self
-    bbbox.speed = 120
+    bbbox.speed = 350
     bbbox.animation = anim8.newAnimation(self.g('1-2',1), 0.2)
     bbbox.facingRight =self.player.facingRight
     bbbox.ttl = 5
@@ -90,9 +90,9 @@ function Frostbolt:draw()
 
         x,y = self.activeFrostbolts[i]:center()
         if self.activeFrostbolts[i].facingRight then
-            self.activeFrostbolts[i].animation:draw(self.fimage,x-24, y-16)
+            self.activeFrostbolts[i].animation:draw(self.fimage,x-22, y-15)
         else
-            self.activeFrostbolts[i].animation:draw(self.fimage,x+24, y-16,0,-1,1)
+            self.activeFrostbolts[i].animation:draw(self.fimage,x+22, y-15,0,-1,1)
         end
         --x,y = x-16,y-16
         --self.animation:draw(self.fimage,x, y)
