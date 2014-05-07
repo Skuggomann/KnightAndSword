@@ -7,6 +7,8 @@ Sword = Class{
         self.collider:setGhost(self.bbox)
         self.MAXCOOLDOWN = 2
         self.cooldown = 0
+        self.image = love.graphics.newImage("assets/art/sword.png")
+        --self.bbox:setRotation(math.pi*1.5)
     end
 }
 
@@ -20,12 +22,15 @@ function Sword:update(dt,x,y)
             self.collider:setGhost(self.bbox)
         end
     end
+    --local x,y = self.bbox:center()
+    --self.bbox:rotate(math.pi*dt,0, 0)
 end
 
 function Sword:draw()
     love.graphics.setColor(255,0,255, 255)
     self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
+    --love.graphics.draw(self.image, )
 end
 
 function Sword:attack()
