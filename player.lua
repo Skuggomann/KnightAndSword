@@ -53,9 +53,9 @@ function Player:update(dt)
     -- update weapon
     local x,y = self.bbox:center()
     if not self.facingRight then
-    	x = x-30
+    	x = x-25
     else
-    	x = x+30
+    	x = x+25
     end
     self.sword:update(dt,x,y)
     -- update invulnerability
