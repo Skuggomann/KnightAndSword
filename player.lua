@@ -110,6 +110,7 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
         if self.hp <=0 then
             return true
         end
+        return false
     end
 
 end
