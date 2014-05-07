@@ -20,15 +20,19 @@ Player = Class{
 	    self.invuln = 0
 		self.sprite = love.graphics.newImage('/assets/art/player1.png')
 		self.sword = Sword(x,y,collider)
+        self.activeAbilities = {}
+        self.facingRight = true
     end
 }
 function Player:update(dt)
 	-- update controls
     if love.keyboard.isDown("left") then
         self.velocity.x = -self.speed*dt
+        self.facingRight = false
     end
     if love.keyboard.isDown("right") then
         self.velocity.x = self.speed*dt
+        self.facingRight = true
     end
     if love.keyboard.isDown("up") and not self.jumping then
 
@@ -48,7 +52,7 @@ function Player:update(dt)
     self.bbox:move(self.velocity.x,self.velocity.y)
     -- update weapon
     local x,y = self.bbox:center()
-    if self.velocity.x < 0 then
+    if not self.facingRight then
     	x = x-30
     else
     	x = x+30
@@ -61,6 +65,10 @@ function Player:update(dt)
     		self.invuln = 0
     	end
     end
+
+    for i = 1,#self.activeAbilities do
+        self.activeAbilities[i]:update(dt)
+    end
 end
 
 function Player:draw()
@@ -71,10 +79,17 @@ function Player:draw()
     love.graphics.setColor(255,255,255, 255)
 	
 	local x,y = self.bbox:center()
-	love.graphics.draw(self.sprite, x - 16, y - 32)
+    if self.facingRight then
+    	love.graphics.draw(self.sprite, x - 16, y - 32)
+    else
+        love.graphics.draw(self.sprite, x + 16, y - 32, 0, -1, 1)
+    end
+
 	-- draw weapon... (just sword now)
 	self.sword:draw()
-	
+	for i = 1,#self.activeAbilities do
+        self.activeAbilities[i]:draw()
+    end
 end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
