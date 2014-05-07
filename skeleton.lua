@@ -5,6 +5,7 @@ Skeleton = Class{__includes = Enemy,
         self.bbox.type = "skeleton"
         self.bbox.ref = self
         self.velocity.x = 3
+		self.sprite = love.graphics.newImage('/assets/art/skeleton.png')
     end
 }
 
@@ -21,6 +22,10 @@ function Skeleton:draw()
     love.graphics.setColor(255,0,0, 255)
     self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
+	
+	local x,y = self.bbox:center()
+	love.graphics.draw(self.sprite, x - 16, y - 32)
+	
 end
 function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
     if other.type == "tile" then
