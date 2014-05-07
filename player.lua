@@ -36,7 +36,7 @@ function Player:update(dt)
     end
     if love.keyboard.isDown("up") and not self.jumping then
 
-        self.velocity.y = -self.speed*5*dt
+        self.velocity.y = -20
     	self.jumping = true
     end
     if love.keyboard.isDown("down") then
