@@ -41,5 +41,7 @@ function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
         else
             self.velocity.y = 0
         end
+    elseif other.type == "frostbolt" then
+        self.status = "frozen"
     end
 end

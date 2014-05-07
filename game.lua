@@ -137,20 +137,21 @@ function mapSetup(map)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	if shape_a.type == "player" then
+	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	elseif shape_b.type == "player" then
+	end
+	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" then
 		mtv_x = mtv_x*-1
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
 	end
-	if shape_a.type == "skeleton" then
+	--[[if shape_a.type == "skeleton" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	elseif shape_b.type == "skeleton" then
 		mtv_x = mtv_x*-1
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
-	end
+	end]]--
 end
 
 function stop_collide(dt, shape_a, shape_b)

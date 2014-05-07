@@ -24,7 +24,9 @@ function Frostbolt:addBolt()
     if not self.player.facingRight then
         x = x - 8
     end
-    local bbbox = self.collider:addRectangle(x,y,32,32)
+    local bbbox = self.collider:addRectangle(x,y-12,16,16)
+    bbbox.type = "frostbolt"
+    bbbox.ref = self
     bbbox.speed = 120
     bbbox.animation = anim8.newAnimation(self.g('1-2',1), 0.2)
     bbbox.facingRight =self.player.facingRight
@@ -88,9 +90,9 @@ function Frostbolt:draw()
 
         x,y = self.activeFrostbolts[i]:center()
         if self.activeFrostbolts[i].facingRight then
-            self.activeFrostbolts[i].animation:draw(self.fimage,x-16, y-16)
+            self.activeFrostbolts[i].animation:draw(self.fimage,x-24, y-16)
         else
-            self.activeFrostbolts[i].animation:draw(self.fimage,x+16, y-16,0,-1,1)
+            self.activeFrostbolts[i].animation:draw(self.fimage,x+24, y-16,0,-1,1)
         end
         --x,y = x-16,y-16
         --self.animation:draw(self.fimage,x, y)
@@ -98,20 +100,8 @@ function Frostbolt:draw()
     end
 end
 function Frostbolt:collide(dt, me, other, mtv_x, mtv_y)
-    --[[
-    if other.type == "tile" then
-        -- collision with tile(ground)
-        self.bbox:move(mtv_x, 0)
-        self.bbox:move(0, mtv_y)
-        if mtv_x ~= 0 then
-            self.velocity.x = -self.velocity.x
-        end
-        if mtv_y < 0 and self.jumping then
-            self.jumping = false
-            self.velocity.y = 0
-        else
-            self.velocity.y = 0
-        end
+    print(other.type)
+    if other.type == "tile" or other.type == "skeleton" then
+        me.ttl = 0
     end
-    ]]--
 end

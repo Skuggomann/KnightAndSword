@@ -6,7 +6,7 @@ Player = Class{
 	    self.speed = 200
 	    self.hp = 3
         self.maxhp = 3
-	    self.mana = 10
+	    self.mana = 100
         self.maxmana = 100
         self.manaregen = 10
 	    self.weapons = {["sword"] = true, ["mace"] = false}
