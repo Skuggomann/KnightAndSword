@@ -92,7 +92,7 @@ end
 function love.joystickaxis( joystick, axis, value )
 
 local id, trash = joystick:getID()
-print(axis .. " " .. value)
+--print(axis .. " " .. value)
 
 	if axis == 1 and value == 1 then --print("Right Down")
 		controls.right[id] = true

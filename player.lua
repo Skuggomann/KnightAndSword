@@ -94,7 +94,7 @@ function Player:draw()
 	if self:isInvuln() then
 	    love.graphics.setColor(0,255,0, 255)
 	end
-    self.bbox:draw("fill")
+    --self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
 	
 	local x,y = self.bbox:center()

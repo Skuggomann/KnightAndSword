@@ -3,6 +3,9 @@ local levelselect = Gamestate.levelselect
 local levels = {}
 local selected = 1
 local levelnr = 1
+local up = false
+local down = false
+local enter = false
 W, H = love.graphics.getWidth(), love.graphics.getHeight()
 function levelselect:init() -- run only once
 	local file = io.open("assets/maps/levels.txt")
@@ -28,10 +31,44 @@ function levelselect:enter(previous) -- run every time the state is entered
 end
 
 function levelselect:update(dt)
+    if controls:isDown("up") then
+    	if not up then
+    		--once
+	    	selected = (selected-1)
+	    	if selected == 0 then
+	    		selected = levelnr
+	    	end
+    		up = true
+    	end
+    else
+    	up = false
+    end
+    if controls:isDown("down") then
+    	if not down then
+    		--once
+	    	selected = (selected+1)
+	    	if selected == (levelnr+1) then
+	    		selected = 1
+	    	end
+    		down = true
+    	end
+    else
+    	down = false
+    end
+    if controls:isDown("enter") then
+    	if not enter then
+    		--once
+	    	local filename = levels[selected].filename
+	        Gamestate.switch(Gamestate.game,filename)
+    		enter = true
+    	end
+    else
+    	enter = false
+    end
 end
 
 function levelselect:draw()
-    love.graphics.print(string.format("Select a level and press enter"),10,10)
+    love.graphics.print(string.format("Select a level and press enter (x)"),10,10)
     love.graphics.print(string.format("levels:"..levelnr),50,50)
     for k, v in pairs(levels) do
     	if k ~= selected then
@@ -43,7 +80,7 @@ function levelselect:draw()
 		love.graphics.setColor(255,255,255, 255)
     end
 end
-
+--[[
 function levelselect:keyreleased(key)
 	--todo select a level and send it with the game state switch.
     if key == 'return' or key == 'kpenter' then
@@ -61,3 +98,7 @@ function levelselect:keyreleased(key)
     	end
     end
 end
+]]
+
+
+
