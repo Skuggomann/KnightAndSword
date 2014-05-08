@@ -113,10 +113,10 @@ function winGame()
 end
 function drawWorld()
 	map:draw()
-  	-- draw goal
-    love.graphics.setColor(0,0,255, 255)
- 	goal:draw("fill")
-    love.graphics.setColor(255,255,255, 255)
+  	-- do not draw goal
+    --love.graphics.setColor(0,0,255, 255)
+ 	--goal:draw("fill")
+    --love.graphics.setColor(255,255,255, 255)
     -- draw the rest
     rip:draw()
 	knight:draw()

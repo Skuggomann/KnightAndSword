@@ -84,9 +84,10 @@ function Frostbolt:draw()
     love.graphics.draw(self.image,x,y-10)
 
     for i = 1, #self.activeFrostbolts do
-        love.graphics.setColor(0,0,255, 255)
-        self.activeFrostbolts[i]:draw("fill")
-        love.graphics.setColor(255,255,255, 255)
+        -- do not draw bounding box
+        --love.graphics.setColor(0,0,255, 255)
+        --self.activeFrostbolts[i]:draw("fill")
+        --love.graphics.setColor(255,255,255, 255)
 
         x,y = self.activeFrostbolts[i]:center()
         if self.activeFrostbolts[i].facingRight then
