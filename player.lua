@@ -122,6 +122,7 @@ end
 
 function Player:collide(dt, me, other, mtv_x, mtv_y)
 	if other.type == "tile" then
+	print(mtv_x,mtv_y)
 		-- collision with tile(ground)
 		self.bbox:move(mtv_x, 0)
 		self.bbox:move(0, mtv_y)

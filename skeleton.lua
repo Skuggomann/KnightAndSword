@@ -29,7 +29,7 @@ function Skeleton:update(dt)
         end
     end
 
-    if self.jumping then
+    if self.jumping and not self:isFrozen() then
         self.velocity.y = self.velocity.y + self.speed/4*dt
     end
     if self.facingRight then

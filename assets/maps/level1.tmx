@@ -5,7 +5,7 @@
  </tileset>
  <layer name="ground" width="160" height="16">
   <data encoding="base64" compression="zlib">
-   eJzt2bEKgCAUhlH3lqbq/Z+0XEOKK8K/nAN3dfpQ0b21ti8aqFrVjf6YoT+S9EdS7+Z45nrNObEOVNn/SNIfSdVutkXrQDfqZnQf/LsX6o8Zzl+S9EeS/kjSH0n6I0l/JH29tVSm+l8H3Q3AeAYL
+   eJzt2bEKgCAYhVH3lqbq/Z+0HFpCKkW4yznwr04fKrqWUtZJA71mdaM/RuiPJP2RVLvZrjkesw+sA73sfyTpj6TebpZJ60DV6qZ1H/y6F+qPEc5fkvRHkv5I0h9J+iNJfyS9vbX8mVvvfx1UJ1TYBds=
   </data>
  </layer>
  <objectgroup name="spawns" width="160" height="16">
