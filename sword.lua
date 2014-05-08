@@ -30,7 +30,7 @@ end
 
 function Sword:draw()
     love.graphics.setColor(255,0,255, 255)
-    self.bbox:draw("fill")
+    --self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
     x,y = self.bbox:center()
     if self.player.facingRight then

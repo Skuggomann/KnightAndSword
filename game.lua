@@ -32,7 +32,9 @@ function game:enter(previous,filename) -- run every time the state is entered
 	map.drawObjects = false
 	mapSetup(map)
 	ui = UI(knight)
-	--ui:addToTable({"sword", "Hello INSERT PLAYER NAME HERE, welcome to the cursed keep.\nLet's make this text a little longer shall we? \ntest", 3, "player", "uh, hello?",5})
+	if Gamestate.levelselect:getCurrentLevel() == 1 then
+		ui:addToTable({"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n", 5, "player", "why can't i use my arm...or jump?",3, "sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?", 5})
+	end
 	cam = Camera(456, 256,1.40)
 end
 

@@ -82,6 +82,11 @@ function levelselect:isLastLevel()
 	return selected == levelnr
 end
 
+function levelselect:getCurrentLevel()
+	return selected
+end
+
+
 function levelselect:switchToNextLevel()
 	if not self.isLastLevel() then
 		selected = selected+1
