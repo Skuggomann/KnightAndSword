@@ -15,12 +15,12 @@
  </layer>
  <layer name="ground" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEBnBeCSDUf+PbDDq/5ENBqv/6eWuwep/egFa+x+b+fjspLZ7CNXxQ6ENQEv3Uep/XHpJjXdy7KOGHYMh/gfSDaTaPRjCi5qA2v4ZamEz3OKTVDDS+4ggvwEAzuAIwQ==
+   eJztlkEOwCAIBHmE/3+r8a4iuiirTtIbdB1IWpOIpIcfjZEaVr4/poaV74+pYSWq/67MqP678Pav9fbeh5619o9H3RE88cxf9Wv1Wvc+k4fIiLLfU2ewZkeYFxK0D9tsbtunFYbvvyfFLQNAVAoB
   </data>
  </layer>
  <layer name="noncolidable" width="64" height="16">
   <data encoding="base64" compression="zlib">
-   eJzt1zEKACAMQ1EP0d1eQJzE+99MO7gacCmGPPiDg2BGS5Eby35AMvb9FcS+30Haz81B2s/NQez7g4FERH7Xdj37EYnGbj7cQ3+EXzr7zzks6GcOuQ==
+   eJzt1zEKACAMQ1FvYi4gTuL9b6aL4BZwKY158MdCO7YUs39VkjqQ1IGkDiR1IKkDyczM8mu7Hr1EoLGbD3PsR8jSuf/+bRZ3Ag15
   </data>
  </layer>
  <layer name="morelava" width="64" height="16">

@@ -1,6 +1,7 @@
-Level 1,level1.tmx
-Level 2,level2.tmx
-Level 3,level3.tmx
-Level 4,level4.tmx
-Level 5,level5.tmx
-Level 6,level6.tmx
+Intro,level1.tmx
+Jumping Loin,level2.tmx
+Icy freeze,level3.tmx
+Cliffhanger,level4.tmx
+Ice age,level5.tmx
+The arena of DEATH,level6.tmx
+Hell level,levelhell.tmx

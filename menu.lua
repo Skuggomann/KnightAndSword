@@ -22,5 +22,5 @@ end
 
 function menu:draw()
     love.graphics.draw(self.background, 0, 0)
-    love.graphics.print(string.format("press enter to play"),10,10)
+    love.graphics.print(string.format("press enter(x) to play"),10,10)
 end
