@@ -59,7 +59,7 @@ function Player:update(dt)
     -- update weapon
     local x,y = self.bbox:center()
     if not self.facingRight then
-    	x = x-25
+    	x = x-45
     else
     	x = x+25
     end

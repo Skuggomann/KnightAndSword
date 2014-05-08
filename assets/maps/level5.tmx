@@ -15,18 +15,18 @@
  </layer>
  <layer name="ground" width="19" height="16">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEKEipgYYSWZRI2wHux8p0UsoDMgJu8Hix5FsFrUwADVvBx0=
+   eJwTYWBgEKEipgYY7GZRw++D3Y+0NosccWxy5KTJoRhew80samEAqgEGfQ==
   </data>
  </layer>
  <layer name="non colidable" width="19" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBi8QBeI9YBYH4gNKTTLFIjNgNicUkdR2ayBApSG5ygYBYMBAAA3eAIx
+   eJxjYKAu0AViPSDWB2JDCs0yBWIzIDan1FFUNms4AErjZhSMgsEAAM8sAjE=
   </data>
  </layer>
  <objectgroup name="spawns" width="19" height="16">
   <object name="player" type="player" gid="1" x="472" y="437"/>
-  <object name="end" type="end" gid="2" x="64" y="132"/>
+  <object name="end" type="end" gid="2" x="59" y="104"/>
   <object name="skeleton" type="skeleton" gid="3" x="197" y="440"/>
-  <object name="skeleton" type="skeleton" gid="3" x="160" y="127"/>
+  <object name="skeleton" type="skeleton" gid="3" x="149" y="114"/>
  </objectgroup>
 </map>
