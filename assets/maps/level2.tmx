@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
+  <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
+ </tileset>
+ <layer name="background" width="40" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzjZmBg4KYRpgagldtG3TfqvlH3jbpv1H2j7ht136j7Rqr7AFf/D9E=
+  </data>
+ </layer>
+ <layer name="background lighting" width="40" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjY2BgYKMRpgagldtG3TfqvlH3jbpv1H2j7ht136j7Rqr7AGMUCKE=
+  </data>
+ </layer>
+ <layer name="door" width="40" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1ACGVDSDGmbRAugCsR4Q6w+0Q3AAUyA2A2LzgXYIDjDY3TcKRsEoGAWjYOQAANqfAmI=
+  </data>
+ </layer>
+ <layer name="ground" width="40" height="16">
+  <data encoding="base64" compression="zlib">
+   eJwTYWBgEKERpgagljm0MnfUfYPDHFqZO9zchyuPjuZf6gJ6uY/c+BoNv8FhLro51Mp/IzX8qAWo6b7B3L4CABJNBuE=
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="40" height="16">
+  <object name="player" type="player" gid="1" x="58" y="454"/>
+  <object name="end" type="end" gid="2" x="639" y="180"/>
+ </objectgroup>
+</map>

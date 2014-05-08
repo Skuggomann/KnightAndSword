@@ -1,1 +1,2 @@
 Stuck,level1.tmx
+Level 2,level2.tmx
