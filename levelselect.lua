@@ -3,9 +3,6 @@ local levelselect = Gamestate.levelselect
 local levels = {}
 local selected = 1
 local levelnr = 1
-local up = false
-local down = false
-local enter = false
 W, H = love.graphics.getWidth(), love.graphics.getHeight()
 function levelselect:init() -- run only once
 	local file = io.open("assets/maps/levels.txt")
@@ -32,38 +29,38 @@ end
 
 function levelselect:update(dt)
     if controls:isDown("up") then
-    	if not up then
+    	if not controls.bup then
     		--once
 	    	selected = (selected-1)
 	    	if selected == 0 then
 	    		selected = levelnr
 	    	end
-    		up = true
+    		controls.bup = true
     	end
     else
-    	up = false
+    	controls.bup = false
     end
     if controls:isDown("down") then
-    	if not down then
+    	if not controls.bdown then
     		--once
 	    	selected = (selected+1)
 	    	if selected == (levelnr+1) then
 	    		selected = 1
 	    	end
-    		down = true
+    		controls.bdown = true
     	end
     else
-    	down = false
+    	controls.bdown = false
     end
     if controls:isDown("enter") then
-    	if not enter then
+    	if not controls.benter then
     		--once
 	    	local filename = levels[selected].filename
 	        Gamestate.switch(Gamestate.game,filename)
-    		enter = true
+    		controls.benter = true
     	end
     else
-    	enter = false
+    	controls.benter = false
     end
 end
 

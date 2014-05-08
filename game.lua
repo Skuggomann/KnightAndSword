@@ -34,6 +34,18 @@ function game:enter(previous,filename) -- run every time the state is entered
 end
 
 function game:update(dt)
+	-- update input
+
+    if controls:isDown("start") then
+    	if not controls.bstart then
+    		--once
+        	Gamestate.push(Gamestate.pause)
+    		controls.bstart = true
+    	end
+    else
+    	controls.bstart = false
+    end
+
 	-- update player object
 	knight:update(dt)
 
@@ -89,12 +101,6 @@ function game:draw()
 end
 
 
-
-function game:keyreleased(key)
-    if key == 'p' then
-        Gamestate.push(Gamestate.pause)
-    end
-end
 
 function game:leave()
 end

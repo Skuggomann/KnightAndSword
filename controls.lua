@@ -11,6 +11,10 @@ Controls = Class{
 
 		self.player1 = 1
 		self.player2 = 2
+		self.bup = false
+		self.bdown = false
+		self.benter = false
+		self.bstart = false
     end
 }
 function Controls:isDown(key, player)
@@ -31,7 +35,7 @@ function Controls:isDown(key, player)
 	elseif key == "right" then return self.right[self.player1] or love.keyboard.isDown("right")
 	elseif key == "up" then return self.up[self.player2] or love.keyboard.isDown("up")
 	elseif key == "down" then return self.down[self.player2] or love.keyboard.isDown("down")
-	
+	elseif key == "start" then return self.start[self.player2] or self.start[self.player1] or love.keyboard.isDown("p")
 	elseif key == "enter" then return self.x[self.player1] or self.x[self.player2] or love.keyboard.isDown("kpenter") or love.keyboard.isDown("return")
 	end
 	
