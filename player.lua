@@ -19,7 +19,7 @@ Player = Class{
 	    self.jumping = true
 	    self.velocity = {["x"] = 0, ["y"] = 0}
 	    self.invuln = 0
-		self.sprite = love.graphics.newImage('/assets/art/player1.png')
+		self.sprite = love.graphics.newImage('/assets/art/player2.png')
 		self.sword = Sword(x,y,collider, self)
         self.frostbolt = Frostbolt(collider, self)
         self.facingRight = true

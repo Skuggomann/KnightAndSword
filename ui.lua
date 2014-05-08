@@ -6,7 +6,8 @@ UI = Class{
     heart = love.graphics.newImage("assets/art/LivingHeart2.png"),
     deadHeart = love.graphics.newImage("assets/art/DeadHeart2.png"),
     sword = love.graphics.newImage("assets/art/sword.png"),
-    frostbolt = love.graphics.newImage("assets/art/Frostbolt1.png")
+    frostbolt = love.graphics.newImage("assets/art/Frostbolt1.png"),
+    playerhed = love.graphics.newImage("assets/art/playerhed.png")
 }
 
 function UI:update(dt)
@@ -35,6 +36,9 @@ function UI:draw()
 
         if self.textTable[1] == "sword" then 
             love.graphics.draw(self.sword, 118, H-68, math.pi * 1.5, 2, 2)
+
+        elseif self.textTable[1] == "player" then 
+            love.graphics.draw(self.playerhed, 100, H-132, 0,2,2)
         else
             love.graphics.print(self.textTable[1], 100, H-100) -- Placeholder for image of talker
         end

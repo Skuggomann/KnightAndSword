@@ -29,7 +29,7 @@ function game:enter(previous,filename) -- run every time the state is entered
 	map.drawObjects = false
 	mapSetup(map)
 	ui = UI(knight)
-	ui:addToTable({"sword", "Hello INSERT PLAYER NAME HERE, welcome to the cursed keep.\nLet's make this text a little longer shall we? \ntest", 3, "Ser John", "uh, hello?",5})
+	ui:addToTable({"sword", "Hello INSERT PLAYER NAME HERE, welcome to the cursed keep.\nLet's make this text a little longer shall we? \ntest", 3, "player", "uh, hello?",5})
 	cam = Camera(456, 256,1.40)
 end
 
