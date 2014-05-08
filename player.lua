@@ -4,6 +4,7 @@ Player = Class{
 		self.bbox.type = "player"
 		self.bbox.ref = self
 	    self.speed = 200
+        self.jumpHeight = -1100
 	    self.hp = 3
         self.maxhp = 3
 	    self.mana = 100
@@ -28,29 +29,32 @@ Player = Class{
 function Player:update(dt)
 	-- update controls
     if love.keyboard.isDown("left") or controls:isDown(2, "left") then
-        self.velocity.x = -self.speed*dt
+        self.velocity.x = -self.speed
         self.facingRight = false
     end
     if love.keyboard.isDown("right") or controls:isDown(2, "right") then
-        self.velocity.x = self.speed*dt
+        self.velocity.x = self.speed
         self.facingRight = true
     end
     if (love.keyboard.isDown("up") or controls:isDown(2, "up")) and not self.jumping then
 
-        self.velocity.y = -1000*dt
+        self.velocity.y = self.jumpHeight
     	self.jumping = true
     end
-    if love.keyboard.isDown("down") then
+    
+    --[[if love.keyboard.isDown("down") then
         self.velocity.y = self.speed*dt
     end
+    --]]
+
     if self.jumping then
-    	self.velocity.y = self.velocity.y + self.speed/4*dt
+    	self.velocity.y = self.velocity.y + self.speed/4
     end
     if (love.keyboard.isDown(" ") or controls:isDown(2, "x")) and self.sword:canAttack() then
     	self.sword:attack()
     end
     -- update movement
-    self.bbox:move(self.velocity.x,self.velocity.y)
+    self.bbox:move(self.velocity.x*dt,self.velocity.y*dt)
     -- update weapon
     local x,y = self.bbox:center()
     if not self.facingRight then
