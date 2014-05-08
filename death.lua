@@ -4,8 +4,8 @@ function death:enter(from,x, y)
     self.from = from -- record previous state
     self.selected = 1
     self.fimage = love.graphics.newImage('assets/art/rip-small-animation.png')
-    self.g = anim8.newGrid(32, 32, 204, 34, -1,-1,2)
-    self.animTime = 0.6
+    self.g = anim8.newGrid(30, 30, 204, 34, -2,-2,4)
+    self.animation = anim8.newAnimation(self.g('1-6',1), {0.25, 0.25, 0.25, 0.25, 0.25, 100})
     self.fadeTime = 4
     self.fadeTimedx = 0
     self.x = x
@@ -19,6 +19,21 @@ function death:update(dt)
             self.fadeTimedx = self.fadeTime
         end
     end
+
+    if controls:isDown("up") then
+        self.selected = 1
+    end
+    if controls:isDown("down") then
+        self.selected = 2
+    end
+    if controls:isDown("enter") then
+        if self.selected == 1 then
+            Gamestate.pop()
+        elseif self.selected == 2 then
+            Gamestate.switch(Gamestate.menu)
+        end
+    end
+    self.animation:update(dt)
 end
 
 function death:draw()
@@ -46,17 +61,6 @@ function death:draw()
         love.graphics.printf('quit to main menu', 0, H/2, W, 'center')
     end
     love.graphics.setColor(255,255,255,255)
-end
 
-function death:keyreleased(key)
-    if key == 'up' then
-        self.selected = 1
-    end
-    if key == 'down' then
-        self.selected = 2
-    end
-    if controls.enter then
-        --self.from:leave()
-    	Gamestate.switch(Gamestate.menu)    	
-    end
+    self.animation:draw(self.fimage, W/2-32,H/2+100,0,2,2 )
 end
