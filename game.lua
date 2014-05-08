@@ -90,12 +90,14 @@ function game:update(dt)
 		Gamestate.push(Gamestate.death,x,y)
 		collider:remove(knight.bbox)
 		rip:addRip(x,y)
-		knight = Player(spawnPoint.x, spawnPoint.y, collider)
-		ui = UI(knight)
-		resetEnemies(map)
+		self:reset()
 	end
 end
-
+function game:reset()
+	knight = Player(spawnPoint.x, spawnPoint.y, collider)
+	ui = UI(knight)
+	resetEnemies(map)
+end
 function game:draw()
 	cam:draw(drawWorld)
 	ui:draw()
