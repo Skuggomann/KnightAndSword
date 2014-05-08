@@ -29,17 +29,17 @@ function Skeleton:update(dt)
         end
     end
 
-    if self.jumping then
-        self.velocity.y = self.velocity.y + self.speed/4*dt
+    if self.jumping and not self:isFrozen() then
+        self.velocity.y = self.velocity.y + self.speed/4
     end
     if self.facingRight then
-        self.velocity.x = self.speed*dt
+        self.velocity.x = self.speed
     else
-        self.velocity.x = -self.speed*dt
+        self.velocity.x = -self.speed
     end
     -- update movement
     if not self:isFrozen() then
-        self.bbox:move(self.velocity.x,self.velocity.y)
+        self.bbox:move(self.velocity.x*dt,self.velocity.y*dt)
     end
 end
 
@@ -98,13 +98,13 @@ function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
         if not self:isInvuln() and not self:isFrozen() then
             self:takeDamage(other.ref.damage)
             if mtv_x < 0 then
-                self.velocity.x = -dt*self.speed
+                self.velocity.x = -self.speed
                 self.bbox:move(mtv_x-5, 0)
             else
-                self.velocity.x = dt*self.speed
+                self.velocity.x = self.speed
                 self.bbox:move(mtv_x+5, 0)
             end
-            self.velocity.y = -dt*self.speed*2
+            self.velocity.y = -self.speed*2
 
             -- move
             if mtv_y > 0 then
