@@ -3,3 +3,4 @@ Level 2,level2.tmx
 Level 3,level3.tmx
 Level 4,level4.tmx
 Level 5,level5.tmx
+Level 6,level6.tmx

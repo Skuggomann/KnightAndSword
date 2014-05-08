@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
+  <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
+ </tileset>
+ <layer name="background" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztz8ENADAMAjH+2X/fbtFWxEj3x5NklpQPPvDy8vLy8vJ2x9sdb3e8bz7c3AG1dCdo
+  </data>
+ </layer>
+ <layer name="background lighting" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztz8ENADAMAjFe2X/kbtFWxEj3x5NklpQPPvDy8vLy8vJ2x9sdb3e8bz7c3AE7QhV/
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJwTYRjcQITKZlHTPFoAWvh3MGJa+negAL3tHqn+HQ5plRgwEPE70OlpJPp3OKdhZEBs/FLqxsFSx49U/xKTBodqGkYGA13/0huM+nd4g4FqXw0kBgAlsRC5
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="60" height="16">
+  <object name="player" type="player" gid="1" x="90" y="432"/>
+  <object name="end" type="end" gid="2" x="1791" y="447"/>
+  <object name="skeleton" type="skeleton" gid="3" x="36" y="324"/>
+  <object name="skeleton" type="skeleton" gid="3" x="640" y="420"/>
+  <object name="skeleton" type="skeleton" gid="3" x="319" y="318"/>
+  <object name="skeleton" type="skeleton" gid="3" x="36" y="128"/>
+  <object name="skeleton" type="skeleton" gid="3" x="39" y="228"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1058" y="415"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1460" y="415"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1841" y="414"/>
+ </objectgroup>
+ <layer name="noncollidable" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAD8Gw8AAAE=
+  </data>
+ </layer>
+</map>

@@ -111,7 +111,7 @@ function Player:draw()
 end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
-	self.invuln = 2
+	self.invuln = 1
 end
 function Player:isInvuln()
 	return self.invuln > 0
