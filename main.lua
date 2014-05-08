@@ -20,6 +20,9 @@ function love.load()
 	Font18p = love.graphics.setNewFont("/assets/fonts/visitor1.ttf", 18)
 	Font24p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 24)
 	Font36p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 36)
+
+	--swordhit = love.audio.newSource("assets/sounds/swords_x_2_hit_001.mp3", "static")
+	--swordhit:setVolume(0.5)
 	
     Gamestate.registerEvents()
 	Gamestate.switch(Gamestate.menu)
