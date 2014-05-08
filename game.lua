@@ -15,7 +15,7 @@ local ui = nil
 local spawnPoint = {}
 local rip = nil
 local goal = nil
-local gametime = 0
+local gametime = nil
 local gravity = 2000
 
 function game:init() -- run only once
@@ -24,6 +24,7 @@ end
 
 function game:enter(previous,filename) -- run every time the state is entered
 	enemies = {}
+	gametime = 0
 	local filepath = "assets/maps/"..filename
 	collider = HC(100, on_collide, stop_collide)
 	map = loader.load(filepath)
@@ -38,7 +39,6 @@ end
 function game:update(dt)
 	--update gametime
 	gametime = gametime+dt
-
 	-- update input
 
     if controls:isDown("start") then
@@ -92,14 +92,14 @@ function game:update(dt)
 		x,y = knight.bbox:center()
 		x = x-16
 		y = y
-		Gamestate.push(Gamestate.death,x,y)
-		collider:remove(knight.bbox)
+		Gamestate.push(Gamestate.death)
 		rip:addRip(x,y)
 		self:reset()
 	end
 end
 function game:reset()
 	gametime = 0 --change if we add checkpoints pls
+	collider:remove(knight.bbox)	
 	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
 	ui = UI(knight)
 	resetEnemies(map)
@@ -115,7 +115,7 @@ function game:leave()
 end
 
 function winGame()
-	Gamestate.switch(Gamestate.levelselect)
+	Gamestate.push(Gamestate.win, gametime)
 end
 function drawWorld()
 	map:draw()

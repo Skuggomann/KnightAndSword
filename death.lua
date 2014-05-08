@@ -1,6 +1,6 @@
 Gamestate.death = {}
 local death = Gamestate.death
-function death:enter(from,x, y)
+function death:enter(from)
     self.from = from -- record previous state
     self.selected = 1
     self.fimage = love.graphics.newImage('assets/art/rip-small-animation.png')
@@ -8,8 +8,6 @@ function death:enter(from,x, y)
     self.animation = anim8.newAnimation(self.g('1-6',1), {0.25, 0.25, 0.25, 0.25, 0.25, 100})
     self.fadeTime = 4
     self.fadeTimedx = 0
-    self.x = x
-    self.y = y
 end
 
 function death:update(dt)
