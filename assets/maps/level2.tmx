@@ -26,5 +26,6 @@
  <objectgroup name="spawns" width="40" height="16">
   <object name="player" type="player" gid="1" x="58" y="454"/>
   <object name="end" type="end" gid="2" x="639" y="180"/>
+  <object name="skeleton" type="skeleton" gid="3" x="640" y="446"/>
  </objectgroup>
 </map>
