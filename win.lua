@@ -10,7 +10,7 @@ function win:enter(from, time)
     self.time = math.floor(time*10)/10
     self.curlevel = curlevel
     self.islastlevel = Gamestate.levelselect:isLastLevel()
-    if islastlevel then 
+    if self.islastlevel then 
         selected = 3
     end
 end
