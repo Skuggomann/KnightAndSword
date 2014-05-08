@@ -9,6 +9,7 @@ Sword = Class{
         self.MAXCOOLDOWN = 1
         self.damage = 1
         self.cooldown = 0
+        self.isGhost = true
         self.image = love.graphics.newImage("assets/art/sword2.png")
         --self.bbox:setRotation(math.pi*1.5)
     end
@@ -19,9 +20,12 @@ function Sword:update(dt,x,y)
     self.bbox:moveTo(x+10,y-26)
     if self.cooldown > 0 then
         self.cooldown = self.cooldown-dt
+        if self.cooldown <= 0.8 and not self.isGhost then
+            self.collider:setGhost(self.bbox)
+            self.isGhost = true
+        end
         if self.cooldown <= 0 then
             self.cooldown = 0
-            self.collider:setGhost(self.bbox)
         end
     end
     --local x,y = self.bbox:center()
@@ -45,6 +49,7 @@ end
 function Sword:attack()
     self.collider:setSolid(self.bbox)
     self.cooldown = self.MAXCOOLDOWN
+    self.isGhost = false
 end
 
 function Sword:canAttack()
