@@ -66,7 +66,7 @@ end
 
 function levelselect:draw()
     love.graphics.print(string.format("Select a level and press enter (x)"),10,10)
-    love.graphics.print(string.format("levels:"..levelnr),50,50)
+    --love.graphics.print(string.format("levels:"..levelnr),50,50)
     for k, v in pairs(levels) do
     	if k ~= selected then
 			love.graphics.setColor(255,255,255, 100)
