@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
+  <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
+ </tileset>
+ <layer name="background" width="64" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAMA6H7Z/99u0dRcNVUVVXV1w98oCwB
+  </data>
+ </layer>
+ <layer name="background lighting" width="64" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAMA6F7Zf+Ru0dRcNVUVVXV1w9LQBgB
+  </data>
+ </layer>
+ <layer name="ground" width="64" height="16">
+  <data encoding="base64" compression="zlib">
+   eJwTYWBgEBnBeCSDUf+PbDDq/5ENBqv/6eWuwep/egFa+x+b+fjspLZ7CNXxQ6ENQEv3Uep/XHpJjXdy7KOGHYMh/gfSDaTaPRjCi5qA2v4ZamEz3OKTVDDS+4ggvwEAzuAIwQ==
+  </data>
+ </layer>
+ <layer name="noncolidable" width="64" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKACAMQ1EP0d1eQJzE+99MO7gacCmGPPiDg2BGS5Eby35AMvb9FcS+30Haz81B2s/NQez7g4FERH7Xdj37EYnGbj7cQ3+EXzr7zzks6GcOuQ==
+  </data>
+ </layer>
+ <layer name="morelava" width="64" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7A5wb9Lnh1oIG3SBAAAAPhk+loUXAA/
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="64" height="16">
+  <object name="player" type="player" gid="1" x="72" y="445"/>
+  <object name="end" type="end" gid="2" x="1904" y="482"/>
+  <object name="skeleton" type="skeleton" gid="3" x="184" y="447"/>
+ </objectgroup>
+</map>
