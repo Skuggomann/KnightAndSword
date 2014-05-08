@@ -84,10 +84,11 @@ function game:update(dt)
 	ui:update(dt)
 
 	if knight:isDead() then 
-		collider:remove(knight.bbox)
 		x,y = knight.bbox:center()
 		x = x-16
 		y = y+5 -- magic 5px
+		Gamestate.push(Gamestate.death,x,y)
+		collider:remove(knight.bbox)
 		rip:addRip(x,y)
 		knight = Player(spawnPoint.x, spawnPoint.y, collider)
 		ui = UI(knight)
