@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="realtiles" tilewidth="32" tileheight="32">
   <image source="simpleGraphics_tiles32x32_0.png" width="256" height="160"/>
  </tileset>
+ <tileset firstgid="41" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
+  <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
+ </tileset>
  <layer name="ground" width="160" height="16">
   <data encoding="base64" compression="zlib">
    eJzt2bEKgCAYhVH3lqbq/Z+0HFpCKkW4yznwr04fKrqWUtZJA71mdaM/RuiPJP2RVLvZrjkesw+sA73sfyTpj6TebpZJ60DV6qZ1H/y6F+qPEc5fkvRHkv5I0h9J+iNJfyS9vbX8mVvvfx1UJ1TYBds=
