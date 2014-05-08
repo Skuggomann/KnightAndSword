@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="160" height="16" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="realtiles" tilewidth="32" tileheight="32">
-  <image source="simpleGraphics_tiles32x32_0.png" width="256" height="160"/>
- </tileset>
- <tileset firstgid="41" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
+<map version="1.0" orientation="orthogonal" width="35" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="ground" width="160" height="16">
+ <layer name="background" width="35" height="16">
   <data encoding="base64" compression="zlib">
-   eJzt2bEKgCAYhVH3lqbq/Z+0HFpCKkW4yznwr04fKrqWUtZJA71mdaM/RuiPJP2RVLvZrjkesw+sA73sfyTpj6TebpZJ60DV6qZ1H/y6F+qPEc5fkvRHkv5I0h9J+iNJfyS9vbX8mVvvfx1UJ1TYBds=
+   eJzjZmBg4KYxJhbQ2h2jbhl1y6hbRt0y6pZRt4y6ZXi4BQC5VBEx
   </data>
  </layer>
- <objectgroup name="spawns" width="160" height="16">
-  <object name="player" type="player" gid="4" x="353" y="447"/>
-  <object name="skeleton" type="skeleton" gid="1" x="223" y="447"/>
-  <object name="skeleton" type="skeleton" gid="1" x="129" y="95"/>
-  <object name="end" type="end" gid="34" x="62" y="125"/>
+ <layer name="background lighting" width="35" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjY2BgYKMxJhbQ2h2jbhl1y6hbRt0y6pZRt4y6ZXi4BQDdZwlh
+  </data>
+ </layer>
+ <layer name="ground" width="35" height="16">
+  <data encoding="base64" compression="zlib">
+   eJwTYWBgEKEQUwtQataoW2ijn5pmjRS3UJqnKMlb1PQXpWaOuoW6+mhh5qhbqKuPFmYONrfQApMDAAITBpE=
+  </data>
+ </layer>
+ <layer name="noncollidable" width="35" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAccFMJUwOMBLcYEmE3upqREC5D3S3Uct+oW0bdMlzcQkxZh6xWF4j1gFgfTe9AhIspEJsBsTma+Eh3Cy5AjlsADwsM/g==
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="35" height="16">
+  <object name="player" type="player" gid="1" x="160" y="430"/>
+  <object name="end" type="end" gid="2" x="543" y="450"/>
+  <object name="skeleton" type="skeleton" gid="3" x="417" y="145"/>
  </objectgroup>
 </map>

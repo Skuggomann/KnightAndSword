@@ -58,8 +58,12 @@ function Skeleton:draw()
     love.graphics.setColor(255,0,0, 255)
     --self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
-	local x,y = self.bbox:center()
-	love.graphics.draw(self.sprite, x - 16, y - 32)
+    local x,y = self.bbox:center()
+    if self.facingRight then
+        love.graphics.draw(self.sprite, x - 16, y - 32)
+    else
+        love.graphics.draw(self.sprite, x + 16, y - 32, 0, -1, 1)
+    end
     if self:isFrozen() then
         love.graphics.draw(self.icecube, x - 16, y - 32)
     end
