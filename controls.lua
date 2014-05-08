@@ -88,7 +88,7 @@ end
 function love.joystickaxis( joystick, axis, value )
 
 local id, trash = joystick:getID()
---print(axis .. " " .. value)
+print(axis .. " " .. value)
 
 	if axis == 1 and value == 1 then --print("Right Down")
 		controls.right[id] = true
@@ -97,10 +97,10 @@ local id, trash = joystick:getID()
 	--elseif axis == 2 and value == 1 then print("Down Down")
 	elseif axis == 2 and value == -1 then --print("Up Down")	
 		controls.up[id] = true	
-	elseif axis == 1 and value == -0.0078125 then --print("Right/Left Relesed")
+	elseif axis == 1 and (value == -0.0078125 or value == 0) then --print("Right/Left Relesed")
 		controls.right[id] = false
 		controls.left[id] = false
-	elseif axis == 2 and value == -0.0078125 then --print("Up/Down Relesed")
+	elseif axis == 2 and (value == -0.0078125 or value == 0) then --print("Up/Down Relesed")
 		controls.up[id] = false	
 	
     end
