@@ -1,6 +1,6 @@
 Player = Class{
     init = function(self, x, y,collider)
-		self.bbox = collider:addRectangle(x,y,32,64)
+		self.bbox = collider:addRectangle(x,y+10,25,54)
 		self.bbox.type = "player"
 		self.bbox.ref = self
 	    self.speed = 200
@@ -99,9 +99,9 @@ function Player:draw()
 	
 	local x,y = self.bbox:center()
     if self.facingRight then
-    	love.graphics.draw(self.sprite, x - 16, y - 32)
+    	love.graphics.draw(self.sprite, x - 16, y - 37)
     else
-        love.graphics.draw(self.sprite, x + 16, y - 32, 0, -1, 1)
+        love.graphics.draw(self.sprite, x + 16, y - 37, 0, -1, 1)
     end
 
 	-- draw weapon... (just sword now)
