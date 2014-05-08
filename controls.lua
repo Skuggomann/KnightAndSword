@@ -5,6 +5,7 @@ Controls = Class{
 		self.left = {false, false}
 		self.right = {false, false}	
 		self.up = {false, false}
+		self.down = {false, false}
 		
 		self.start = {false, false}	
 
@@ -29,6 +30,9 @@ function Controls:isDown(key, player)
 	elseif key == "left" then return self.left[self.player1] or love.keyboard.isDown("left")
 	elseif key == "right" then return self.right[self.player1] or love.keyboard.isDown("right")
 	elseif key == "up" then return self.up[self.player2] or love.keyboard.isDown("up")
+	elseif key == "down" then return self.down[self.player2] or love.keyboard.isDown("down")
+	
+	elseif key == "enter" then return self.x[self.player1] or self.x[self.player2] or love.keyboard.isDown("kpenter") or love.keyboard.isDown("return")
 	end
 	
 end
@@ -94,7 +98,8 @@ print(axis .. " " .. value)
 		controls.right[id] = true
 	elseif axis == 1 and value == -1 then --print("Left Down")	
 		controls.left[id] = true
-	--elseif axis == 2 and value == 1 then print("Down Down")
+	elseif axis == 2 and value == 1 then --print("Down Down")
+		controls.down[id] = true
 	elseif axis == 2 and value == -1 then --print("Up Down")	
 		controls.up[id] = true	
 	elseif axis == 1 and (value == -0.0078125 or value == 0) then --print("Right/Left Relesed")
@@ -102,7 +107,7 @@ print(axis .. " " .. value)
 		controls.left[id] = false
 	elseif axis == 2 and (value == -0.0078125 or value == 0) then --print("Up/Down Relesed")
 		controls.up[id] = false	
-	
+		controls.down[id] = false
     end
 end
 
@@ -116,5 +121,5 @@ if controls:isDown(2, "x") then
 
 
 
-
+-- add 
 
