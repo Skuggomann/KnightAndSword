@@ -12,6 +12,7 @@ require 'pause'
 require 'levelselect'
 require 'controls'
 require 'death'
+require 'win'
 
 function love.load()
 	--Loading fonts

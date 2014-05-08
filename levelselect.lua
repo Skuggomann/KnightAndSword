@@ -77,6 +77,18 @@ function levelselect:draw()
 		love.graphics.setColor(255,255,255, 255)
     end
 end
+
+function levelselect:isLastLevel()
+	return selected == levelnr
+end
+
+function levelselect:switchToNextLevel()
+	if not self.isLastLevel() then
+		selected = selected+1
+		local filename = levels[selected].filename
+        Gamestate.switch(Gamestate.game,filename)
+	end
+end
 --[[
 function levelselect:keyreleased(key)
 	--todo select a level and send it with the game state switch.

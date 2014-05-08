@@ -15,6 +15,7 @@ local ui = nil
 local spawnPoint = {}
 local rip = nil
 local goal = nil
+local gametime = 0
 
 function game:init() -- run only once
 	rip = RIP()
@@ -34,6 +35,9 @@ function game:enter(previous,filename) -- run every time the state is entered
 end
 
 function game:update(dt)
+	--update gametime
+	gametime = gametime+dt
+
 	-- update input
 
     if controls:isDown("start") then
@@ -86,7 +90,7 @@ function game:update(dt)
 	if knight:isDead() then 
 		x,y = knight.bbox:center()
 		x = x-16
-		y = y+5 -- magic 5px
+		y = y
 		Gamestate.push(Gamestate.death,x,y)
 		collider:remove(knight.bbox)
 		rip:addRip(x,y)
@@ -94,6 +98,7 @@ function game:update(dt)
 	end
 end
 function game:reset()
+	gametime = 0 --change if we add checkpoints pls
 	knight = Player(spawnPoint.x, spawnPoint.y, collider)
 	ui = UI(knight)
 	resetEnemies(map)
