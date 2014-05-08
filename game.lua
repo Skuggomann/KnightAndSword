@@ -16,6 +16,7 @@ local spawnPoint = {}
 local rip = nil
 local goal = nil
 local gametime = 0
+local gravity = 2000
 
 function game:init() -- run only once
 	rip = RIP()
@@ -99,7 +100,7 @@ function game:update(dt)
 end
 function game:reset()
 	gametime = 0 --change if we add checkpoints pls
-	knight = Player(spawnPoint.x, spawnPoint.y, collider)
+	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
 	ui = UI(knight)
 	resetEnemies(map)
 end
@@ -137,7 +138,7 @@ function resetEnemies(map)
 	enemies = {}
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'skeleton' then
-			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider)
+			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider, gravity)
 		end
 	end
 
@@ -148,9 +149,9 @@ function mapSetup(map)
 		if obj.name == 'player' then
 			spawnPoint.x = obj.x
 			spawnPoint.y = obj.y-32
-			knight = Player(spawnPoint.x,spawnPoint.y,collider)
+			knight = Player(spawnPoint.x,spawnPoint.y,collider, gravity)
 		elseif obj.name == 'skeleton' then
-			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider)
+			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider, gravity)
 		elseif obj.name == 'end' then
 			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
 			goal.type = "end"

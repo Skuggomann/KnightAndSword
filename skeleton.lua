@@ -1,9 +1,10 @@
 Skeleton = Class{__includes = Enemy,
-    init = function(self, x, y, collider)
+    init = function(self, x, y, collider, gravity)
         Enemy.init(self, x,y)
         self.bbox = collider:addRectangle(x,y,32,64)
         self.bbox.type = "skeleton"
         self.bbox.ref = self
+        self.gravity = gravity
         self.velocity.x = 3
         self.facingRight = false
 		self.sprite = love.graphics.newImage('/assets/art/skeleton.png')
@@ -30,7 +31,7 @@ function Skeleton:update(dt)
     end
 
     if self.jumping and not self:isFrozen() then
-        self.velocity.y = self.velocity.y + self.speed/4
+        self.velocity.y = self.velocity.y + self.gravity*dt
     end
     if self.facingRight then
         self.velocity.x = self.speed

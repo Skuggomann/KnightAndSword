@@ -1,10 +1,11 @@
 Player = Class{
-    init = function(self, x, y,collider)
+    init = function(self, x, y,collider, gravity)
 		self.bbox = collider:addRectangle(x,y+10,25,54)
 		self.bbox.type = "player"
 		self.bbox.ref = self
 	    self.speed = 200
-        self.jumpHeight = -1000
+        self.jumpHeight = -745
+        self.gravity = gravity
 	    self.hp = 3
         self.maxhp = 3
 	    self.mana = 100
@@ -48,7 +49,7 @@ function Player:update(dt)
     --]]
 
     if self.jumping then
-    	self.velocity.y = self.velocity.y + self.speed/4
+    	self.velocity.y = self.velocity.y + self.gravity*dt
     end
     if controls:isDown("attack") and self.sword:canAttack() then
     	self.sword:attack()
