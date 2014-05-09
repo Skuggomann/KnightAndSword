@@ -1,7 +1,7 @@
-Intro,level1.tmx
-Jumping Loin,level2.tmx
-Icy freeze,level3.tmx
-Cliffhanger,level4.tmx
-Ice age,level5.tmx
-The arena of DEATH,level6.tmx
-Hell level,levelhell.tmx
+1. Intro,level1.tmx
+2. Jumping Loin,level2.tmx
+3. Icy freeze,level3.tmx
+4. Cliffhanger,level4.tmx
+5. Ice age,level5.tmx
+6. The arena of DEATH,level6.tmx
+7. Hell level,levelhell.tmx
