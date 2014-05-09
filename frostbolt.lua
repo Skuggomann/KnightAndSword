@@ -73,6 +73,15 @@ function Frostbolt:update(dt)
     end
 end
 
+function Frostbolt:removeAllBolts()
+    local i = 1
+    while i <= #self.activeFrostbolts do
+        self.collider:remove(self.activeFrostbolts[i])
+        table.remove(self.activeFrostbolts,i)
+    end
+end
+
+
 function Frostbolt:draw()
     --x,y = self.bbox:center()
     --x,y = x-16,y-16
