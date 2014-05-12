@@ -127,18 +127,37 @@ end
 
 function Player:collide(dt, me, other, mtv_x, mtv_y)
 	if other.type == "tile" then
-	--print(mtv_x,mtv_y)
+		local fromleft = false
+		local fromright = false
+		local fromup = false
+		local fromdown = false
+		if mtv_x < 0 then fromleft = true end
+		if mtv_x > 0 then fromright = true end
+		if mtv_y < 0 then fromup = true end
+		if mtv_y > 0 then fromdown = true end
 		-- collision with tile(ground)
 		self.bbox:move(mtv_x, 0)
 		self.bbox:move(0, mtv_y)
-	    if mtv_y < 0 and self.jumping then
+		if fromleft or fromright then
+			self.velocity.x = 0
+		elseif fromup then
+			self.velocity.y = 0
+			self.jumping = false
+		elseif fromdown then
+			self.velocity.y = 0
+		elseif mtv_y == 0 then
+			self.velocity.x = 0
+		end
+	    --[[if mtv_y < 0 and self.jumping then
 	    	self.jumping = false
 	    	self.velocity.y = 0
 	    	self.velocity.x = 0
-		else
+		elseif mtv_y > 0 then 
 			self.velocity.y = 0
 			self.velocity.x = 0
-		end
+		else
+			self.velocity.x = 0
+		end]]
 	elseif other.type == "skeleton" then
 		-- collision with skeleton
 		if not self:isInvuln() and not other.ref:isFrozen() then
@@ -160,14 +179,27 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 			end
 		elseif other.ref:isFrozen() then
 			-- collision with frozen skeleton same as tile(ground)
+			local fromleft = false
+			local fromright = false
+			local fromup = false
+			local fromdown = false
+			if mtv_x < 0 then fromleft = true end
+			if mtv_x > 0 then fromright = true end
+			if mtv_y < 0 then fromup = true end
+			if mtv_y > 0 then fromdown = true end
+			-- collision with tile(ground)
 			self.bbox:move(mtv_x, 0)
 			self.bbox:move(0, mtv_y)
-		    if mtv_y < 0 and self.jumping then
-		    	self.jumping = false
-		    	self.velocity.y = 0
-		    	self.velocity.x = 0
-			else
+			if fromleft or fromright then
+				self.velocity.x = 0
+			elseif fromup then
 				self.velocity.y = 0
+				if self.velocity.y >= 0 then
+					self.jumping = false
+				end
+			elseif fromdown then
+				self.velocity.y = 0
+			elseif mtv_y == 0 then
 				self.velocity.x = 0
 			end
 		end
