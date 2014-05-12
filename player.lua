@@ -11,8 +11,8 @@ Player = Class{
 	    self.mana = 100
         self.maxmana = 100
         self.manaregen = 10
-	    self.weapons = {["sword"] = true, ["mace"] = false}
-	    self.abilities = {["frostbolt"] = true, ["cape"] = false}
+	    self.weapons = {["sword"] = Sword(x,y,collider, self), ["mace"] = false}
+	    self.abilities = {["frostbolt"] = Frostbolt(collider, self), ["cape"] = false}
         self.currentWeapon = "sword"
         self.currentAbility = "frostbolt"
 	    self.canAttack = true
@@ -22,8 +22,8 @@ Player = Class{
 	    self.invuln = 0
 	    self.MAXINVULN = 1
 		self.sprite = love.graphics.newImage('/assets/art/player2.png')
-		self.sword = Sword(x,y,collider, self)
-        self.frostbolt = Frostbolt(collider, self)
+		--self.sword = Sword(x,y,collider, self)
+        --self.frostbolt = Frostbolt(collider, self)
         self.facingRight = true
     end
 }
@@ -51,21 +51,19 @@ function Player:update(dt)
     if self.jumping then
     	self.velocity.y = self.velocity.y + self.gravity*dt
     end
-    if controls:isDown("attack") and self.sword:canAttack() then
-    	self.sword:attack()
+    if controls:isDown("attack") and self.weapons[self.currentWeapon]:canAttack() then
+    	self.weapons[self.currentWeapon]:attack()
     end
     -- update movement
     self:move(self.velocity.x*dt,self.velocity.y*dt)
-    -- update sword
-    self.sword:update(dt)
+    -- update sword/weapon
+    self.weapons[self.currentWeapon]:update(dt)
 
     if controls:isDown("cast") then
-        if self.currentAbility == "frostbolt" then
-            if self.frostbolt.cooldown == 0 and self.mana >= self.frostbolt.manacost then
-                self.frostbolt:addBolt()
-                self.frostbolt.cooldown = self.frostbolt.MAXCOOLDOWN
-                self.mana = self.mana - self.frostbolt.manacost
-            end
+        if self.abilities[self.currentAbility].cooldown == 0 and self.mana >= self.abilities[self.currentAbility].manacost then
+            self.abilities[self.currentAbility]:use()
+            self.abilities[self.currentAbility].cooldown = self.abilities[self.currentAbility].MAXCOOLDOWN
+            self.mana = self.mana - self.abilities[self.currentAbility].manacost
         end
     end
     -- update invulnerability
@@ -82,7 +80,8 @@ function Player:update(dt)
         self.mana = self.maxmana
     end
 
-    self.frostbolt:update(dt)
+    self.abilities["frostbolt"]:update(dt)
+    --self.frostbolt:update(dt)
 end
 
 function Player:draw()
@@ -100,8 +99,8 @@ function Player:draw()
     end
 
 	-- draw weapon... (just sword now)
-	self.sword:draw()
-	self.frostbolt:draw()
+	self.weapons[self.currentWeapon]:draw()
+	self.abilities[self.currentAbility]:draw()
 end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
@@ -182,7 +181,7 @@ function Player:move(x,y)
     else
     	x = x+25
     end
-    self.sword:moveTo(x,y)
+    self.weapons[self.currentWeapon]:moveTo(x,y)
 end
 function Player:collide(dt, me, other, mtv_x, mtv_y)
 	if other.type == "tile" then

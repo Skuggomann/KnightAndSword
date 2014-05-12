@@ -67,7 +67,7 @@ function optionsmenu:update(dt)
 end
 
 function optionsmenu:draw()
-    love.graphics.print(string.format("Select a level and press enter (x)"),10,10)
+    love.graphics.print(string.format("Allan pls add options"),10,10)
     --love.graphics.print(string.format("levels:"..levelnr),50,50)
     --[[
     for k, v in pairs(levels) do

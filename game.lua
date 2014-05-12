@@ -101,9 +101,9 @@ function game:update(dt)
 end
 function game:reset()
 	gametime = 0 --change if we add checkpoints pls
-	knight.frostbolt:removeAllBolts()
+	knight.abilities["frostbolt"]:removeAllBolts()
 	collider:remove(knight.bbox)	
-	collider:remove(knight.sword.bbox)
+	collider:remove(knight.weapons[knight.currentWeapon].bbox)
 	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
 	ui = UI(knight)
 	resetEnemies(map)
