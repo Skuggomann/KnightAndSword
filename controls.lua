@@ -40,6 +40,16 @@ function Controls:isDown(key, player)
 	end
 	
 end
+function Controls:clear()
+	Signal.clear('attack')
+	Signal.clear('cast')
+	Signal.clear('left')
+	Signal.clear('right')
+	Signal.clear('up')
+	Signal.clear('down')
+	Signal.clear('start')
+	Signal.clear('enter')	
+end
 
 controls = Controls();
 
@@ -50,6 +60,11 @@ function love.joystickpressed(joystick, button)
     --elseif button == 2 then print("Circle")
     elseif button == 3 then --print("X")
 		controls.x[id] = true
+		if id == 1 then
+			Signal.emit('cast')
+		elseif id == 2 then
+			Signal.emit('attack')
+		end
     --elseif button == 4 then print("Squere")
     --elseif button == 5 then print("L2")
     --elseif button == 6 then print("R2")
@@ -59,6 +74,9 @@ function love.joystickpressed(joystick, button)
 	--elseif button == 9 then print("SELECT")
 	elseif button == 10 then --print("START")
 		controls.start[id] = true
+		if id == 1 then
+			Signal.emit('start')
+		end
 	--elseif button == 11 then print("L3")
 	--elseif button == 12 then print("R3")
 	
@@ -100,12 +118,16 @@ local id, trash = joystick:getID()
 
 	if axis == 1 and value == 1 then --print("Right Down")
 		controls.right[id] = true
+		Signal.emit('right')
 	elseif axis == 1 and value == -1 then --print("Left Down")	
 		controls.left[id] = true
+		Signal.emit('left')
 	elseif axis == 2 and value == 1 then --print("Down Down")
 		controls.down[id] = true
+		Signal.emit('down')
 	elseif axis == 2 and value == -1 then --print("Up Down")	
 		controls.up[id] = true	
+		Signal.emit('up')
 	elseif axis == 1 and (value == -0.0078125 or value == 0) then --print("Right/Left Relesed")
 		controls.right[id] = false
 		controls.left[id] = false
