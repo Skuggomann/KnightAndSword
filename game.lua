@@ -133,7 +133,11 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-    
+	love.graphics.setColor(255,255,255, 80)
+	for shape in pairs(collider:shapesInRange(0,0, W,H)) do
+	    shape:draw('fill')
+	end
+    love.graphics.setColor(255,255,255, 255)
 end
 function resetEnemies(map)
 	for i = 1,#enemies do
@@ -149,6 +153,9 @@ function resetEnemies(map)
 end
 function mapSetup(map)
 	rip = RIP()
+	local groundTiles = {}
+	local nonXTiles = {}
+
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'player' then
 			spawnPoint.x = obj.x
@@ -163,11 +170,76 @@ function mapSetup(map)
 	end
 
     for x, y, tile in map("ground"):iterate() do
+    	groundTiles[#groundTiles+1] = {x,y}
+		--[[
 		local ctile = collider:addRectangle((x)*32,(y)*32,32,32)
         ctile.type = "tile"
         collider:addToGroup("tiles", ctile)
         collider:setPassive(ctile)
+        ]]--
 	end
+    
+    local i = 1
+    while i <= #groundTiles do
+    	tile = groundTiles[i]
+    	table.remove(groundTiles,i)
+    	
+    	tile, posX, negX = checkGroundX(groundTiles, nonXTiles, tile, 1, 1)
+
+    	if tile ~= nil then
+			local ctile = collider:addRectangle(tile[1]*32-negX*32,tile[2]*32,32+(posX+negX)*32,32)
+	        ctile.type = "tile"
+	        collider:addToGroup("tiles", ctile)
+	        collider:setPassive(ctile)
+    	end
+    end
+    while i <= #nonXTiles do
+    	tile = nonXTiles[i]
+    	table.remove(nonXTiles,i)
+    	
+    	posY, negY = checkGroundY(nonXTiles, tile, 1, 1)
+
+		local ctile = collider:addRectangle(tile[1]*32,tile[2]*32+negY*32,32,32+(posY+negY)*32)
+        ctile.type = "tile"
+        collider:addToGroup("tiles", ctile)
+        collider:setPassive(ctile)
+    end
+end
+
+function checkGroundX(groundTiles, nonXTiles, tile, posX, negX)
+	for a,b in ipairs(groundTiles) do
+		if tile[2] == b[2] then
+			if tile[1]+posX == b[1] then
+				table.remove(groundTiles,a)
+				return checkGroundX(groundTiles,nonXTiles,tile,posX+1,negX)
+			elseif tile[1]-negX == b[1] then
+				table.remove(groundTiles,a)
+				return checkGroundX(groundTiles,nonXTiles,tile,posX,negX+1)
+			end
+		end
+	end
+	if posX ~= 1 or negX ~= 1 then
+		return tile, posX-1, negX-1
+	else
+		nonXTiles[#nonXTiles+1] = tile
+		return nil, nil, nil
+	end
+
+end
+
+function checkGroundY(nonXTiles, tile, posY, negY)
+	for a,b in ipairs(nonXTiles) do
+		if tile[1] == b[1] then
+			if tile[2]+posY == b[2] then
+				table.remove(nonXTiles,a)
+				return checkGroundY(nonXTiles,tile,posY+1,negY)
+			elseif tile[2]-negY == b[2] then
+				table.remove(nonXTiles,a)
+				return checkGroundY(nonXTiles,tile,posY,negY+1)
+			end
+		end
+	end
+	return posY-1, negY-1
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
