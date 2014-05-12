@@ -28,4 +28,9 @@
    eJxjYBgFo2AUjIJRMApGwUgDAAgAAAE=
   </data>
  </layer>
+ <layer name="spikes" width="32" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwVAEMiRgdAAAOCABNQ==
+  </data>
+ </layer>
 </map>

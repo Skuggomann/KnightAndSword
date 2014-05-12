@@ -133,11 +133,11 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-	love.graphics.setColor(255,255,255, 80)
+	--[[love.graphics.setColor(255,255,255, 80)
 	for shape in pairs(collider:shapesInRange(0,0, W,H)) do
 	    shape:draw('fill')
 	end
-    love.graphics.setColor(255,255,255, 255)
+    love.graphics.setColor(255,255,255, 255)]]
 end
 function resetEnemies(map)
 	for i = 1,#enemies do

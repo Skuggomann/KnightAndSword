@@ -16,11 +16,11 @@ Player = Class{
         self.currentWeapon = "sword"
         self.currentAbility = "frostbolt"
 	    self.canAttack = true
-	    self.canMove = true
 	    self.canJump = true
 	    self.jumping = true
 	    self.velocity = {["x"] = 0, ["y"] = 0}
 	    self.invuln = 0
+	    self.MAXINVULN = 1
 		self.sprite = love.graphics.newImage('/assets/art/player2.png')
 		self.sword = Sword(x,y,collider, self)
         self.frostbolt = Frostbolt(collider, self)
@@ -29,15 +29,15 @@ Player = Class{
 }
 function Player:update(dt)
 	-- update controls
-    if controls:isDown("left") then
+    if controls:isDown("left") and self:canMove() then
         self.velocity.x = -self.speed
         self.facingRight = false
     end
-    if controls:isDown("right") then
+    if controls:isDown("right") and self:canMove() then
         self.velocity.x = self.speed
         self.facingRight = true
     end
-    if controls:isDown("up") and not self.jumping then
+    if controls:isDown("up") and not self.jumping and self:canMove() then
 
         self.velocity.y = self.jumpHeight
     	self.jumping = true
@@ -111,10 +111,14 @@ function Player:draw()
 end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
-	self.invuln = 1
+	self.invuln = self.MAXINVULN
 end
 function Player:isInvuln()
 	return self.invuln > 0
+end
+
+function Player:canMove()
+	return self.invuln < self.MAXINVULN-0.2 or self.invuln == 0
 end
 
 function Player:isDead()

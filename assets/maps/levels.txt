@@ -5,3 +5,4 @@
 5. Ice age,level5.tmx
 6. The arena of DEATH,level6.tmx
 7. Hell level,levelhell.tmx
+8. Spiky,level7.tmx
