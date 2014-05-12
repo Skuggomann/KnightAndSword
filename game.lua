@@ -133,11 +133,11 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-	--[[love.graphics.setColor(255,255,255, 80)
+	love.graphics.setColor(255,255,255, 80)
 	for shape in pairs(collider:shapesInRange(0,0, W,H)) do
 	    shape:draw('fill')
 	end
-    love.graphics.setColor(255,255,255, 255)]]
+    love.graphics.setColor(255,255,255, 255)
 end
 function resetEnemies(map)
 	for i = 1,#enemies do
@@ -167,6 +167,12 @@ function mapSetup(map)
 			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
 			goal.type = "end"
 		end
+	end
+    for x, y, tile in map("spikes"):iterate() do
+		local ctile = collider:addRectangle((x)*32,((y)*32)+16,32,16)
+        ctile.type = "spike"
+        collider:addToGroup("tiles", ctile)
+        collider:setPassive(ctile)
 	end
 
     for x, y, tile in map("ground"):iterate() do

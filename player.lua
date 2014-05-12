@@ -55,15 +55,9 @@ function Player:update(dt)
     	self.sword:attack()
     end
     -- update movement
-    self.bbox:move(self.velocity.x*dt,self.velocity.y*dt)
-    -- update weapon
-    local x,y = self.bbox:center()
-    if not self.facingRight then
-    	x = x-45
-    else
-    	x = x+25
-    end
-    self.sword:update(dt,x,y)
+    self:move(self.velocity.x*dt,self.velocity.y*dt)
+    -- update sword
+    self.sword:update(dt)
 
     if controls:isDown("cast") then
         if self.currentAbility == "frostbolt" then
@@ -128,9 +122,7 @@ function Player:isDead()
     return false
 end
 
-
-function Player:collide(dt, me, other, mtv_x, mtv_y)
-	if other.type == "tile" then
+function Player:collisionWithSolid(mtv_x,mtv_y)
 		local fromleft = false
 		local fromright = false
 		local fromup = false
@@ -139,9 +131,7 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		if mtv_x > 0 then fromright = true end
 		if mtv_y < 0 then fromup = true end
 		if mtv_y > 0 then fromdown = true end
-		-- collision with tile(ground)
-		self.bbox:move(mtv_x, 0)
-		self.bbox:move(0, mtv_y)
+		self:move(mtv_x, mtv_y)
 		if fromleft or fromright then
 			self.velocity.x = 0
 			if self.velocity.y >0 then
@@ -157,60 +147,61 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		elseif mtv_y == 0 then
 			self.velocity.x = 0
 		end
-	    --[[if mtv_y < 0 and self.jumping then
-	    	self.jumping = false
-	    	self.velocity.y = 0
-	    	self.velocity.x = 0
-		elseif mtv_y > 0 then 
-			self.velocity.y = 0
-			self.velocity.x = 0
+end
+function Player:knockback(mtv_x,mtv_y)
+	local fromleft = false
+	local fromright = false
+	local fromup = false
+	local fromdown = false
+	if mtv_x < 0 then fromleft = true end
+	if mtv_x > 0 then fromright = true end
+	if mtv_y < 0 then fromup = true end
+	if mtv_y > 0 then fromdown = true end
+
+	if fromleft then
+		self.velocity.x = -self.speed
+		self:move(mtv_x-5,0)
+	elseif fromright then
+		self.velocity.x = self.speed
+		self:move(mtv_x+5, 0)
+	end
+	self.velocity.y = -self.speed*2
+	if fromup then
+		self:move(0,mtv_y-5)
+	elseif fromdown then
+		self:move(0,mtv_y+5)
+	end
+end
+
+function Player:move(x,y)
+    self.bbox:move(x,y)
+    -- move weapon
+    local x,y = self.bbox:center()
+    if not self.facingRight then
+    	x = x-45
+    else
+    	x = x+25
+    end
+    self.sword:moveTo(x,y)
+end
+function Player:collide(dt, me, other, mtv_x, mtv_y)
+	if other.type == "tile" then
+		self:collisionWithSolid(mtv_x,mtv_y)
+	elseif other.type == "spike" then
+		if not self:isInvuln() then
+			self:knockback(mtv_x,mtv_y)
+			self:takeDamage(1) --1 damage for hitting spikes
 		else
-			self.velocity.x = 0
-		end]]
+			self:collisionWithSolid(mtv_x,mtv_y)
+		end
 	elseif other.type == "skeleton" then
 		-- collision with skeleton
 		if not self:isInvuln() and not other.ref:isFrozen() then
 			self:takeDamage(other.ref.damage)
-			if mtv_x < 0 then
-				self.velocity.x = -dt*self.speed
-				self.bbox:move(mtv_x-5, 0)
-			else
-				self.velocity.x = dt*self.speed
-				self.bbox:move(mtv_x+5, 0)
-			end
-			self.velocity.y = -dt*self.speed*2
-
-			-- move
-			if mtv_y > 0 then
-				self.bbox:move(0, mtv_y+5)
-			else
-				self.bbox:move(0, mtv_y-5)
-			end
+			self:knockback(mtv_x,mtv_y)
 		elseif other.ref:isFrozen() then
 			-- collision with frozen skeleton same as tile(ground)
-			local fromleft = false
-			local fromright = false
-			local fromup = false
-			local fromdown = false
-			if mtv_x < 0 then fromleft = true end
-			if mtv_x > 0 then fromright = true end
-			if mtv_y < 0 then fromup = true end
-			if mtv_y > 0 then fromdown = true end
-			-- collision with tile(ground)
-			self.bbox:move(mtv_x, 0)
-			self.bbox:move(0, mtv_y)
-			if fromleft or fromright then
-				self.velocity.x = 0
-			elseif fromup then
-				self.velocity.y = 0
-				if self.velocity.y >= 0 then
-					self.jumping = false
-				end
-			elseif fromdown then
-				self.velocity.y = 0
-			elseif mtv_y == 0 then
-				self.velocity.x = 0
-			end
+			self:collisionWithSolid(mtv_x,mtv_y)
 		end
 	elseif other.type == "end" then
 		winGame()
