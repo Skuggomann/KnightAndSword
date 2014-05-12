@@ -132,7 +132,12 @@ local id, trash = joystick:getID()
 		controls.right[id] = false
 		controls.left[id] = false
 	elseif axis == 2 and (value == -0.0078125 or value == 0) then --print("Up/Down Relesed")
-		controls.up[id] = false	
+		if id == controls.player2 then
+			if controls.up[id] then
+				Signal.emit('upReleased')
+			end
+		end
+		controls.up[id] = false
 		controls.down[id] = false
     end
 end

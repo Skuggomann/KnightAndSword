@@ -140,9 +140,14 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		self.bbox:move(0, mtv_y)
 		if fromleft or fromright then
 			self.velocity.x = 0
+			if self.velocity.y >0 then
+				self.velocity.y = 0
+			end
 		elseif fromup then
 			self.velocity.y = 0
-			self.jumping = false
+			if self.velocity.y >= 0 then
+				self.jumping = false
+			end
 		elseif fromdown then
 			self.velocity.y = 0
 		elseif mtv_y == 0 then
