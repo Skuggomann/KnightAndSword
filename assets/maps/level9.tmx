@@ -36,5 +36,6 @@
   <object name="breakable" type="breakable" gid="17" x="480" y="395"/>
   <object name="breakable" type="breakable" gid="17" x="481" y="359"/>
   <object name="breakable" type="breakable" gid="17" x="481" y="435"/>
+  <object name="movable" type="movable" gid="56" x="640" y="448"/>
  </objectgroup>
 </map>

@@ -84,7 +84,7 @@ function Skeleton:isDead()
 end
 
 function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
-    if other.type == "tile" or other.type == "spike" or other.type == "breakable" then
+    if other.type == "tile" or other.type == "spike" or other.type == "breakable" or other.type == "movable" then
         -- collision with tile(ground)
         self.bbox:move(mtv_x, 0)
         self.bbox:move(0, mtv_y)

@@ -12,6 +12,7 @@ require 'sword'
 require 'frostbolt'
 require 'mace'
 require 'breakable'
+require 'movable'
 local knight = nil
 local enemies = {}
 local objects = {} -- breakable objects and movable objects.
@@ -193,6 +194,8 @@ function resetObjects(map)
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'breakable' then
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
+			elseif obj.name == 'movable' then
+			objects[#objects+1] = Movable(obj.x,obj.y-32,collider)
 		end
 	end
 end
@@ -215,6 +218,8 @@ function mapSetup(map)
 			goal.type = "end"
 		elseif obj.name == 'breakable' then
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
+		elseif obj.name == 'movable' then
+			objects[#objects+1] = Movable(obj.x,obj.y-32,collider, gravity)
 		end
 	end
     for x, y, tile in map("spikes"):iterate() do
@@ -328,10 +333,10 @@ function checkGroundY(nonXTiles, tile, posY, negY)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" or shape_a.type == "breakable" then
+	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" or shape_a.type == "breakable" or shape_a.type == "movable" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	end
-	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" or shape_b.type == "breakable" then
+	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" or shape_b.type == "breakable" or shape_b.type == "movable" then
 		mtv_x = mtv_x*-1
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
@@ -358,6 +363,14 @@ function stop_collide(dt, shape_a, shape_b)
         shape_a.ref.jumping = true
     elseif shape_b.type == "skeleton" and shape_a.type == "spike" then
         shape_b.ref.jumping = true
+    elseif shape_a.type == "skeleton" and shape_b.type == "movable" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "skeleton" and shape_a.type == "movable" then
+        shape_b.ref.jumping = true
+    elseif shape_a.type == "skeleton" and shape_b.type == "breakable" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "skeleton" and shape_a.type == "breakable" then
+        shape_b.ref.jumping = true
     elseif shape_a.type == "player" and shape_b.type == "skeleton" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "skeleton" then
@@ -369,6 +382,14 @@ function stop_collide(dt, shape_a, shape_b)
     elseif shape_a.type == "player" and shape_b.type == "bat" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "bat" then
+        shape_b.ref.jumping = true  
+    elseif shape_a.type == "player" and shape_b.type == "movable" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "movable" then
+        shape_b.ref.jumping = true  
+    elseif shape_a.type == "player" and shape_b.type == "breakable" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "breakable" then
         shape_b.ref.jumping = true  
     end
 end

@@ -247,7 +247,7 @@ function Player:move(x,y)
     self.bbox:move(x,y)
 end
 function Player:collide(dt, me, other, mtv_x, mtv_y)
-	if other.type == "tile" or other.type == "breakable" then
+	if other.type == "tile" or other.type == "breakable" or other.type == "movable" then
 		self:collisionWithSolid(mtv_x,mtv_y)
 	elseif other.type == "spike" then
 		if not self:isInvuln() then
