@@ -306,10 +306,18 @@ function stop_collide(dt, shape_a, shape_b)
         shape_a.ref.jumping = true
     elseif shape_b.type == "skeleton" and shape_a.type == "tile" then
         shape_b.ref.jumping = true
+    elseif shape_a.type == "skeleton" and shape_b.type == "spike" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "skeleton" and shape_a.type == "spike" then
+        shape_b.ref.jumping = true
     elseif shape_a.type == "player" and shape_b.type == "skeleton" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "skeleton" then
         shape_b.ref.jumping = true
+    elseif shape_a.type == "player" and shape_b.type == "spike" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "spike" then
+        shape_b.ref.jumping = true  
     end
 end
 

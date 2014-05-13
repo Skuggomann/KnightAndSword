@@ -111,7 +111,7 @@ function Player:isInvuln()
 end
 
 function Player:canMove()
-	return self.invuln < self.MAXINVULN-0.2 or self.invuln == 0
+	return self.invuln < self.MAXINVULN-0.3 or self.invuln == 0
 end
 
 function Player:isDead()
@@ -163,6 +163,12 @@ function Player:knockback(mtv_x,mtv_y)
 	elseif fromright then
 		self.velocity.x = self.speed
 		self:move(mtv_x+5, 0)
+	else
+		if self.velocity.x > 0 then
+			self.velocity.x = -self.speed
+		elseif self.velocity.x < 0 then
+			self.velocity.x = self.speed
+		end
 	end
 	self.velocity.y = -self.speed*2
 	if fromup then
