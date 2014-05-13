@@ -6,6 +6,7 @@ require 'player'
 require 'ui'
 require 'enemy'
 require 'skeleton'
+require 'bat'
 require 'rip'
 require 'sword'
 require 'frostbolt'
@@ -37,7 +38,7 @@ function game:enter(previous,filename) -- run every time the state is entered
 		Gamestate.push(Gamestate.speechstate,ui,speech)
 		--ui:addToTable({"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n", 5, "player", "why can't i use my arm...or jump?",3, "sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?", 5})
 	end
-	cam = Camera(456, 256,1.40)
+	cam = Camera(456, 256,1)--1.40)
 end
 
 function game:update(dt)
@@ -149,6 +150,8 @@ function resetEnemies(map)
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'skeleton' then
 			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider, gravity)
+		elseif obj.name == 'bat' then
+			enemies[#enemies+1] = Bat(obj.x,obj.y-32,collider,knight)
 		end
 	end
 
@@ -166,6 +169,8 @@ function mapSetup(map)
 			knight = Player(spawnPoint.x,spawnPoint.y,collider, gravity)
 		elseif obj.name == 'skeleton' then
 			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider, gravity)
+		elseif obj.name == 'bat' then
+			enemies[#enemies+1] = Bat(obj.x,obj.y-32,collider,knight)
 		elseif obj.name == 'end' then
 			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
 			goal.type = "end"
