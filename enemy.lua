@@ -1,7 +1,7 @@
 Enemy = Class{
     init = function(self, x, y)
         self.speed = 150
-        self.hp = 2
+        self.hp = 3
         self.mana = 0
         self.canAttack = true
         self.canMove = true

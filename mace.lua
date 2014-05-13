@@ -8,6 +8,7 @@ Mace = Class{
         self.player = player
         self.MAXCOOLDOWN = 1
         self.damage = 1
+        self.bluntDamage = 2
         self.cooldown = 0
         self.isGhost = true
         self.image = love.graphics.newImage("assets/art/blackMaceA.png")

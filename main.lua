@@ -18,7 +18,7 @@ require 'optionsmenu'
 require 'audiocontroller'
 require 'speechstate'
 
-debug = false
+debug = true
 
 function love.load()
 	--Loading fonts

@@ -11,8 +11,10 @@ require 'rip'
 require 'sword'
 require 'frostbolt'
 require 'mace'
+require 'breakable'
 local knight = nil
 local enemies = {}
+local objects = {} -- breakable objects and movable objects.
 local ui = nil
 local spawnPoint = {}
 local rip = nil
@@ -28,6 +30,7 @@ end
 
 function game:enter(previous,filename) -- run every time the state is entered
 	enemies = {}
+	objects = {}
 	gametime = 0
 	local filepath = "assets/maps/"..filename
 	collider = HC(100, on_collide, stop_collide)
@@ -78,6 +81,19 @@ function game:update(dt)
     		i = i + 1
     	end
     end
+
+    -- update objects
+	local i = 1
+    while i <= #objects do
+
+    	if	objects[i]:isDead() then
+    		collider:remove(objects[i].bbox)
+    		table.remove(objects,i)
+    	else
+    		objects[i]:update(dt)
+    		i = i + 1
+    	end
+    end
     -- kill player if he is out of frame
     local x,y = cam:cameraCoords(knight.bbox:center())
     if y > 752 then
@@ -116,6 +132,7 @@ function game:reset()
 	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
 	ui = UI(knight)
 	resetEnemies(map)
+	resetObjects(map)
 end
 function game:draw()
 	cam:draw(drawWorld)
@@ -139,8 +156,13 @@ function drawWorld()
     -- draw the rest
     rip[levelname]:draw()
 	knight:draw()
+	-- draw enemies
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
+    end
+    -- draw objects
+    for i = 1,#objects do
+    	objects[#objects - (i-1)]:draw()
     end
     if debug then
 		love.graphics.setColor(255,255,255, 80)
@@ -164,6 +186,18 @@ function resetEnemies(map)
 	end
 
 end
+
+function resetObjects(map)
+	for i = 1,#objects do
+		collider:remove(objects[#objects - (i-1)].bbox)
+	end
+	objects = {}
+	for i, obj in pairs( map("spawns").objects ) do
+		if obj.name == 'breakable' then
+			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
+		end
+	end
+end
 function mapSetup(map)
 	local groundTiles = {}
 	local nonXTiles = {}
@@ -181,6 +215,8 @@ function mapSetup(map)
 		elseif obj.name == 'end' then
 			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
 			goal.type = "end"
+		elseif obj.name == 'breakable' then
+			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
 		end
 	end
     for x, y, tile in map("spikes"):iterate() do
@@ -294,10 +330,10 @@ function checkGroundY(nonXTiles, tile, posY, negY)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" then
+	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" or shape_a.type == "breakable" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	end
-	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" then
+	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" or shape_b.type == "breakable" then
 		mtv_x = mtv_x*-1
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)

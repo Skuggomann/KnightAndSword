@@ -7,7 +7,8 @@ Sword = Class{
         self.collider:setGhost(self.bbox)
         self.player = player
         self.MAXCOOLDOWN = 1
-        self.damage = 1
+        self.damage = 2
+        self.bluntDamage = 0
         self.cooldown = 0
         self.isGhost = true
         self.image = love.graphics.newImage("assets/art/sword2.png")

@@ -59,7 +59,9 @@ function Player:update(dt)
     -- update movement
     self:move(self.velocity.x*dt,self.velocity.y*dt)
     -- update sword/weapon
-    self.weapons[self.currentWeapon]:update(dt)
+    self.weapons["sword"]:update(dt)
+    self.weapons["mace"]:update(dt)
+    --self.weapons[self.currentWeapon]:update(dt)
 
     if controls:isDown("cast") then
         if self.abilities[self.currentAbility].cooldown == 0 and self.mana >= self.abilities[self.currentAbility].manacost then
@@ -238,7 +240,7 @@ function Player:move(x,y)
     
 end
 function Player:collide(dt, me, other, mtv_x, mtv_y)
-	if other.type == "tile" then
+	if other.type == "tile" or other.type == "breakable" then
 		self:collisionWithSolid(mtv_x,mtv_y)
 	elseif other.type == "spike" then
 		if not self:isInvuln() then

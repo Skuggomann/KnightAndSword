@@ -84,7 +84,7 @@ function Skeleton:isDead()
 end
 
 function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
-    if other.type == "tile" or other.type == "spike" then
+    if other.type == "tile" or other.type == "spike" or other.type == "breakable" then
         -- collision with tile(ground)
         self.bbox:move(mtv_x, 0)
         self.bbox:move(0, mtv_y)
@@ -99,8 +99,9 @@ function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
         end
     elseif other.type == "frostbolt" then
         self.thaw = self.MAXTHAW
-    elseif other.type == "sword" then
+    elseif other.type == "sword" or other.type == "mace" then
         if not self:isInvuln() and not self:isFrozen() then
+            -- ekki frosinn
             self:takeDamage(other.ref.damage)
             if mtv_x < 0 then
                 self.velocity.x = -self.speed
@@ -117,6 +118,9 @@ function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
             else
                 self.bbox:move(0, mtv_y-5)
             end
+        elseif not self:isInvuln() and self:isFrozen() then
+            --frosinn
+            self:takeDamage(other.ref.bluntDamage)
         end
     end
 end
