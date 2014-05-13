@@ -247,7 +247,7 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		else
 			self:collisionWithSolid(mtv_x,mtv_y)
 		end
-	elseif other.type == "skeleton" then
+	elseif other.type == "skeleton" or other.type == "bat" then
 		-- collision with skeleton
 		if not self:isInvuln() and not other.ref:isFrozen() then
 			self:takeDamage(other.ref.damage)

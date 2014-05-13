@@ -18,6 +18,8 @@ require 'optionsmenu'
 require 'audiocontroller'
 require 'speechstate'
 
+debug = false
+
 function love.load()
 	--Loading fonts
 	Font12p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 12)
@@ -27,6 +29,11 @@ function love.load()
 
 	AudioController = AudioController()
 
+<<<<<<< HEAD
+=======
+	math.randomseed( os.time())
+	
+>>>>>>> b0b01aa33353db987c4335cb69852d738179bb6a
     Gamestate.registerEvents()
 	Gamestate.switch(Gamestate.menu)
 end

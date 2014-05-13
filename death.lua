@@ -4,8 +4,8 @@ function death:enter(from)
     self.from = from -- record previous state
     self.selected = 1
     self.fimage = love.graphics.newImage('assets/art/rip-small-animation.png')
-    self.g = anim8.newGrid(30, 30, 204, 34, -2,-2,4)
-    self.animation = anim8.newAnimation(self.g('1-6',1), {0.25, 0.25, 0.25, 0.25, 0.25, 100})
+    self.g = anim8.newGrid(30, 30, self.fimage:getWidth(), self.fimage:getHeight(), -2,-2,4)
+    self.animation = anim8.newAnimation(self.g('1-11',1), 0.1, function() self.animation:pauseAtEnd() end)
     self.fadeTime = 4
     self.fadeTimedx = 0
 end

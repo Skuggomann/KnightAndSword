@@ -6,6 +6,7 @@ require 'player'
 require 'ui'
 require 'enemy'
 require 'skeleton'
+require 'bat'
 require 'rip'
 require 'sword'
 require 'frostbolt'
@@ -38,7 +39,7 @@ function game:enter(previous,filename) -- run every time the state is entered
 		Gamestate.push(Gamestate.speechstate,ui,speech)
 		--ui:addToTable({"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n", 5, "player", "why can't i use my arm...or jump?",3, "sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?", 5})
 	end
-	cam = Camera(456, 256,1.40)
+	cam = Camera(456, 256,1)--1.40)
 end
 
 function game:update(dt)
@@ -136,11 +137,13 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-	love.graphics.setColor(255,255,255, 80)
-	for shape in pairs(collider:shapesInRange(0,0, W,H)) do
-	    shape:draw('fill')
+    if debug then
+		love.graphics.setColor(255,255,255, 80)
+		for shape in pairs(collider:shapesInRange(0,0, W,H)) do
+		    shape:draw('fill')
+		end
+	    love.graphics.setColor(255,255,255, 255)
 	end
-    love.graphics.setColor(255,255,255, 255)
 end
 function resetEnemies(map)
 	for i = 1,#enemies do
@@ -150,6 +153,8 @@ function resetEnemies(map)
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'skeleton' then
 			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider, gravity)
+		elseif obj.name == 'bat' then
+			enemies[#enemies+1] = Bat(obj.x,obj.y-32,collider,knight)
 		end
 	end
 
@@ -167,6 +172,8 @@ function mapSetup(map)
 			knight = Player(spawnPoint.x,spawnPoint.y,collider, gravity)
 		elseif obj.name == 'skeleton' then
 			enemies[#enemies+1] = Skeleton(obj.x,obj.y-32,collider, gravity)
+		elseif obj.name == 'bat' then
+			enemies[#enemies+1] = Bat(obj.x,obj.y-32,collider,knight)
 		elseif obj.name == 'end' then
 			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
 			goal.type = "end"
@@ -283,10 +290,10 @@ function checkGroundY(nonXTiles, tile, posY, negY)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" then
+	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	end
-	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" then
+	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" then
 		mtv_x = mtv_x*-1
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
@@ -320,6 +327,10 @@ function stop_collide(dt, shape_a, shape_b)
     elseif shape_a.type == "player" and shape_b.type == "spike" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "spike" then
+        shape_b.ref.jumping = true
+    elseif shape_a.type == "player" and shape_b.type == "bat" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "bat" then
         shape_b.ref.jumping = true  
     end
 end
