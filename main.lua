@@ -18,6 +18,8 @@ require 'optionsmenu'
 require 'audiocontroller'
 require 'speechstate'
 
+debug = false
+
 function love.load()
 	--Loading fonts
 	Font12p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 12)

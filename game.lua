@@ -136,11 +136,13 @@ function drawWorld()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
     end
-	love.graphics.setColor(255,255,255, 80)
-	for shape in pairs(collider:shapesInRange(0,0, W,H)) do
-	    shape:draw('fill')
+    if debug then
+		love.graphics.setColor(255,255,255, 80)
+		for shape in pairs(collider:shapesInRange(0,0, W,H)) do
+		    shape:draw('fill')
+		end
+	    love.graphics.setColor(255,255,255, 255)
 	end
-    love.graphics.setColor(255,255,255, 255)
 end
 function resetEnemies(map)
 	for i = 1,#enemies do
@@ -287,10 +289,10 @@ function checkGroundY(nonXTiles, tile, posY, negY)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" then
+	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	end
-	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" then
+	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" then
 		mtv_x = mtv_x*-1
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
@@ -324,6 +326,10 @@ function stop_collide(dt, shape_a, shape_b)
     elseif shape_a.type == "player" and shape_b.type == "spike" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "spike" then
+        shape_b.ref.jumping = true
+    elseif shape_a.type == "player" and shape_b.type == "bat" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "bat" then
         shape_b.ref.jumping = true  
     end
 end
