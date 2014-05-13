@@ -33,7 +33,9 @@ function game:enter(previous,filename) -- run every time the state is entered
 	mapSetup(map)
 	ui = UI(knight)
 	if Gamestate.levelselect:getCurrentLevel() == 1 then
-		ui:addToTable({"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n", 5, "player", "why can't i use my arm...or jump?",3, "sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?", 5})
+		speech = {{"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n"}, {"player", "why can't i use my arm...or jump?"}, {"sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?"}}
+		Gamestate.push(Gamestate.speechstate,ui,speech)
+		--ui:addToTable({"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n", 5, "player", "why can't i use my arm...or jump?",3, "sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?", 5})
 	end
 	cam = Camera(456, 256,1.40)
 end

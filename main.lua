@@ -16,6 +16,7 @@ require 'death'
 require 'win'
 require 'optionsmenu'
 require 'audiocontroller'
+require 'speechstate'
 
 function love.load()
 	--Loading fonts

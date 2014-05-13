@@ -15,6 +15,8 @@ Controls = Class{
 		self.bdown = false
 		self.benter = false
 		self.bstart = false
+		self.bleft = false
+		self.bright = false
     end
 }
 function Controls:isDown(key, player)
