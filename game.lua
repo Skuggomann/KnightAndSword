@@ -81,7 +81,6 @@ function game:update(dt)
     -- kill player if he is out of frame
     local x,y = cam:cameraCoords(knight.bbox:center())
     if y > 752 then
-    	print(knight.bbox:center())
     	knight:takeDamage(500) --he ded
     end
 

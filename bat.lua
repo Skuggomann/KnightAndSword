@@ -74,7 +74,6 @@ function Bat:update(dt)
         local batx = self.bbox:center()
         if playerx-1000 > batx or playerx+1000 < batx then
             self.bbox.hp = 0 -- kill it
-            print("playerx:"..playerx.." batx:"..batx)
         end
 
         -- check if dead
@@ -136,13 +135,7 @@ end
 
 
 function Bat:isDead()
-    --[[if self.bbox ~= nil then
-        if self.bbox.hp <=0 then
-        print(self.bbox.hp)
-            return true
-        end
-    end]]
-    return false
+    return false --isDead is used in game.lua to remove dead enemies. This is a spawner so it never dies.
 end
 
 function Bat:collide(dt, me, other, mtv_x, mtv_y)
