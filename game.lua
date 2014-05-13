@@ -220,7 +220,7 @@ function mapSetup(map)
     	
     	posX, negX = checkSpikes(spikes, tile, 1, 1)
 
-		local ctile = collider:addRectangle(tile[1]*32-negX*32,tile[2]*32,32+(posX+negX)*32,32)
+		local ctile = collider:addRectangle(tile[1]*32-negX*32,tile[2]*32+16,32+(posX+negX)*32,32-16)
         ctile.type = "spike"
         collider:addToGroup("spikes", ctile)
         collider:setPassive(ctile)
