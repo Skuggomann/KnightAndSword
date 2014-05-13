@@ -141,9 +141,11 @@ end
 function Bat:collide(dt, me, other, mtv_x, mtv_y)
     if other.type == "frostbolt" then
         self.bbox.thaw = self.MAXTHAW
-    elseif other.type == "sword" then
+    elseif other.type == "sword" or other.type == "mace" then
         if not self:isFrozen() then
             self:takeDamage(other.ref.damage)
+        elseif self:isFrozen() then
+            self:takeDamage(other.ref.bluntDamage) 
         end
     end
 end

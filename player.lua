@@ -3,6 +3,7 @@ Player = Class{
 		self.bbox = collider:addRectangle(x,y+10,25,54)
 		self.bbox.type = "player"
 		self.bbox.ref = self
+		self.collider = collider
 	    self.speed = 200
         self.jumpHeight = -745
         self.gravity = gravity
@@ -133,6 +134,13 @@ function Player:isDead()
     end
     return false
 end
+
+function Player:destructor()
+	self.abilities["frostbolt"]:removeAllBolts()
+	self.collider:remove(self.bbox)	
+	self.collider:remove(self.weapons["sword"].bbox)
+	self.collider:remove(self.weapons["mace"].bbox)
+end
 function Player:swapWeaponsBackwards()
     a = next(self.weapons)
     if a == self.currentWeapon then
@@ -237,7 +245,6 @@ end
 
 function Player:move(x,y)
     self.bbox:move(x,y)
-    
 end
 function Player:collide(dt, me, other, mtv_x, mtv_y)
 	if other.type == "tile" or other.type == "breakable" then
