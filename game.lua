@@ -19,9 +19,11 @@ local rip = nil
 local goal = nil
 local gametime = nil
 local gravity = 2000
+local levelname = nil
 
 function game:init() -- run only once
-	rip = RIP()
+	--rip = RIP()
+	rip = {}
 end
 
 function game:enter(previous,filename) -- run every time the state is entered
@@ -34,6 +36,10 @@ function game:enter(previous,filename) -- run every time the state is entered
 	map.drawObjects = false
 	mapSetup(map)
 	ui = UI(knight)
+	levelname = filename
+	if rip[levelname] == nil then
+		rip[levelname] = RIP()
+	end
 	if Gamestate.levelselect:getCurrentLevel() == 1 then
 		speech = {{"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n"}, {"player", "why can't i use my arm...or jump?"}, {"sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?"}}
 		Gamestate.push(Gamestate.speechstate,ui,speech)
@@ -99,7 +105,7 @@ function game:update(dt)
 		x = x-16
 		y = y-3
 		Gamestate.push(Gamestate.death)
-		rip:addRip(x,y)
+		rip[levelname]:addRip(x,y)
 		self:reset()
 	end
 end
@@ -132,7 +138,7 @@ function drawWorld()
  	--goal:draw("fill")
     --love.graphics.setColor(255,255,255, 255)
     -- draw the rest
-    rip:draw()
+    rip[levelname]:draw()
 	knight:draw()
     for i = 1,#enemies do
     	enemies[#enemies - (i-1)]:draw()
@@ -160,7 +166,6 @@ function resetEnemies(map)
 
 end
 function mapSetup(map)
-	rip = RIP()
 	local groundTiles = {}
 	local nonXTiles = {}
 	local spikes = {}
