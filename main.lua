@@ -29,11 +29,8 @@ function love.load()
 
 	AudioController = AudioController()
 
-<<<<<<< HEAD
-=======
 	math.randomseed( os.time())
 	
->>>>>>> b0b01aa33353db987c4335cb69852d738179bb6a
     Gamestate.registerEvents()
 	Gamestate.switch(Gamestate.menu)
 end
