@@ -95,7 +95,7 @@ function game:update(dt)
 	if knight:isDead() then 
 		x,y = knight.bbox:center()
 		x = x-16
-		y = y
+		y = y-3
 		Gamestate.push(Gamestate.death)
 		rip:addRip(x,y)
 		self:reset()

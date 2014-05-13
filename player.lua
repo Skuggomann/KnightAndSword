@@ -191,14 +191,7 @@ end
 
 function Player:move(x,y)
     self.bbox:move(x,y)
-    -- move weapon
-    local x,y = self.bbox:center()
-    if not self.facingRight then
-    	x = x-45
-    else
-    	x = x+25
-    end
-    self.weapons[self.currentWeapon]:moveTo(x,y)
+    
 end
 function Player:collide(dt, me, other, mtv_x, mtv_y)
 	if other.type == "tile" then

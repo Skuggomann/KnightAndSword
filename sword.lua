@@ -1,6 +1,6 @@
 Sword = Class{
     init = function(self, x, y, collider, player)
-        self.bbox = collider:addRectangle(x,y,45,50)
+        self.bbox = collider:addRectangle(x+25,y-26,45,50)
         self.bbox.type = "sword"
         self.bbox.ref = self
         self.collider = collider
@@ -17,6 +17,16 @@ Sword = Class{
 
 
 function Sword:update(dt)
+    -- move weapon
+    local x,y = self.player.bbox:center()
+    if not self.player.facingRight then
+        x = x-45
+    else
+        x = x+25
+    end
+    self.bbox:moveTo(x+10,y-26)
+
+
     if self.cooldown > 0 then
         self.cooldown = self.cooldown-dt
         if self.cooldown <= 0.8 and not self.isGhost then
