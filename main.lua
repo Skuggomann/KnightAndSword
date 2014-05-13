@@ -26,7 +26,7 @@ function love.load()
 	Font36p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 36)
 
 	AudioController = AudioController()
-	
+
     Gamestate.registerEvents()
 	Gamestate.switch(Gamestate.menu)
 end

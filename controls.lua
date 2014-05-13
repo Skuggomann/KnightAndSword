@@ -68,7 +68,7 @@ function love.joystickpressed(joystick, button)
 		elseif id == 2 then
 			Signal.emit('attack')
 		end
-    --elseif button == 4 then print("Squere")
+    --elseif button == 4 then print("Square")
     --elseif button == 5 then print("L2")
     --elseif button == 6 then print("R2")
     --elseif button == 7 then print("L1")

@@ -110,7 +110,6 @@ function Frostbolt:draw()
     end
 end
 function Frostbolt:collide(dt, me, other, mtv_x, mtv_y)
-    print(other.type)
     if other.type == "tile" or other.type == "skeleton" then
         me.ttl = 0
     end

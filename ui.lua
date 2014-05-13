@@ -7,7 +7,9 @@ UI = Class{
     deadHeart = love.graphics.newImage("assets/art/DeadHeart2.png"),
     sword = love.graphics.newImage("assets/art/sword.png"),
     frostbolt = love.graphics.newImage("assets/art/Frostbolt1.png"),
-    playerhed = love.graphics.newImage("assets/art/playerhed.png")
+    playerhed = love.graphics.newImage("assets/art/playerhed.png"),
+    mace = love.graphics.newImage("assets/art/blackMaceA.png")
+
 }
 
 function UI:update(dt)
@@ -97,8 +99,8 @@ function UI:getWeaponAbility(Name)
     weapon, ability = nil,nil
     if self.player.currentWeapon == "sword" then
         weapon = self.sword 
-    --elseif self.player.currentWeapon == "mace" then
-    --    weapon = self.mace
+    elseif self.player.currentWeapon == "mace" then
+        weapon = self.mace
     end
     if self.player.currentAbility == "frostbolt" then
         ability = self.frostbolt

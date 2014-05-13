@@ -11,9 +11,9 @@ Player = Class{
 	    self.mana = 100
         self.maxmana = 100
         self.manaregen = 10
-	    self.weapons = {["sword"] = Sword(x,y,collider, self), ["mace"] = false}
+	    self.weapons = {["sword"] = Sword(x,y,collider, self), ["mace"] = Mace(x,y,collider,self)}
 	    self.abilities = {["frostbolt"] = Frostbolt(collider, self), ["cape"] = false}
-        self.currentWeapon = "sword"
+        self.currentWeapon = "mace"
         self.currentAbility = "frostbolt"
 	    self.canAttack = true
 	    self.canJump = true
@@ -131,6 +131,50 @@ function Player:isDead()
     end
     return false
 end
+function Player:swapWeaponsBackwards()
+    a = next(self.weapons)
+    if a == self.currentWeapon then
+        for k,v in pairs(self.weapons) do
+            a = next(self.weapons,k)
+            if a == nil then
+                self.currentWeapon = k
+                return
+            end
+        end
+    else
+        for k,v in pairs(self.weapons) do
+            a = next(self.weapons,k) 
+            if a == self.currentWeapon then
+                self.currentWeapon = k
+                return
+            end
+        end
+    end
+end
+function Player:swapWeaponsForwards()
+    a = next(self.weapons,self.currentWeapon)
+    if a == nil then
+        self.currentWeapon = next(self.weapons)
+    else
+        self.currentWeapon = a
+    end
+    
+    --[[local weaponFound = false
+    for k,v in pairs(self.weapons) do
+        if weaponFound then
+            self.currentWeapon = k
+            return
+        elseif k == self.currentWeapon then
+            weaponFound = true
+        end
+    end
+    for k,v in pairs(self.weapons) do
+        self.currentWeapon = k
+        return
+    end]]
+
+end
+
 
 function Player:collisionWithSolid(mtv_x,mtv_y)
 		local fromleft = false

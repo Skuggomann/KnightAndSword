@@ -9,6 +9,7 @@ require 'skeleton'
 require 'rip'
 require 'sword'
 require 'frostbolt'
+require 'mace'
 local knight = nil
 local enemies = {}
 local ui = nil
@@ -347,6 +348,14 @@ function collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 	end
 end
 
+function game:keypressed(key)
+	if key == 'q' then
+		knight:swapWeaponsBackwards()
+	end
+	if key == 'e' then
+		knight:swapWeaponsForwards()
+	end
+end
 --[[function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 
     -- find which is the player
