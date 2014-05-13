@@ -36,4 +36,9 @@
   <object name="skeleton" type="skeleton" gid="3" x="1841" y="414"/>
   <object name="skeleton" type="skeleton" gid="3" x="1343" y="190"/>
  </objectgroup>
+ <layer name="spikes" width="60" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAD8Gw8AAAE=
+  </data>
+ </layer>
 </map>

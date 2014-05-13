@@ -16,8 +16,7 @@ Sword = Class{
 }
 
 
-function Sword:update(dt,x,y)
-    self.bbox:moveTo(x+10,y-26)
+function Sword:update(dt)
     if self.cooldown > 0 then
         self.cooldown = self.cooldown-dt
         if self.cooldown <= 0.8 and not self.isGhost then
@@ -30,6 +29,9 @@ function Sword:update(dt,x,y)
     end
     --local x,y = self.bbox:center()
     --self.bbox:rotate(math.pi*dt,0, 0)
+end
+function Sword:moveTo(x,y)
+    self.bbox:moveTo(x+10,y-26)
 end
 
 function Sword:draw()

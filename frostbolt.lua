@@ -19,7 +19,7 @@ Frostbolt = Class{
     
 }
 
-function Frostbolt:addBolt()
+function Frostbolt:use()
     x, y = self.player.bbox:center()
     if not self.player.facingRight then
         x = x - 8

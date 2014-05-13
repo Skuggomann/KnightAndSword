@@ -65,20 +65,26 @@ function UI:draw()
     love.graphics.rectangle("line", 32,64, 100,32)
 
 
-
+    realweapon, realability = self.player.weapons[self.player.currentWeapon], self.player.abilities[self.player.currentAbility]
 
     --Draw Abilities/Weapon
     love.graphics.setColor(0,0,0,128)
-    love.graphics.rectangle("fill", W-100,20, 34,34)
-    love.graphics.rectangle("fill", W-164,20, 34,34)
+    love.graphics.rectangle("fill", W-100,20, 66,66)
+    love.graphics.rectangle("fill", W-200,20, 66,66)
     love.graphics.setColor(128,128,128,255)
-    love.graphics.rectangle("line", W-100,20, 34,34)
-    love.graphics.rectangle("line", W-164,20, 34,34)
+    love.graphics.rectangle("line", W-100,20, 66,66)
+    love.graphics.rectangle("line", W-200,20, 66,66)
     love.graphics.setColor(255,255,255,255)
 
     weapon, ability = self:getWeaponAbility()
-    love.graphics.draw(weapon, W-99,30)
-    love.graphics.draw(ability, W-163,21)
+    love.graphics.draw(weapon, W-99,39,0,2,2)
+    love.graphics.draw(ability, W-199,21,0,2,2)
+
+    love.graphics.setColor(0,64,255,128)
+    love.graphics.rectangle("fill", W-100,20, 66*realweapon.cooldown/realweapon.MAXCOOLDOWN,66)
+    love.graphics.rectangle("fill", W-200,20, 66*realability.cooldown/realweapon.MAXCOOLDOWN,66)
+    love.graphics.setColor(255,255,255,255)
+
 end
 
 function UI:addToTable(NewTextTable)

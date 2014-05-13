@@ -3,6 +3,7 @@ local menuOptions = {}
 
 table.insert(menuOptions,"Resume")
 table.insert(menuOptions,"Retry level")
+table.insert(menuOptions,"Settings")
 table.insert(menuOptions,"Exit to main menu")
 local selected = 1
 local pause = Gamestate.pause
@@ -47,6 +48,8 @@ function pause:update(dt)
         		Gamestate.pop()
     		elseif menuOptions[selected] == "Exit to main menu" then
         		Gamestate.switch(Gamestate.menu)
+    		elseif menuOptions[selected] == "Settings" then
+    			Gamestate.push(Gamestate.optionsmenu, self.from)
     		end
     		controls.benter = true
     	end

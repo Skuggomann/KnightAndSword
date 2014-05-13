@@ -14,6 +14,8 @@ require 'levelselect'
 require 'controls'
 require 'death'
 require 'win'
+require 'optionsmenu'
+require 'audiocontroller'
 
 function love.load()
 	--Loading fonts
@@ -22,8 +24,7 @@ function love.load()
 	Font24p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 24)
 	Font36p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 36)
 
-	--swordhit = love.audio.newSource("assets/sounds/swords_x_2_hit_001.mp3", "static")
-	--swordhit:setVolume(0.5)
+	AudioController = AudioController()
 	
     Gamestate.registerEvents()
 	Gamestate.switch(Gamestate.menu)

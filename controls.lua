@@ -48,7 +48,8 @@ function Controls:clear()
 	Signal.clear('up')
 	Signal.clear('down')
 	Signal.clear('start')
-	Signal.clear('enter')	
+	Signal.clear('enter')
+	Signal.clear('upReleased')
 end
 
 controls = Controls();

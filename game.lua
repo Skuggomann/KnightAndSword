@@ -101,9 +101,9 @@ function game:update(dt)
 end
 function game:reset()
 	gametime = 0 --change if we add checkpoints pls
-	knight.frostbolt:removeAllBolts()
+	knight.abilities["frostbolt"]:removeAllBolts()
 	collider:remove(knight.bbox)	
-	collider:remove(knight.sword.bbox)
+	collider:remove(knight.weapons[knight.currentWeapon].bbox)
 	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
 	ui = UI(knight)
 	resetEnemies(map)
@@ -155,6 +155,7 @@ function mapSetup(map)
 	rip = RIP()
 	local groundTiles = {}
 	local nonXTiles = {}
+	local spikes = {}
 
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'player' then
@@ -167,6 +168,15 @@ function mapSetup(map)
 			goal = collider:addRectangle(obj.x,obj.y-32,32,32)
 			goal.type = "end"
 		end
+	end
+    for x, y, tile in map("spikes"):iterate() do
+    	spikes[#spikes+1] = {x,y}
+    	--[[
+		local ctile = collider:addRectangle((x)*32,((y)*32)+16,32,16)
+        ctile.type = "spike"
+        collider:addToGroup("tiles", ctile)
+        collider:setPassive(ctile)
+        ]]--
 	end
 
     for x, y, tile in map("ground"):iterate() do
@@ -204,6 +214,33 @@ function mapSetup(map)
         collider:addToGroup("tiles", ctile)
         collider:setPassive(ctile)
     end
+    while i <= #spikes do
+    	tile = spikes[i]
+    	table.remove(spikes,i)
+    	
+    	posX, negX = checkSpikes(spikes, tile, 1, 1)
+
+		local ctile = collider:addRectangle(tile[1]*32-negX*32,tile[2]*32+16,32+(posX+negX)*32,32-16)
+        ctile.type = "spike"
+        collider:addToGroup("spikes", ctile)
+        collider:setPassive(ctile)
+    end
+
+end
+
+function checkSpikes(spikes, tile, posX, negX)
+	for a,b in ipairs(spikes) do
+		if tile[2] == b[2] then
+			if tile[1]+posX == b[1] then
+				table.remove(spikes,a)
+				return checkSpikes(spikes,tile,posX+1,negX)
+			elseif tile[1]-negX == b[1] then
+				table.remove(spikes,a)
+				return checkSpikes(spikes,tile,posX,negX+1)
+			end
+		end
+	end
+	return posX-1, negX-1
 end
 
 function checkGroundX(groundTiles, nonXTiles, tile, posX, negX)
@@ -269,10 +306,18 @@ function stop_collide(dt, shape_a, shape_b)
         shape_a.ref.jumping = true
     elseif shape_b.type == "skeleton" and shape_a.type == "tile" then
         shape_b.ref.jumping = true
+    elseif shape_a.type == "skeleton" and shape_b.type == "spike" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "skeleton" and shape_a.type == "spike" then
+        shape_b.ref.jumping = true
     elseif shape_a.type == "player" and shape_b.type == "skeleton" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "skeleton" then
         shape_b.ref.jumping = true
+    elseif shape_a.type == "player" and shape_b.type == "spike" then
+        shape_a.ref.jumping = true
+    elseif shape_b.type == "player" and shape_a.type == "spike" then
+        shape_b.ref.jumping = true  
     end
 end
 

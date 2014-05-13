@@ -28,4 +28,9 @@
   <object name="end" type="end" gid="2" x="543" y="450"/>
   <object name="skeleton" type="skeleton" gid="3" x="417" y="145"/>
  </objectgroup>
+ <layer name="spikes" width="35" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYWgAACMAAAQ==
+  </data>
+ </layer>
 </map>

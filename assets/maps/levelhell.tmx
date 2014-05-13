@@ -33,4 +33,9 @@
   <object name="end" type="end" gid="2" x="1904" y="482"/>
   <object name="skeleton" type="skeleton" gid="3" x="184" y="447"/>
  </objectgroup>
+ <layer name="spikes" width="64" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
 </map>
