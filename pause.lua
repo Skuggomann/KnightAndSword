@@ -49,7 +49,7 @@ function pause:update(dt)
     		elseif menuOptions[selected] == "Exit to main menu" then
         		Gamestate.switch(Gamestate.menu)
     		elseif menuOptions[selected] == "Settings" then
-    			Gamestate.push(Gamestate.optionsmenu)
+    			Gamestate.push(Gamestate.optionsmenu, self.from)
     		end
     		controls.benter = true
     	end

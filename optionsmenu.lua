@@ -26,7 +26,8 @@ function optionsmenu:init() -- run only once
 	--levelnr = levelnr-1
 end
 
-function optionsmenu:enter(previous) -- run every time the state is entered
+function optionsmenu:enter(from) -- run every time the state is entered
+	self.from = from
 end
 
 function optionsmenu:update(dt)
@@ -68,16 +69,13 @@ end
 
 function optionsmenu:draw()
     love.graphics.print(string.format("Allan pls add options"),10,10)
-    --love.graphics.print(string.format("levels:"..levelnr),50,50)
-    --[[
-    for k, v in pairs(levels) do
-    	if k ~= selected then
-			love.graphics.setColor(255,255,255, 100)
-			elseif k == selected then
-			love.graphics.setColor(255,255,255, 255)
-		end
-    	love.graphics.printf(v.name, 0, H/2+30*(k-1), W, 'center')
-		love.graphics.setColor(255,255,255, 255)
-    end
-    ]]
+    self.from:draw()
+    -- overlay with pause message
+    love.graphics.setColor(0,0,0, 200)
+    love.graphics.rectangle('fill', 0,0, W,H)
+    love.graphics.setColor(255,255,255)
+    --todo larger font
+    love.graphics.setFont(Font36p)
+    love.graphics.printf('OPTIONS', 0, H/2-200, W, 'center')
+    love.graphics.setFont(Font18p)
 end

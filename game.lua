@@ -155,6 +155,7 @@ function mapSetup(map)
 	rip = RIP()
 	local groundTiles = {}
 	local nonXTiles = {}
+	local spikes = {}
 
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'player' then
@@ -169,10 +170,13 @@ function mapSetup(map)
 		end
 	end
     for x, y, tile in map("spikes"):iterate() do
+    	spikes[#spikes+1] = {x,y}
+    	--[[
 		local ctile = collider:addRectangle((x)*32,((y)*32)+16,32,16)
         ctile.type = "spike"
         collider:addToGroup("tiles", ctile)
         collider:setPassive(ctile)
+        ]]--
 	end
 
     for x, y, tile in map("ground"):iterate() do
@@ -210,6 +214,33 @@ function mapSetup(map)
         collider:addToGroup("tiles", ctile)
         collider:setPassive(ctile)
     end
+    while i <= #spikes do
+    	tile = spikes[i]
+    	table.remove(spikes,i)
+    	
+    	posX, negX = checkSpikes(spikes, tile, 1, 1)
+
+		local ctile = collider:addRectangle(tile[1]*32-negX*32,tile[2]*32,32+(posX+negX)*32,32)
+        ctile.type = "spike"
+        collider:addToGroup("spikes", ctile)
+        collider:setPassive(ctile)
+    end
+
+end
+
+function checkSpikes(spikes, tile, posX, negX)
+	for a,b in ipairs(spikes) do
+		if tile[2] == b[2] then
+			if tile[1]+posX == b[1] then
+				table.remove(spikes,a)
+				return checkSpikes(spikes,tile,posX+1,negX)
+			elseif tile[1]-negX == b[1] then
+				table.remove(spikes,a)
+				return checkSpikes(spikes,tile,posX,negX+1)
+			end
+		end
+	end
+	return posX-1, negX-1
 end
 
 function checkGroundX(groundTiles, nonXTiles, tile, posX, negX)
