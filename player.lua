@@ -22,6 +22,7 @@ Player = Class{
 	    self.velocity = {["x"] = 0, ["y"] = 0}
 	    self.invuln = 0
 		self.sprite = love.graphics.newImage('/assets/art/player2.png')
+		self.spriteJumping = love.graphics.newImage('/assets/art/player2jumping.png')
 		self.sword = Sword(x,y,collider, self)
         self.frostbolt = Frostbolt(collider, self)
         self.facingRight = true
@@ -99,10 +100,19 @@ function Player:draw()
     love.graphics.setColor(255,255,255, 255)
 	
 	local x,y = self.bbox:center()
+	local currentSprite
+	
+	-- Sets the sprite to draw depending on some variables
+	if(self.jumping) then
+		currentSprite = self.spriteJumping
+	else
+		currentSprite = self.sprite
+	end
+	
     if self.facingRight then
-    	love.graphics.draw(self.sprite, x - 16, y - 37)
+    	love.graphics.draw(currentSprite, x - 16, y - 37)
     else
-        love.graphics.draw(self.sprite, x + 16, y - 37, 0, -1, 1)
+        love.graphics.draw(currentSprite, x + 16, y - 37, 0, -1, 1)
     end
 
 	-- draw weapon... (just sword now)
