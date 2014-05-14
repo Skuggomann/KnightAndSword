@@ -8,27 +8,30 @@ function death:enter(from)
     self.animation = anim8.newAnimation(self.g('1-11',1), 0.1, function() self.animation:pauseAtEnd() end)
     self.fadeTime = 4
     self.fadeTimedx = 0
-end
 
+    Signal.register('enter', function()
+        if self.selected == 1 then
+            Gamestate.pop()
+        Gamestate:registerSignals()
+        elseif self.selected == 2 then
+            Gamestate.switch(Gamestate.menu)
+        end
+    end)
+    Signal.register('up', function()
+        self.selected = 1
+    end)
+    Signal.register('down', function()
+        self.selected = 2
+    end)
+end
+function death:leave()
+    controls:clear()
+end
 function death:update(dt)
     if self.fadeTimedx < self.fadeTime then
         self.fadeTimedx = self.fadeTimedx+dt
         if self.fadeTimedx >= self.fadeTime then
             self.fadeTimedx = self.fadeTime
-        end
-    end
-
-    if controls:isDown("up") then
-        self.selected = 1
-    end
-    if controls:isDown("down") then
-        self.selected = 2
-    end
-    if controls:isDown("enter") then
-        if self.selected == 1 then
-            Gamestate.pop()
-        elseif self.selected == 2 then
-            Gamestate.switch(Gamestate.menu)
         end
     end
     self.animation:update(dt)

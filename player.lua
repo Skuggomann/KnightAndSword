@@ -54,9 +54,7 @@ function Player:update(dt)
     if self.jumping then
     	self.velocity.y = self.velocity.y + self.gravity*dt
     end
-    if controls:isDown("attack") and self.weapons[self.currentWeapon]:canAttack() then
-    	self.weapons[self.currentWeapon]:attack()
-    end
+    
     -- update movement
     self:move(self.velocity.x*dt,self.velocity.y*dt)
     -- update sword/weapon
@@ -64,13 +62,7 @@ function Player:update(dt)
     self.weapons["mace"]:update(dt)
     --self.weapons[self.currentWeapon]:update(dt)
 
-    if controls:isDown("cast") then
-        if self.abilities[self.currentAbility].cooldown == 0 and self.mana >= self.abilities[self.currentAbility].manacost then
-            self.abilities[self.currentAbility]:use()
-            self.abilities[self.currentAbility].cooldown = self.abilities[self.currentAbility].MAXCOOLDOWN
-            self.mana = self.mana - self.abilities[self.currentAbility].manacost
-        end
-    end
+
     -- update invulnerability
     if self.invuln > 0 then
     	self.invuln = self.invuln-dt
@@ -89,6 +81,19 @@ function Player:update(dt)
     --self.frostbolt:update(dt)
 end
 
+function Player:attack()
+	if self.weapons[self.currentWeapon]:canAttack() then
+    	self.weapons[self.currentWeapon]:attack()
+    end
+end
+
+function Player:cast()
+    if self.abilities[self.currentAbility].cooldown == 0 and self.mana >= self.abilities[self.currentAbility].manacost then
+        self.abilities[self.currentAbility]:use()
+        self.abilities[self.currentAbility].cooldown = self.abilities[self.currentAbility].MAXCOOLDOWN
+        self.mana = self.mana - self.abilities[self.currentAbility].manacost
+    end
+end
 function Player:draw()
 	if self:isInvuln() then
 	    love.graphics.setColor(0,255,0, 255)

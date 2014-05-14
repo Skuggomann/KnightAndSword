@@ -68,6 +68,7 @@ function love.joystickpressed(joystick, button)
 		elseif id == 2 then
 			Signal.emit('attack')
 		end
+		Signal.emit('enter')
     --elseif button == 4 then print("Square")
     --elseif button == 5 then print("L2")
     --elseif button == 6 then print("R2")
@@ -145,15 +146,27 @@ local id, trash = joystick:getID()
     end
 end
 
-
-
---[[
-if controls:isDown(2, "x") then
-		print("X is pressed")
+function love.keypressed( key, isrepeat)
+	if key == 'w' then
+		--Cast
+		Signal.emit('cast')
+	elseif key == 'q' then
+		--Switch Weapons
+		--Signal.emit('switchhhhh')
+	elseif key == ' ' then
+		--Attack
+		Signal.emit('attack')
+	elseif key == 'up' then
+		Signal.emit('up')
+	elseif key == 'down' then
+		Signal.emit('down')
+	elseif key == 'left' then
+		Signal.emit('left')
+	elseif key == 'right' then
+		Signal.emit('right')
+	elseif key == 'p' then
+		Signal.emit('start')
+	elseif key == 'return' or key == 'kpenter' then
+		Signal.emit('enter')
 	end
-]]--
-
-
-
--- add 
-
+end

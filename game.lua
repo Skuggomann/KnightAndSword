@@ -46,10 +46,25 @@ function game:enter(previous,filename) -- run every time the state is entered
 	end
 	if Gamestate.levelselect:getCurrentLevel() == 1 then
 		speech = {{"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n"}, {"player", "why can't i use my arm...or jump?"}, {"sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?"}}
+		controls:clear()
 		Gamestate.push(Gamestate.speechstate,ui,speech)
 		--ui:addToTable({"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n", 5, "player", "why can't i use my arm...or jump?",3, "sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?", 5})
 	end
 	cam = Camera(456, 256,1)--1.40)
+	self:registerSignals()
+end
+
+function game:registerSignals()
+	Signal.register('cast', function()
+    	knight:cast()
+	end)
+	Signal.register('attack', function()
+    	knight:attack()
+	end)
+	Signal.register('start', function()
+		controls:clear()
+    	Gamestate.push(Gamestate.pause)
+	end)
 end
 
 function game:update(dt)
@@ -57,7 +72,7 @@ function game:update(dt)
 	gametime = gametime+dt
 	-- update input
 
-    if controls:isDown("start") then
+    --[[if controls:isDown("start") then
     	if not controls.bstart then
     		--once
         	Gamestate.push(Gamestate.pause)
@@ -65,7 +80,7 @@ function game:update(dt)
     	end
     else
     	controls.bstart = false
-    end
+    end]]
 
 	-- update player object
 	knight:update(dt)
@@ -120,6 +135,7 @@ function game:update(dt)
 		x,y = knight.bbox:center()
 		x = x-16
 		y = y-3
+		controls:clear()
 		Gamestate.push(Gamestate.death)
 		rip[levelname]:addRip(x,y)
 		self:reset()
@@ -144,6 +160,7 @@ function game:leave()
 end
 
 function winGame()
+	controls:clear()
 	Gamestate.push(Gamestate.win, gametime)
 end
 function drawWorld()

@@ -10,62 +10,42 @@ local pause = Gamestate.pause
 function pause:enter(from)
     self.from = from -- record previous state
 	selected = 1
+	self:registerSignals()
 end
 
+function pause:registerSignals()
+	Signal.register('enter', function()
+		if menuOptions[selected] == "Resume" then
+    		Gamestate.pop()
+    		Gamestate:registerSignals()
+    	elseif menuOptions[selected] == "Retry level" then
+    		self.from:reset()
+    		Gamestate.pop()
+    		Gamestate:registerSignals()
+		elseif menuOptions[selected] == "Exit to main menu" then
+    		Gamestate.switch(Gamestate.menu)
+		elseif menuOptions[selected] == "Settings" then
+			controls:clear()
+			Gamestate.push(Gamestate.optionsmenu, self.from)
+		end
+	end)
+	Signal.register('up', function()
+    	selected = (selected-1)
+    	if selected == 0 then
+    		selected = #menuOptions
+    	end
+	end)
+	Signal.register('down', function()
+    	selected = (selected+1)
+    	if selected == (#menuOptions+1) then
+    		selected = 1
+    	end
+	end)
+end
+function pause:leave()
+	controls:clear()
+end
 function pause:update(dt)
-	-- update input
-    if controls:isDown("up") then
-    	if not controls.bup then
-    		--once
-	    	selected = (selected-1)
-	    	if selected == 0 then
-	    		selected = #menuOptions
-	    	end
-    		controls.bup = true
-    	end
-    else
-    	controls.bup = false
-    end
-    if controls:isDown("down") then
-    	if not controls.bdown then
-    		--once
-	    	selected = (selected+1)
-	    	if selected == (#menuOptions+1) then
-	    		selected = 1
-	    	end
-    		controls.bdown = true
-    	end
-    else
-    	controls.bdown = false
-    end
-    if controls:isDown("enter") then
-    	if not controls.benter then
-    		--once
-    		if menuOptions[selected] == "Resume" then
-        		Gamestate.pop()
-        	elseif menuOptions[selected] == "Retry level" then
-        		self.from:reset()
-        		Gamestate.pop()
-    		elseif menuOptions[selected] == "Exit to main menu" then
-        		Gamestate.switch(Gamestate.menu)
-    		elseif menuOptions[selected] == "Settings" then
-    			Gamestate.push(Gamestate.optionsmenu, self.from)
-    		end
-    		controls.benter = true
-    	end
-    else
-    	controls.benter = false
-    end
-    if controls:isDown("start") then
-    	if not controls.bstart then
-    		--once
-        	Gamestate.pop()
-    		controls.bstart = true
-    	end
-    else
-    	controls.bstart = false
-    end
-
 end
 
 function pause:draw()

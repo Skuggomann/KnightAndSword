@@ -9,21 +9,18 @@ function speechstate:enter(from,ui,textTable) -- run every time the state is ent
     self.from = from
     self.ui = ui
     self.textTable = textTable
-end
 
+    Signal.register('enter', function()
+        table.remove(self.textTable, 1)
+    end)
+end
+function speechstate:leave()
+    controls:clear()
+end
 function speechstate:update(dt)
     if next(self.textTable) == nil then  --check if table is empty
         Gamestate.pop()
-    end
-    
-
-    if controls:isDown("enter") then
-        if not controls.benter then
-            table.remove(self.textTable, 1)
-            controls.benter = true
-        end
-    else
-        controls.benter = false
+        Gamestate:registerSignals()
     end
 end
 

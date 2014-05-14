@@ -6,21 +6,19 @@ function menu:init() -- run only once
 end
 
 function menu:enter(previous) -- run every time the state is entered
+	Signal.register('enter', function()
+    	Gamestate.switch(Gamestate.levelselect)
+	end)
 end
 
 function menu:update(dt)
-    if controls:isDown("enter") then
-    	if not controls.benter then
-    		--once
-        	Gamestate.switch(Gamestate.levelselect)
-    		controls.benter = true
-    	end
-    else
-    	controls.benter = false
-    end
 end
 
 function menu:draw()
     love.graphics.draw(self.background, 0, 0)
     love.graphics.print(string.format("press enter(x) to play"),10,10)
+end
+
+function menu:leave()
+	controls:clear()
 end

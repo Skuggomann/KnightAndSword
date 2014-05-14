@@ -25,43 +25,29 @@ function levelselect:init() -- run only once
 end
 
 function levelselect:enter(previous) -- run every time the state is entered
+	Signal.register('enter', function()
+    	local filename = levels[selected].filename
+        Gamestate.switch(Gamestate.game,filename)
+	end)
+	Signal.register('up', function()
+    	selected = (selected-1)
+    	if selected == 0 then
+    		selected = levelnr
+    	end
+	end)
+	Signal.register('down', function()
+    	selected = (selected+1)
+    	if selected == (levelnr+1) then
+    		selected = 1
+    	end
+	end)
+end
+
+function levelselect:leave()
+	controls:clear()
 end
 
 function levelselect:update(dt)
-    if controls:isDown("up") then
-    	if not controls.bup then
-    		--once
-	    	selected = (selected-1)
-	    	if selected == 0 then
-	    		selected = levelnr
-	    	end
-    		controls.bup = true
-    	end
-    else
-    	controls.bup = false
-    end
-    if controls:isDown("down") then
-    	if not controls.bdown then
-    		--once
-	    	selected = (selected+1)
-	    	if selected == (levelnr+1) then
-	    		selected = 1
-	    	end
-    		controls.bdown = true
-    	end
-    else
-    	controls.bdown = false
-    end
-    if controls:isDown("enter") then
-    	if not controls.benter then
-    		--once
-	    	local filename = levels[selected].filename
-	        Gamestate.switch(Gamestate.game,filename)
-    		controls.benter = true
-    	end
-    else
-    	controls.benter = false
-    end
 end
 
 function levelselect:draw()

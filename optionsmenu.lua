@@ -43,72 +43,48 @@ function optionsmenu:enter(from) -- run every time the state is entered
 	table.insert(options,AudioController.masterVolume*10)
 	table.insert(options,AudioController.soundsVolume*10)
 	table.insert(options,AudioController.musicVolume*10)
+
+    Signal.register('enter', function()
+        AudioController:setMasterVolume(options[1]/10)
+        AudioController:setSoundsVolume(options[2]/10)
+        AudioController:setMusicVolume(options[3]/10)
+
+        local file = io.open("settings.txt", "w")
+        file:write("MasterVolume="..AudioController.masterVolume.."\nSoundsVolume="..AudioController.soundsVolume.."\nMusicVolume="..AudioController.musicVolume)
+        file:close()
+
+        Gamestate.pop()
+        Gamestate:registerSignals()
+    end)
+    Signal.register('up', function()
+        selected = (selected-1)
+        if selected == 0 then
+            selected = #options
+        end
+    end)
+    Signal.register('down', function()
+        selected = (selected+1)
+        if selected == (#options+1) then
+            selected = 1
+        end
+    end)
+    Signal.register('left', function()
+        if options[selected] ~= 0 then
+            options[selected] = options[selected]-1   --change if you add more options
+        end
+    end)
+    Signal.register('right', function()
+        if options[selected] ~= 10 then
+            options[selected] = options[selected]+1   --change if you add more options
+        end
+    end)
+end
+
+function optionsmenu:leave()
+    controls:clear()
 end
 
 function optionsmenu:update(dt)
-    if controls:isDown("up") then
-    	if not controls.bup then
-    		--once
-	    	selected = (selected-1)
-	    	if selected == 0 then
-	    		selected = #options
-	    	end
-    		controls.bup = true
-    	end
-    else
-    	controls.bup = false
-    end
-    if controls:isDown("down") then
-    	if not controls.bdown then
-    		--once
-	    	selected = (selected+1)
-	    	if selected == (#options+1) then
-	    		selected = 1
-	    	end
-    		controls.bdown = true
-    	end
-    else
-    	controls.bdown = false
-    end
-    if controls:isDown("left") then
-    	if not controls.bleft then
-    		--once
-    		if options[selected] ~= 0 then
-    			options[selected] = options[selected]-1   --change if you add more options
-    		end
-    		controls.bleft = true
-    	end
-    else
-    	controls.bleft = false
-    end
-    if controls:isDown("right") then
-    	if not controls.bright then
-    		--once
-	    	if options[selected] ~= 10 then
-    			options[selected] = options[selected]+1   --change if you add more options
-    		end
-    		controls.bright = true
-    	end
-    else
-    	controls.bright = false
-    end
-    if controls:isDown("enter") then
-    	if not controls.benter then
-    		--once
-    		AudioController:setMasterVolume(options[1]/10)
-       		AudioController:setSoundsVolume(options[2]/10)
-    		AudioController:setMusicVolume(options[3]/10)
-
-			local file = io.open("settings.txt", "w")
-			file:write("MasterVolume="..AudioController.masterVolume.."\nSoundsVolume="..AudioController.soundsVolume.."\nMusicVolume="..AudioController.musicVolume)
-			file:close()
-
-	        Gamestate.pop()
-    		controls.benter = true
-    	end
-    else
-    	controls.benter = false
-    end
 end
 
 function optionsmenu:draw()

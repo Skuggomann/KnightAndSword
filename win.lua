@@ -13,6 +13,44 @@ function win:enter(from, time)
     if self.islastlevel then 
         selected = 3
     end
+
+    Signal.register('enter', function()
+        if selected == 1 then 
+            --nextelevel
+            Gamestate.levelselect:switchToNextLevel()
+        elseif selected == 2 then
+            --retry
+            self.from:reset()
+            Gamestate.pop()
+            Gamestate:registerSignals()
+        elseif selected == 3 then
+            --quit to main menu
+            Gamestate.switch(Gamestate.menu)
+        end
+    end)
+    Signal.register('up', function()
+        selected = (selected-1)
+        if self.islastlevel and selected == 1 then
+            selected = 3
+        end
+        if selected == 0 then
+            selected = 3
+        end
+    end)
+    Signal.register('down', function()
+        selected = (selected+1)
+        if selected == 4 then
+            if self.islastlevel then
+                selected = 2
+            else
+                selected = 1
+            end
+        end
+    end)
+end
+
+function win:leave()
+    controls:clear()
 end
 
 function win:update(dt)
