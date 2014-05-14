@@ -8,7 +8,7 @@ UI = Class{
     sword = love.graphics.newImage("assets/art/sword.png"),
     frostbolt = love.graphics.newImage("assets/art/Frostbolt1.png"),
     playerhed = love.graphics.newImage("assets/art/playerhed.png"),
-    mace = love.graphics.newImage("assets/art/blackMaceA.png")
+    mace = love.graphics.newImage("assets/art/blackMaceAthumbnail.png")
 
 }
 
