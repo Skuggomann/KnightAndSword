@@ -25,6 +25,7 @@ Player = Class{
 	    self.MAXINVULN = 1
 		self.sprite = love.graphics.newImage('/assets/art/player2.png')
 		self.spriteJumping = love.graphics.newImage('/assets/art/player2jumping.png')
+		self.spriteWalkin = love.graphics.newImage('/assets/art/player2jumping.png')
 		--self.sword = Sword(x,y,collider, self)
         --self.frostbolt = Frostbolt(collider, self)
 
@@ -108,9 +109,15 @@ function Player:draw()
 	-- Sets the sprite to draw depending on some variables
 	if(self.jumping) then
 		currentSprite = self.spriteJumping
+	elseif self.velocity.x ~= 0 and not self.jumping then		
+		currentSprite = self.spriteWalkin
 	else
 		currentSprite = self.sprite
 	end
+	
+	
+	
+	
 	
     if self.facingRight then
     	love.graphics.draw(currentSprite, x - 16, y - 37)
