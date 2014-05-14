@@ -84,7 +84,7 @@ function UI:draw()
 
     love.graphics.setColor(0,64,255,128)
     love.graphics.rectangle("fill", W-100,20, 66*realweapon.cooldown/realweapon.MAXCOOLDOWN,66)
-    love.graphics.rectangle("fill", W-200,20, 66*realability.cooldown/realweapon.MAXCOOLDOWN,66)
+    love.graphics.rectangle("fill", W-200,20, 66*realability.cooldown/realability.MAXCOOLDOWN,66)
     love.graphics.setColor(255,255,255,255)
 
 end
@@ -104,7 +104,8 @@ function UI:getWeaponAbility(Name)
     end
     if self.player.currentAbility == "frostbolt" then
         ability = self.frostbolt
-        --elseif goes here
+    elseif self.player.currentAbility == "telekinesis" then
+        ability = self.mace
     end
 
     return weapon,ability
