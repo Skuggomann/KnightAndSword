@@ -66,6 +66,18 @@ function game:registerSignals()
 		controls:clear()
     	Gamestate.push(Gamestate.pause)
 	end)
+	Signal.register('weaponsLeft', function()
+		knight:swapWeaponsBackwards()
+	end)
+	Signal.register('weaponsRight', function()
+		knight:swapWeaponsForwards()
+	end)
+	Signal.register('abilitiesLeft', function()
+		knight:swapAbilitiesBackwards()
+	end)
+	Signal.register('abilitiesRight', function()
+		knight:swapAbilitiesForwards()
+	end)
 end
 
 function game:update(dt)
@@ -435,41 +447,3 @@ function collideSkeletonWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
 		skeleton_shape.ref.velocity.y = 0
 	end
 end
-
-function game:keypressed(key)
-	if key == 'q' then
-		knight:swapWeaponsBackwards()
-	end
-	if key == 'e' then
-		knight:swapWeaponsForwards()
-	end
-	if key == '1' then
-		knight:swapAbilitiesBackwards()
-	end
-	if key == '2' then
-		knight:swapAbilitiesForwards()
-	end
-end
---[[function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
-
-    -- find which is the player
-    local player_shape, tileshape
-    if shape_a.type == "player" and shape_b.type == "tile" then
-        player_shape = shape_a
-    elseif shape_b == "player" and shape_a.type == "tile" then
-        player_shape = shape_b
-    else
-        -- none of the two shapes is a tile, return to upper function
-        return
-    end
-
-    player_shape:move(mtv_x, 0)
-    player_shape:move(0, mtv_y)
-
-    if mtv_y < 0 and player_shape.ref.jumping then
-    	player_shape.ref.jumping = false
-    	player_shape.ref.velocity.y = 0
-	else
-		player_shape.ref.velocity.y = 0
-	end
-end]]--

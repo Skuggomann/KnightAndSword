@@ -52,6 +52,10 @@ function Controls:clear()
 	Signal.clear('start')
 	Signal.clear('enter')
 	Signal.clear('upReleased')
+	Signal.clear('weaponsLeft')
+	Signal.clear('weaponsRight')
+	Signal.clear('abilitiesLeft')
+	Signal.clear('abilitiesRight')
 end
 
 controls = Controls();
@@ -70,10 +74,20 @@ function love.joystickpressed(joystick, button)
 		end
 		Signal.emit('enter')
     --elseif button == 4 then print("Square")
-    --elseif button == 5 then print("L2")
-    --elseif button == 6 then print("R2")
-    --elseif button == 7 then print("L1")
-    --elseif button == 8 then print("R1")
+    --elseif button == 5 then print("L1")
+    --elseif button == 6 then print("R1")
+    elseif button == 7 then print("L2")
+    	if id == 1 then
+    		Signal.emit('weaponsLeft')
+    	elseif id == 2 then
+    		Signal.emit('abilitiesLeft')
+    	end
+    elseif button == 8 then print("R2")
+    	if id == 1 then
+    		Signal.emit('weaponsRight')
+    	elseif id == 2 then
+    		Signal.emit('abilitiesRight')
+    	end
 	
 	--elseif button == 9 then print("SELECT")
 	elseif button == 10 then --print("START")
@@ -98,10 +112,10 @@ function love.joystickreleased( joystick, button )
     elseif button == 3 then --print("X")
 		controls.x[id] = false
     --elseif button == 4 then print("Squere")
-    --elseif button == 5 then print("L2")
-    --elseif button == 6 then print("R2")
-    --elseif button == 7 then print("L1")
-    --elseif button == 8 then print("R1")
+    --elseif button == 5 then print("L1")
+    --elseif button == 6 then print("R1")
+    --elseif button == 7 then print("L2")
+    --elseif button == 8 then print("R2")
 	
 	--elseif button == 9 then print("SELECT")
 	elseif button == 10 then --print("START")
@@ -150,23 +164,39 @@ function love.keypressed( key, isrepeat)
 	if key == 'w' then
 		--Cast
 		Signal.emit('cast')
-	elseif key == 'q' then
-		--Switch Weapons
-		--Signal.emit('switchhhhh')
-	elseif key == ' ' then
+	end
+	if key == ' ' then
 		--Attack
 		Signal.emit('attack')
-	elseif key == 'up' then
+	end
+	if key == 'up' then
 		Signal.emit('up')
-	elseif key == 'down' then
+	end
+	if key == 'down' then
 		Signal.emit('down')
-	elseif key == 'left' then
+	end
+	if key == 'left' then
 		Signal.emit('left')
-	elseif key == 'right' then
+	end
+	if key == 'right' then
 		Signal.emit('right')
-	elseif key == 'p' then
+	end
+	if key == 'p' then
 		Signal.emit('start')
-	elseif key == 'return' or key == 'kpenter' then
+	end
+	if key == 'return' or key == 'kpenter' then
 		Signal.emit('enter')
+	end
+	if key == 'q' then
+		Signal.emit('weaponsLeft')
+	end
+	if key == 'e' then
+		Signal.emit('weaponsRight')
+	end
+	if key == '1' then
+		Signal.emit('abilitiesLeft')
+	end
+	if key == '2' then
+		Signal.emit('abilitiesRight')
 	end
 end
