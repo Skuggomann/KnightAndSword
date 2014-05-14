@@ -296,6 +296,8 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 			-- collision with frozen skeleton same as tile(ground)
 			self:collisionWithSolid(mtv_x,mtv_y)
 		end
+    elseif other.type =="TheVeil" then
+        self:takeDamage(100)
 	elseif other.type == "end" then
 		winGame()
 	end
