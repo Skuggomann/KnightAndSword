@@ -191,8 +191,10 @@ end
 function game:reset()
 	gametime = 0 --change if we add checkpoints pls
 	knight:destructor()
-	veil:destroy()
-	veil = TheVeil(veilstart,collider)
+	if veil then 
+		veil:destroy()
+		veil = TheVeil(veilstart,collider) 
+	end
 	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
 	ui = UI(knight)
 	resetEnemies(map)
