@@ -14,6 +14,7 @@ require 'telekinesis'
 require 'mace'
 require 'breakable'
 require 'movable'
+require 'theveil'
 local knight = nil
 local enemies = {}
 local objects = {} -- breakable objects and movable objects.

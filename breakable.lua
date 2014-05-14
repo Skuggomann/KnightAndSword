@@ -3,10 +3,11 @@ Breakable = Class{
         self.bbox = collider:addRectangle(x,y,32,32)
         self.bbox.type = "breakable"
         self.bbox.ref = self
-        self.hp = 3
+        self.hp = 4
         self.invuln = 0
         self.MAXINVULN = 0.3
-        self.sprite = love.graphics.newImage('/assets/art/tiles/block.png')
+        self.sprite = love.graphics.newImage('/assets/art/tiles/Brick-breakable1.png')
+        self.sprite2 = love.graphics.newImage('/assets/art/tiles/Brick-breakable2.png')
     end
 }
 
@@ -22,14 +23,21 @@ end
 
 function Breakable:draw()
     local x,y = self.bbox:center()
+    if self.hp > 2 then 
     love.graphics.draw(self.sprite, x-16, y-16)
-    if self:isInvuln() then
-        love.graphics.setColor(255,0,0, 120)
     else
-        love.graphics.setColor(0,255,0, 120)
+        love.graphics.draw(self.sprite2, x-16, y-16)
     end
-    self.bbox:draw("fill")
-    love.graphics.setColor(255,255,255, 255)
+
+    if debug then
+        if self:isInvuln() then
+            love.graphics.setColor(255,0,0, 120)
+        else
+            love.graphics.setColor(0,255,0, 120)
+        end
+        self.bbox:draw("fill")
+        love.graphics.setColor(255,255,255, 255)
+    end
 end
 
 function Breakable:takeDamage(damage)

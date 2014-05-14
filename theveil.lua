@@ -3,7 +3,6 @@ TheVeil = Class{
         self.bbox = collider:addRectangle(x,0,128,H)
         self.bbox.type = "TheVeil"
         self.bbox.ref = self
-        self.gravity = gravity
         self.velocity.x = 3
 		--self.sprite = love.graphics.newImage('/assets/art/.png')
 

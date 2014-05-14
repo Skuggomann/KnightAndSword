@@ -110,14 +110,16 @@ function Telekinesis:draw()
 --        x = x - 16
 --    end
 
-    local x, y = self.player.bbox:center()
-    y = y+10
-    if not self.player.facingRight then
-        x = x - 30
-    else
-        x = x + 30
+    if debug then
+        local x, y = self.player.bbox:center()
+        y = y+10
+        if not self.player.facingRight then
+            x = x - 30
+        else
+            x = x + 30
+        end
+        love.graphics.rectangle("fill",x,y,1,1)
     end
-    love.graphics.rectangle("fill",x,y,1,1)
     --love.graphics.draw(self.image,x,y-10)
 
 end
