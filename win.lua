@@ -61,56 +61,6 @@ function win:update(dt)
         end
     end
 
-    if controls:isDown("up") then
-        if not controls.bup then
-            --once
-            selected = (selected-1)
-            if self.islastlevel and selected == 1 then
-                selected = 3
-            end
-            if selected == 0 then
-                selected = 3
-            end
-            controls.bup = true
-        end
-    else
-        controls.bup = false
-    end
-    if controls:isDown("down") then
-        if not controls.bdown then
-            --once
-            selected = (selected+1)
-            if selected == 4 then
-                if self.islastlevel then
-                    selected = 2
-                else
-                    selected = 1
-                end
-            end
-            controls.bdown = true
-        end
-    else
-        controls.bdown = false
-    end
-    if controls:isDown("enter") then
-        if not controls.benter then
-            --once
-            if selected == 1 then 
-                --nextelevel
-            Gamestate.levelselect:switchToNextLevel()
-            elseif selected == 2 then
-                --retry
-                self.from:reset()
-                Gamestate.pop()
-            elseif selected == 3 then
-                --quit to main menu
-                Gamestate.switch(Gamestate.menu)
-            end
-            controls.benter = true
-        end
-    else
-        controls.benter = false
-    end
 end
 
 function win:draw()

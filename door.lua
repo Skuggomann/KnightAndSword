@@ -26,8 +26,5 @@ end
 function Door:isDead()
     return false --never dies
 end
-function Door:isInvuln()
-    return self.invuln > 0
-end
 function Door:collide(dt, me, other, mtv_x, mtv_y)
 end

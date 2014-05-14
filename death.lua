@@ -12,7 +12,7 @@ function death:enter(from)
     Signal.register('enter', function()
         if self.selected == 1 then
             Gamestate.pop()
-        Gamestate:registerSignals()
+            Gamestate:registerSignals()
         elseif self.selected == 2 then
             Gamestate.switch(Gamestate.menu)
         end
