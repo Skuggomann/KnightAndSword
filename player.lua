@@ -170,21 +170,38 @@ function Player:swapWeaponsForwards()
     else
         self.currentWeapon = a
     end
-    
-    --[[local weaponFound = false
-    for k,v in pairs(self.weapons) do
-        if weaponFound then
-            self.currentWeapon = k
-            return
-        elseif k == self.currentWeapon then
-            weaponFound = true
+end
+function Player:swapAbilitiesBackwards()
+    if self.currentAbility ~= "telekinesis" or self.abilities["telekinesis"]:drop() then
+        a = next(self.abilities)
+        if a == self.currentAbility then
+            for k,v in pairs(self.abilities) do
+                a = next(self.abilities,k)
+                if a == nil then
+                    self.currentAbility = k
+                    return
+                end
+            end
+        else
+            for k,v in pairs(self.abilities) do
+                a = next(self.abilities,k) 
+                if a == self.currentAbility then
+                    self.currentAbility = k
+                    return
+                end
+            end
         end
     end
-    for k,v in pairs(self.weapons) do
-        self.currentWeapon = k
-        return
-    end]]
-
+end
+function Player:swapAbilitiesForwards()
+    if self.currentAbility ~= "telekinesis" or self.abilities["telekinesis"]:drop() then
+        a = next(self.abilities,self.currentAbility)
+        if a == nil then
+            self.currentAbility = next(self.abilities)
+        else
+            self.currentAbility = a
+        end
+    end
 end
 
 

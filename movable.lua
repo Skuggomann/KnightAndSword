@@ -5,7 +5,7 @@ Movable = Class{
         self.bbox.ref = self
         self.gravity = gravity
         self.beingHeld = false
-        self.sprite = love.graphics.newImage('/assets/art/tiles/door.png')
+        self.sprite = love.graphics.newImage('/assets/art/tiles/box.png')
         self.velocity = {["x"] = 0, ["y"] = 0}
         self.falling = true
     end

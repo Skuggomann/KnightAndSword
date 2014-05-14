@@ -37,7 +37,6 @@ function Telekinesis:use()
     else
         x = x + 30
     end
-    --print("".. x .. " " .. y .. " " .. width .. " " .. height)
     for _, shape in ipairs(self.collider:shapesAt(x,y)) do
         if shape.type == "movable" then
             self.activeTelekinesis = shape
@@ -77,6 +76,7 @@ function Telekinesis:drop()
         self.player.manaregen = self.player.MAXMANAREGEN
         return true
     end
+    return true
 end 
 
 function Telekinesis:update(dt)
