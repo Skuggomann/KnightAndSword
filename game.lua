@@ -195,7 +195,7 @@ function resetObjects(map)
 		if obj.name == 'breakable' then
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
 			elseif obj.name == 'movable' then
-			objects[#objects+1] = Movable(obj.x,obj.y-32,collider)
+			objects[#objects+1] = Movable(obj.x,obj.y-32,collider,gravity)
 		end
 	end
 end
