@@ -5,7 +5,7 @@ Telekinesis = Class{
         --self.bbox.ref = self
         self.player = player
         self.collider = collider
-
+        self.MAXMANACOST = 20
         self.manacost = 20
         self.MAXCOOLDOWN = 0.5
         self.cooldown = 0
@@ -20,11 +20,9 @@ Telekinesis = Class{
 }
 
 function Telekinesis:use()
-    self.cooldown = self.MAXCOOLDOWN
     
     if self.activeTelekinesis ~= nil then
         self:drop()
-        self.player.mana = self.player.mana+self.manacost
         return
     end
 
@@ -46,10 +44,14 @@ function Telekinesis:use()
             self.player.manaregen = 0
             self.player.canAttack = false
 
+            self.manacost = 0
+
             --self.activeTelekinesis:move(0,-10)
             return
         end
     end
+    --if self.activeTelekinesis == nil then
+    self.player.mana = self.player.mana+self.manacost --end
     --[[
     for shape in pairs(self.collider:shapesInRange(x,y, width,height)) do
         if shape.type == "movable" then
@@ -74,6 +76,7 @@ function Telekinesis:drop()
         self.activeTelekinesis = nil
         self.player.canAttack = true
         self.player.manaregen = self.player.MAXMANAREGEN
+        self.manacost = self.MAXMANACOST
         return true
     end
     return true
