@@ -11,11 +11,12 @@ Player = Class{
         self.maxhp = 3
 	    self.mana = 100
         self.maxmana = 100
+        self.MAXMANAREGEN = 10
         self.manaregen = 10
 	    self.weapons = {["sword"] = Sword(x,y,collider, self), ["mace"] = Mace(x,y,collider,self)}
-	    self.abilities = {["frostbolt"] = Frostbolt(collider, self), ["cape"] = false}
+	    self.abilities = {["frostbolt"] = Frostbolt(collider, self), ["telekinesis"] = Telekinesis(collider,self)}
         self.currentWeapon = "mace"
-        self.currentAbility = "frostbolt"
+        self.currentAbility = "telekinesis"
 	    self.canAttack = true
 	    self.canJump = true
 	    self.jumping = true
@@ -54,7 +55,6 @@ function Player:update(dt)
     if self.jumping then
     	self.velocity.y = self.velocity.y + self.gravity*dt
     end
-    
     -- update movement
     self:move(self.velocity.x*dt,self.velocity.y*dt)
     -- update sword/weapon
@@ -78,11 +78,12 @@ function Player:update(dt)
     end
 
     self.abilities["frostbolt"]:update(dt)
+    self.abilities["telekinesis"]:update(dt)
     --self.frostbolt:update(dt)
 end
 
 function Player:attack()
-	if self.weapons[self.currentWeapon]:canAttack() then
+	if self.weapons[self.currentWeapon]:canAttack() and self.canAttack then
     	self.weapons[self.currentWeapon]:attack()
     end
 end
@@ -173,21 +174,38 @@ function Player:swapWeaponsForwards()
     else
         self.currentWeapon = a
     end
-    
-    --[[local weaponFound = false
-    for k,v in pairs(self.weapons) do
-        if weaponFound then
-            self.currentWeapon = k
-            return
-        elseif k == self.currentWeapon then
-            weaponFound = true
+end
+function Player:swapAbilitiesBackwards()
+    if self.currentAbility ~= "telekinesis" or self.abilities["telekinesis"]:drop() then
+        a = next(self.abilities)
+        if a == self.currentAbility then
+            for k,v in pairs(self.abilities) do
+                a = next(self.abilities,k)
+                if a == nil then
+                    self.currentAbility = k
+                    return
+                end
+            end
+        else
+            for k,v in pairs(self.abilities) do
+                a = next(self.abilities,k) 
+                if a == self.currentAbility then
+                    self.currentAbility = k
+                    return
+                end
+            end
         end
     end
-    for k,v in pairs(self.weapons) do
-        self.currentWeapon = k
-        return
-    end]]
-
+end
+function Player:swapAbilitiesForwards()
+    if self.currentAbility ~= "telekinesis" or self.abilities["telekinesis"]:drop() then
+        a = next(self.abilities,self.currentAbility)
+        if a == nil then
+            self.currentAbility = next(self.abilities)
+        else
+            self.currentAbility = a
+        end
+    end
 end
 
 

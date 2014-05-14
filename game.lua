@@ -10,6 +10,7 @@ require 'bat'
 require 'rip'
 require 'sword'
 require 'frostbolt'
+require 'telekinesis'
 require 'mace'
 require 'breakable'
 require 'movable'
@@ -441,6 +442,12 @@ function game:keypressed(key)
 	end
 	if key == 'e' then
 		knight:swapWeaponsForwards()
+	end
+	if key == '1' then
+		knight:swapAbilitiesBackwards()
+	end
+	if key == '2' then
+		knight:swapAbilitiesForwards()
 	end
 end
 --[[function collidePlayerWithTile(dt, shape_a, shape_b, mtv_x, mtv_y)
