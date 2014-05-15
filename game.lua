@@ -15,6 +15,7 @@ require 'mace'
 require 'breakable'
 require 'movable'
 require 'theveil'
+require 'door'
 local knight = nil
 local enemies = {}
 local objects = {} -- breakable objects and movable objects.
@@ -84,17 +85,6 @@ end
 function game:update(dt)
 	--update gametime
 	gametime = gametime+dt
-	-- update input
-
-    --[[if controls:isDown("start") then
-    	if not controls.bstart then
-    		--once
-        	Gamestate.push(Gamestate.pause)
-    		controls.bstart = true
-    	end
-    else
-    	controls.bstart = false
-    end]]
 
 	-- update player object
 	knight:update(dt)
@@ -225,7 +215,7 @@ function resetObjects(map)
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'breakable' then
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
-			elseif obj.name == 'movable' then
+		elseif obj.name == 'movable' then
 			objects[#objects+1] = Movable(obj.x,obj.y-32,collider,gravity)
 		end
 	end
@@ -251,6 +241,8 @@ function mapSetup(map)
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
 		elseif obj.name == 'movable' then
 			objects[#objects+1] = Movable(obj.x,obj.y-32,collider, gravity)
+		elseif obj.name == 'door' then
+			objects[#objects+1] = Door(obj.x,obj.y-32,collider)
 		end
 	end
     for x, y, tile in map("spikes"):iterate() do
