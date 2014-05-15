@@ -23,18 +23,24 @@ end
 
 function Door:draw()
     local x,y = self.bbox:center()
-    love.graphics.draw(self.sprite, x-16, y-32)
-    if self.isOpen then
-        love.graphics.setColor(0,255,0, 120)
-    else
-        love.graphics.setColor(255,0,0, 120)
+    if not self.isOpen then
+        love.graphics.draw(self.sprite, x-16, y-32)
     end
-    self.bbox:draw("fill")
-    love.graphics.setColor(255,255,255, 255)
-
-    for i = 1, #self.sensors do
-        love.graphics.setColor(0,255,0, 120)
-        self.sensors[i]:draw('fill')
+    if debug then
+        if self.isOpen then
+            love.graphics.setColor(0,255,0, 120)
+        else
+            love.graphics.setColor(255,0,0, 120)
+        end
+        self.bbox:draw("fill")
+        for i = 1, #self.sensors do
+            if self.sensors[i].active then
+                love.graphics.setColor(0,255,0, 120)
+            else
+                love.graphics.setColor(255,0,0, 120)
+            end
+            self.sensors[i]:draw('fill')
+        end
         love.graphics.setColor(255,255,255, 255)
     end
 end
