@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="35" height="16" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="35" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="35" height="16">
+ <layer name="background" width="35" height="23">
   <data encoding="base64" compression="zlib">
-   eJzjZmBg4KYxJhbQ2h2jbhl1y6hbRt0y6pZRt4y6ZXi4BQC5VBEx
+   eJxjYBgFgx1w0wGPumXULaNuGXXLqFtG3TLqllG3UNMto2AUkAIAWGIRMQ==
   </data>
  </layer>
- <layer name="background lighting" width="35" height="16">
+ <layer name="background lighting" width="35" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjY2BgYKMxJhbQ2h2jbhl1y6hbRt0y6pZRt4y6ZXi4BQDdZwlh
+   eJxjYBgFgx2w0QGPumXULaNuGXXLqFtG3TLqllG3UNMto2AUkAIAZHYJYQ==
   </data>
  </layer>
- <layer name="ground" width="35" height="16">
+ <layer name="ground" width="35" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEKEQUwtQataoW2ijn5pmjRS3UJqnKMlb1PQXpWaOuoW6+mhh5qhbqKuPFmYONrfQApMDAAITBpE=
+   eJztkzEKADAIA/sI///W4thVLzRDDhwTTsE6wZ0ChnT5mSe74qLJk11KF+Kvpn7kXtvOuLA5RWdc2Jyi081FMVsUN5oQjxcXj+YCyNgG9Q==
   </data>
  </layer>
- <layer name="noncollidable" width="35" height="16">
+ <layer name="noncollidable" width="35" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYKAccFMJUwOMBLcYEmE3upqREC5D3S3Uct+oW0bdMlzcQkxZh6xWF4j1gFgfTe9AhIspEJsBsTma+Eh3Cy5AjlsADwsM/g==
+   eJxjYBgFIwFwUwmPuoU4txgSYTe6mpEQLkPdLdRy36hbRt0yXNxCTFmHrFYXiPWAWB9N70CEiykQmwGxOZr4SHcLLjCY3DIKhicAAH3zDP4=
   </data>
  </layer>
- <objectgroup name="spawns" width="35" height="16">
-  <object name="player" type="player" gid="1" x="160" y="430"/>
-  <object name="end" type="end" gid="2" x="543" y="450"/>
-  <object name="skeleton" type="skeleton" gid="3" x="417" y="145"/>
+ <objectgroup name="spawns" width="35" height="23">
+  <object name="player" type="player" gid="1" x="160" y="526"/>
+  <object name="end" type="end" gid="2" x="543" y="546"/>
+  <object name="skeleton" type="skeleton" gid="3" x="417" y="241"/>
  </objectgroup>
- <layer name="spikes" width="35" height="16">
+ <layer name="spikes" width="35" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYWgAACMAAAQ==
+   eJztwTEBAAAAwqD1T20MH6AAAAB+BgyUAAE=
   </data>
  </layer>
 </map>

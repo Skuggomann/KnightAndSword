@@ -49,6 +49,14 @@ function Door:isDead()
     return false --never dies
 end
 
+function Door:destructor()
+    local i = 1
+    while i <= #self.sensors do
+        self.collider:remove(self.sensors[i])
+        table.remove(self.sensors,i)
+    end
+    self.collider:remove(self.bbox)
+end
 function Door:newSensor(x,y)
     local bbbox = self.collider:addRectangle(x,y,32,32)
     bbbox.type = "sensor"

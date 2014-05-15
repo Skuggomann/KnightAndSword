@@ -39,6 +39,7 @@ end
 function game:enter(previous,filename) -- run every time the state is entered
 	enemies = {}
 	objects = {}
+	doors = {}
 	gametime = 0
 	if veil then
 		veil:destroy()
@@ -47,7 +48,7 @@ function game:enter(previous,filename) -- run every time the state is entered
 	local filepath = "assets/maps/"..filename
 	collider = HC(100, on_collide, stop_collide)
 	map = loader.load(filepath)
-	map:setDrawRange(-10,-10,5400,620)
+	map:setDrawRange(-10,-10,5400,H)
 	map.drawObjects = false
 	mapSetup(map)
 	ui = UI(knight)
@@ -55,7 +56,7 @@ function game:enter(previous,filename) -- run every time the state is entered
 	if rip[levelname] == nil then
 		rip[levelname] = RIP()
 	end
-	cam = Camera(456, 256,1)--1.40)
+	cam = Camera(W/2,H/2,1)--456, 256,1)--1.40)
 	readLevelSettings(filepath)
 	self:registerSignals()
 end
@@ -173,10 +174,10 @@ function game:update(dt)
 	-- camera update
 	local tempx,tempy = knight.bbox:center()
     local dx,dy = tempx - cam.x, tempy - cam.y
-    if cam.x+dx > 456 then
+    if cam.x+dx > W/2 then
 	    cam:move(dx/2, 0)
     else
-		cam.x = 456    	
+		cam.x = W/2    	
 	end
 
 	--update UI
@@ -279,7 +280,12 @@ function resetObjects(map)
 			objects[#objects+1] = HealthVial(obj.x,obj.y-32,collider)
 		end
 	end
+	for i = 1,#doors do
+		doors[i]:destructor()
+	end
+	doors = {}
 end
+
 function mapSetup(map)
 	local groundTiles = {}
 	local nonXTiles = {}
