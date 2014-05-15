@@ -1,9 +1,10 @@
 TheVeil = Class{
     init = function(self, x, collider)
-        self.bbox = collider:addRectangle(x,0,128,H)
+        self.bbox = collider:addRectangle(x,0,-128,H)
         self.bbox.type = "TheVeil"
         self.bbox.ref = self
-        self.velocity.x = 3
+        self.velocityX = 60
+        self.collider = collider
 		--self.sprite = love.graphics.newImage('/assets/art/.png')
 
     end
@@ -11,12 +12,12 @@ TheVeil = Class{
 
 
 function TheVeil:update(dt)
-    self.bbox:move(self.velocity,x,0)
+    self.bbox:move(self.velocityX*dt,0)
 
 end
 
 function TheVeil:draw()
-    love.graphics.setColor(255,0,0, 255)
+    love.graphics.setColor(255,0,0, 192)
     self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
     local x,y = self.bbox:center()
@@ -25,7 +26,9 @@ function TheVeil:draw()
 
 	
 end
-
+function TheVeil:destroy()
+    self.collider:remove(self.bbox)
+end
 
 function TheVeil:collide(dt, me, other, mtv_x, mtv_y)
 

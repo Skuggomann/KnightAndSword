@@ -15,8 +15,8 @@ Player = Class{
         self.manaregen = 10
 	    self.weapons = {["sword"] = Sword(x,y,collider, self), ["mace"] = Mace(x,y,collider,self)}
 	    self.abilities = {["frostbolt"] = Frostbolt(collider, self), ["telekinesis"] = Telekinesis(collider,self)}
-        self.currentWeapon = "mace"
-        self.currentAbility = "telekinesis"
+        self.currentWeapon = "sword"
+        self.currentAbility = "frostbolt"
 	    self.canAttack = true
 	    self.canJump = true
 	    self.jumping = true
@@ -91,9 +91,9 @@ end
 
 function Player:cast()
     if self.abilities[self.currentAbility].cooldown == 0 and self.mana >= self.abilities[self.currentAbility].manacost then
+        self.mana = self.mana - self.abilities[self.currentAbility].manacost
         self.abilities[self.currentAbility]:use()
         self.abilities[self.currentAbility].cooldown = self.abilities[self.currentAbility].MAXCOOLDOWN
-        self.mana = self.mana - self.abilities[self.currentAbility].manacost
     end
 end
 function Player:draw()
@@ -296,6 +296,8 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 			-- collision with frozen skeleton same as tile(ground)
 			self:collisionWithSolid(mtv_x,mtv_y)
 		end
+    elseif other.type =="TheVeil" then
+        self:takeDamage(100)
 	elseif other.type == "end" then
 		winGame()
 	end
