@@ -15,12 +15,12 @@
  </layer>
  <layer name="ground" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEKEQUwIo1U8pGLV/1P5R+0ftH7V/1P6Bsn8g618Ao+EDwQ==
+   eJwTYWBgEKEzRgbofGIAOXpw6R21f9T+UftH7R+1f+jYTwkYjPYPZP0LAGLRB6k=
   </data>
  </layer>
  <layer name="noncollidable" width="32" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwUgDAAgAAAE=
+   eJxjYBgFo2AUjIJRMAqoD3SBWA+I9QfIflMgNgNi8xFqPyEAAPx/Ac8=
   </data>
  </layer>
  <layer name="spikes" width="32" height="16">
@@ -29,8 +29,10 @@
   </data>
  </layer>
  <objectgroup name="spawns" width="32" height="16">
-  <object name="player" type="player" gid="1" x="72" y="442"/>
-  <object name="end" type="end" gid="2" x="468" y="439"/>
-  <object name="skeleton" type="skeleton" gid="3" x="277" y="440"/>
+  <object name="player" type="player" gid="1" x="126" y="431"/>
+  <object name="end" type="end" gid="2" x="799" y="450"/>
+  <object name="skeleton" type="skeleton" gid="3" x="352" y="446"/>
+  <object name="door1" type="door" gid="15" x="416" y="449"/>
+  <object name="door1" type="sensor" gid="14" x="33" y="477"/>
  </objectgroup>
 </map>

@@ -238,30 +238,30 @@ end
 
 
 function Player:collisionWithSolid(mtv_x,mtv_y)
-		local fromleft = false
-		local fromright = false
-		local fromup = false
-		local fromdown = false
-		if mtv_x < 0 then fromleft = true end
-		if mtv_x > 0 then fromright = true end
-		if mtv_y < 0 then fromup = true end
-		if mtv_y > 0 then fromdown = true end
-		self:move(mtv_x, mtv_y)
-		if fromleft or fromright then
-			self.velocity.x = 0
-			if self.velocity.y >0 then
-				self.velocity.y = 0
-			end
-		elseif fromup then
+	local fromleft = false
+	local fromright = false
+	local fromup = false
+	local fromdown = false
+	if mtv_x < 0 then fromleft = true end
+	if mtv_x > 0 then fromright = true end
+	if mtv_y < 0 then fromup = true end
+	if mtv_y > 0 then fromdown = true end
+	self:move(mtv_x, mtv_y)
+	if fromleft or fromright then
+		self.velocity.x = 0
+		if self.velocity.y >0 then
 			self.velocity.y = 0
-			if self.velocity.y >= 0 then
-				self.jumping = false
-			end
-		elseif fromdown then
-			self.velocity.y = 0
-		elseif mtv_y == 0 then
-			self.velocity.x = 0
 		end
+	elseif fromup then
+		self.velocity.y = 0
+		if self.velocity.y >= 0 then
+			self.jumping = false
+		end
+	elseif fromdown then
+		self.velocity.y = 0
+	elseif mtv_y == 0 then
+		self.velocity.x = 0
+	end
 end
 function Player:knockback(mtv_x,mtv_y)
 	local fromleft = false
@@ -307,6 +307,10 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 		else
 			self:collisionWithSolid(mtv_x,mtv_y)
 		end
+    elseif other.type == "door" then
+        if not other.ref.isOpen then
+            self:collisionWithSolid(mtv_x,mtv_y)
+        end
 	elseif other.type == "skeleton" or other.type == "bat" then
 		-- collision with skeleton
 		if not self:isInvuln() and not other.ref:isFrozen() then

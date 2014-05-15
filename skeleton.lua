@@ -83,41 +83,85 @@ function Skeleton:isDead()
     return false
 end
 
+function Skeleton:move(x,y)
+    self.bbox:move(x,y)
+end
+function Skeleton:collisionWithSolid(mtv_x,mtv_y)
+    local fromleft = false
+    local fromright = false
+    local fromup = false
+    local fromdown = false
+    if mtv_x < 0 then fromleft = true end
+    if mtv_x > 0 then fromright = true end
+    if mtv_y < 0 then fromup = true end
+    if mtv_y > 0 then fromdown = true end
+    self:move(mtv_x, mtv_y)
+    if fromleft or fromright then
+        self.velocity.x = 0
+        if self.facingRight then
+            self.facingRight = false
+        else
+            self.facingRight = true
+        end
+        if self.velocity.y >0 then
+            self.velocity.y = 0
+        end
+    elseif fromup then
+        self.velocity.y = 0
+        if self.velocity.y >= 0 then
+            self.jumping = false
+        end
+    elseif fromdown then
+        self.velocity.y = 0
+    elseif mtv_y == 0 then
+        self.velocity.x = 0
+    end
+end
+
+function Skeleton:knockback(mtv_x,mtv_y)
+    local fromleft = false
+    local fromright = false
+    local fromup = false
+    local fromdown = false
+    if mtv_x < 0 then fromleft = true end
+    if mtv_x > 0 then fromright = true end
+    if mtv_y < 0 then fromup = true end
+    if mtv_y > 0 then fromdown = true end
+
+    if fromleft then
+        self.velocity.x = -self.speed
+        self:move(mtv_x-5,0)
+    elseif fromright then
+        self.velocity.x = self.speed
+        self:move(mtv_x+5, 0)
+    else
+        if self.velocity.x > 0 then
+            self.velocity.x = -self.speed
+        elseif self.velocity.x < 0 then
+            self.velocity.x = self.speed
+        end
+    end
+    self.velocity.y = -self.speed*2
+    if fromup then
+        self:move(0,mtv_y-5)
+    elseif fromdown then
+        self:move(0,mtv_y+5)
+    end
+end
 function Skeleton:collide(dt, me, other, mtv_x, mtv_y)
     if other.type == "tile" or other.type == "spike" or other.type == "breakable" or other.type == "movable" then
-        -- collision with tile(ground)
-        self.bbox:move(mtv_x, 0)
-        self.bbox:move(0, mtv_y)
-        if mtv_x ~= 0 then
-            self.facingRight = not self.facingRight
-        end
-        if mtv_y < 0 and self.jumping then
-            self.jumping = false
-            self.velocity.y = 0
-        else
-            self.velocity.y = 0
+        self:collisionWithSolid(mtv_x,mtv_y)
+    elseif other.type == "door" then
+        if not other.ref.isOpen then
+            self:collisionWithSolid(mtv_x,mtv_y)
         end
     elseif other.type == "frostbolt" then
         self.thaw = self.MAXTHAW
     elseif other.type == "sword" or other.type == "mace" then
         if not self:isInvuln() and not self:isFrozen() then
             -- ekki frosinn
+            self:knockback(mtv_x,mtv_y)
             self:takeDamage(other.ref.damage)
-            if mtv_x < 0 then
-                self.velocity.x = -self.speed
-                self.bbox:move(mtv_x-5, 0)
-            else
-                self.velocity.x = self.speed
-                self.bbox:move(mtv_x+5, 0)
-            end
-            self.velocity.y = -self.speed*2
-
-            -- move
-            if mtv_y > 0 then
-                self.bbox:move(0, mtv_y+5)
-            else
-                self.bbox:move(0, mtv_y-5)
-            end
         elseif not self:isInvuln() and self:isFrozen() then
             --frosinn
             self:takeDamage(other.ref.bluntDamage)

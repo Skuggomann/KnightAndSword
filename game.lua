@@ -19,6 +19,7 @@ require 'door'
 local knight = nil
 local enemies = {}
 local objects = {} -- breakable objects and movable objects.
+local doors = {}
 local ui = nil
 local spawnPoint = {}
 local rip = nil
@@ -154,6 +155,11 @@ function game:update(dt)
     		i = i + 1
     	end
     end
+
+    -- update doors and sensors
+    for key,value in pairs(doors) do
+    	value:update(dt)
+    end
     -- kill player if he is out of frame
     local x,y = cam:cameraCoords(knight.bbox:center())
     if y > 752 then
@@ -229,6 +235,10 @@ function drawWorld()
     for i = 1,#objects do
     	objects[#objects - (i-1)]:draw()
     end
+    -- draw doors and sensors
+    for key,value in pairs(doors) do
+    	value:draw()
+    end
     if debug then
 		love.graphics.setColor(255,255,255, 80)
 		for shape in pairs(collider:shapesInRange(0,0, W,H)) do
@@ -288,8 +298,10 @@ function mapSetup(map)
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
 		elseif obj.name == 'movable' then
 			objects[#objects+1] = Movable(obj.x,obj.y-32,collider, gravity)
-		elseif obj.name == 'door' then
-			objects[#objects+1] = Door(obj.x,obj.y-32,collider)
+		elseif obj.type == 'door' then
+			doors[obj.name] = Door(obj.x,obj.y-32,collider)
+		elseif obj.type == 'sensor' then
+			doors[obj.name]:newSensor(obj.x,obj.y-32)
 		end
 	end
     for x, y, tile in map("spikes"):iterate() do
@@ -403,10 +415,10 @@ function checkGroundY(nonXTiles, tile, posY, negY)
 end
 
 function on_collide(dt, shape_a, shape_b, mtv_x, mtv_y)
-	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" or shape_a.type == "breakable" or shape_a.type == "movable" then
+	if shape_a.type == "player" or shape_a.type == "skeleton" or shape_a.type == "frostbolt" or shape_a.type == "bat" or shape_a.type == "breakable" or shape_a.type == "movable" or shape_a.type == "sensor" then
 		shape_a.ref:collide(dt, shape_a, shape_b, mtv_x, mtv_y)
 	end
-	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" or shape_b.type == "breakable" or shape_b.type == "movable" then
+	if shape_b.type == "player" or shape_b.type == "skeleton" or shape_b.type == "frostbolt" or shape_b.type == "bat" or shape_b.type == "breakable" or shape_b.type == "movable" or shape_b.type == "sensor" then
 		mtv_x = mtv_x*-1
 		mtv_y = mtv_y*-1
 		shape_b.ref:collide(dt, shape_b, shape_a, mtv_x, mtv_y)
@@ -460,7 +472,19 @@ function stop_collide(dt, shape_a, shape_b)
     elseif shape_a.type == "player" and shape_b.type == "breakable" then
         shape_a.ref.jumping = true
     elseif shape_b.type == "player" and shape_a.type == "breakable" then
-        shape_b.ref.jumping = true  
+        shape_b.ref.jumping = true
+    elseif shape_a.type == "sensor" and shape_b.type == "player" then
+    	shape_a.active = false
+    elseif shape_b.type == "sensor" and shape_a.type == "player" then
+    	shape_b.active = false
+    elseif shape_a.type == "sensor" and shape_b.type == "skeleton" then
+    	shape_a.active = false
+    elseif shape_b.type == "sensor" and shape_a.type == "skeleton" then
+    	shape_b.active = false
+    elseif shape_a.type == "sensor" and shape_b.type == "movable" then
+    	shape_a.active = false
+    elseif shape_b.type == "sensor" and shape_a.type == "movable" then
+    	shape_b.active = false
     end
 end
 
