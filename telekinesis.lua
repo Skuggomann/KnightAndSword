@@ -10,7 +10,7 @@ Telekinesis = Class{
         self.MAXCOOLDOWN = 0.5
         self.cooldown = 0
 
-        --self.image = love.graphics.newImage('assets/art/TelekinesisHand.png')
+        self.image = love.graphics.newImage('assets/art/LevitateHand.png')
         --self.fimage = love.graphics.newImage('assets/art/Telekinesis-animation.png')
         --self.g = anim8.newGrid(30, 30, 68, 34, -2,-2,4)
         --self.animation = anim8.newAnimation(self.g('1-2',1), 0.2)
@@ -108,10 +108,14 @@ function Telekinesis:draw()
     --x,y = self.bbox:center()
     --x,y = x-16,y-16
     --self.animation:draw(self.fimage,x, y)
---    x, y = self.player.bbox:center()
---    if not self.player.facingRight then
---        x = x - 16
---    end
+    x, y = self.player.bbox:center()
+    if not self.player.facingRight then
+        x = x - 16
+    end
+    love.graphics.draw(self.image,x,y-10)
+
+
+
 
     if debug then
         local x, y = self.player.bbox:center()
