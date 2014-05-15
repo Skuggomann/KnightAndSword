@@ -491,17 +491,17 @@ function stop_collide(dt, shape_a, shape_b)
     elseif shape_b.type == "player" and shape_a.type == "breakable" then
         shape_b.ref.jumping = true
     elseif shape_a.type == "sensor" and shape_b.type == "player" then
-    	shape_a.active = false
+    	shape_a.delay = shape_a.MAXDELAY
     elseif shape_b.type == "sensor" and shape_a.type == "player" then
-    	shape_b.active = false
+    	shape_b.delay = shape_b.MAXDELAY
     elseif shape_a.type == "sensor" and shape_b.type == "skeleton" then
-    	shape_a.active = false
+    	shape_a.delay = shape_a.MAXDELAY
     elseif shape_b.type == "sensor" and shape_a.type == "skeleton" then
-    	shape_b.active = false
+    	shape_b.delay = shape_b.MAXDELAY
     elseif shape_a.type == "sensor" and shape_b.type == "movable" then
-    	shape_a.active = false
+    	shape_a.delay = shape_a.MAXDELAY
     elseif shape_b.type == "sensor" and shape_a.type == "movable" then
-    	shape_b.active = false
+    	shape_b.delay = shape_b.MAXDELAY
     end
 end
 

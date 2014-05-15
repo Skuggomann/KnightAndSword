@@ -15,6 +15,16 @@ Door = Class{
 
 function Door:update(dt)
     for i = 1,#self.sensors do
+        if self.sensors[i].delay > 0 then
+            self.sensors[i].delay = self.sensors[i].delay-dt
+            if self.sensors[i].delay < 0 then
+                self.sensors[i].delay = 0
+                self.sensors[i].active = false
+            end
+        end
+    end
+
+    for i = 1,#self.sensors do
         if self.sensors[i].active then
             self.isOpen = true
         else
@@ -78,6 +88,8 @@ function Door:newSensor(x,y)
     bbbox.type = "sensor"
     bbbox.ref = self
     bbbox.active = false
+    bbbox.MAXDELAY = 0.1
+    bbbox.delay = bbbox.MAXDELAY
 
 
     table.insert(self.sensors, bbbox)
@@ -85,6 +97,7 @@ function Door:newSensor(x,y)
 end
 function Door:collide(dt, me, other, mtv_x, mtv_y)
     if other.type == "player" or other.type == "skeleton" or other.type == "movable" then
+        me.delay = 0
         me.active = true
     end
 end
