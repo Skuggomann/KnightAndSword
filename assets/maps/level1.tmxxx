@@ -1,2 +1,3 @@
 VeilOfSouls=false
 SpeechText={{"sword", "Hello Ser Loin, I'm terribly sorry for this but I'm afraid\nI need your help getting out of this cursed castle.\n"}, {"player", "why can't i use my arm...or jump?"}, {"sword", "I'm afraid only the true king can wield me, but I can wield you\nI gave you the ability to cast frostbolts though, so no hard feelings?"}}
+Weapons="sword""frostbolt"

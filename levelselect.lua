@@ -59,7 +59,7 @@ function levelselect:draw()
 			elseif k == selected then
 			love.graphics.setColor(255,255,255, 255)
 		end
-    	love.graphics.printf(v.name, 0, H/2+30*(k-1), W, 'center')
+    	love.graphics.printf(v.name, 0, H/4+30*(k-1), W, 'center')
 		love.graphics.setColor(255,255,255, 255)
     end
 end
