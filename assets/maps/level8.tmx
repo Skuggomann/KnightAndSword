@@ -1,40 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="32" height="16" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="150" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="32" height="16">
+ <layer name="background" width="150" height="23">
   <data encoding="base64" compression="zlib">
-   eJzjZmBg4B7FwwbzDAI3jGQ8Gv6j4T+S8Wj4Dy0MAEjoFgU=
+   eJzt1aENwEAQA0HzT//1poKwl2LdDRi+bJPkwGUpaGCeFDQwTwoamCcFDcyTggbmSUEDAADfnoIGAPiLDwKwmQ8CsJkPAgDbvRP8k/Y=
   </data>
  </layer>
- <layer name="background lighting" width="32" height="16">
+ <layer name="background lighting" width="150" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjY2BgYBvFo3gUj+JRPIpH8YjCACLQDAE=
+   eJztwzENAAAMBKGb3r/kyugCCaumqqqqqqqqqqqqqqqq6tsDwQxQ3Q==
   </data>
  </layer>
- <layer name="ground" width="32" height="16">
+ <layer name="ground" width="150" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEKEQUwIo1U8pGLV/1P5R+0ftH7V/1P6Bsn8gMQDJYQTt
+   eJzt2DENADEQA8EHcfyxfhMAUXTbzUhmsJXng11zBpt0RUFXFHRFQVcUdEVBVxR0RUFXFHRFQVcUdEVBVxR0xau5GGzSFQVdUdAVBV1R0BUFXVG4+SDMXvYDEN8PtQ==
   </data>
  </layer>
- <objectgroup name="spawns" width="32" height="16">
-  <object name="player" type="player" gid="1" x="72" y="442"/>
-  <object name="end" type="end" gid="2" x="375" y="264"/>
-  <object name="skeleton" type="skeleton" gid="3" x="277" y="440"/>
-  <object name="bat" type="bat" gid="4" x="640" y="127"/>
-  <object name="bat" type="bat" gid="4" x="640" y="222"/>
-  <object name="bat" type="bat" gid="4" x="639" y="320"/>
-  <object name="bat" type="bat" gid="4" x="640" y="415"/>
+ <layer name="noncollidable" width="150" height="23">
+  <data encoding="base64" compression="zlib">
+   eJzt0sEJACAMBME0pL7U/jszYBGBMAP7v8dFAAAAAAAAAN2MbGaregit7Oxkt3oIrfgVAAAAAMD3AHA+Ac8=
+  </data>
+ </layer>
+ <layer name="spikes" width="150" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAAAAeBo16AAB
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="150" height="23">
+  <object name="player" type="player" gid="1" x="72" y="666"/>
+  <object name="end" type="end" gid="2" x="4640" y="418"/>
+  <object name="skeleton" type="skeleton" gid="3" x="277" y="664"/>
+  <object name="bat" type="bat" gid="4" x="640" y="351"/>
+  <object name="bat" type="bat" gid="4" x="640" y="446"/>
+  <object name="bat" type="bat" gid="4" x="639" y="544"/>
+  <object name="bat" type="bat" gid="4" x="640" y="639"/>
+  <object name="bat" type="bat" gid="4" x="896" y="351"/>
+  <object name="bat" type="bat" gid="4" x="1345" y="352"/>
+  <object name="bat" type="bat" gid="4" x="1088" y="545"/>
+  <object name="bat" type="bat" gid="4" x="1089" y="447"/>
+  <object name="bat" type="bat" gid="4" x="1089" y="640"/>
+  <object name="bat" type="bat" gid="4" x="1089" y="352"/>
+  <object name="bat" type="bat" gid="4" x="894" y="543"/>
+  <object name="bat" type="bat" gid="4" x="895" y="638"/>
+  <object name="bat" type="bat" gid="4" x="895" y="445"/>
+  <object name="bat" type="bat" gid="4" x="1342" y="544"/>
+  <object name="bat" type="bat" gid="4" x="1343" y="639"/>
+  <object name="bat" type="bat" gid="4" x="1343" y="446"/>
+  <object name="bat" type="bat" gid="4" x="1476" y="545"/>
+  <object name="bat" type="bat" gid="4" x="1477" y="640"/>
+  <object name="bat" type="bat" gid="4" x="1731" y="446"/>
+  <object name="bat" type="bat" gid="4" x="1477" y="447"/>
+  <object name="bat" type="bat" gid="4" x="1733" y="352"/>
+  <object name="bat" type="bat" gid="4" x="1731" y="639"/>
+  <object name="bat" type="bat" gid="4" x="1730" y="544"/>
+  <object name="bat" type="bat" gid="4" x="1477" y="352"/>
+  <object name="bat" type="bat" gid="4" x="1920" y="545"/>
+  <object name="bat" type="bat" gid="4" x="1921" y="640"/>
+  <object name="bat" type="bat" gid="4" x="2175" y="446"/>
+  <object name="bat" type="bat" gid="4" x="1921" y="447"/>
+  <object name="bat" type="bat" gid="4" x="2177" y="352"/>
+  <object name="bat" type="bat" gid="4" x="2175" y="639"/>
+  <object name="bat" type="bat" gid="4" x="2174" y="544"/>
+  <object name="bat" type="bat" gid="4" x="1921" y="352"/>
+  <object name="bat" type="bat" gid="4" x="2368" y="544"/>
+  <object name="bat" type="bat" gid="4" x="2369" y="639"/>
+  <object name="bat" type="bat" gid="4" x="2623" y="445"/>
+  <object name="bat" type="bat" gid="4" x="2369" y="446"/>
+  <object name="bat" type="bat" gid="4" x="2625" y="351"/>
+  <object name="bat" type="bat" gid="4" x="2623" y="638"/>
+  <object name="bat" type="bat" gid="4" x="2622" y="543"/>
+  <object name="bat" type="bat" gid="4" x="2369" y="351"/>
+  <object name="bat" type="bat" gid="4" x="2849" y="544"/>
+  <object name="bat" type="bat" gid="4" x="2850" y="639"/>
+  <object name="bat" type="bat" gid="4" x="3104" y="445"/>
+  <object name="bat" type="bat" gid="4" x="2850" y="446"/>
+  <object name="bat" type="bat" gid="4" x="3106" y="351"/>
+  <object name="bat" type="bat" gid="4" x="3104" y="638"/>
+  <object name="bat" type="bat" gid="4" x="3103" y="543"/>
+  <object name="bat" type="bat" gid="4" x="2850" y="351"/>
+  <object name="bat" type="bat" gid="4" x="3810" y="351"/>
+  <object name="bat" type="bat" gid="4" x="3327" y="638"/>
+  <object name="bat" type="bat" gid="4" x="3808" y="638"/>
+  <object name="bat" type="bat" gid="4" x="3554" y="446"/>
+  <object name="bat" type="bat" gid="4" x="3327" y="445"/>
+  <object name="bat" type="bat" gid="4" x="3807" y="543"/>
+  <object name="bat" type="bat" gid="4" x="3554" y="639"/>
+  <object name="bat" type="bat" gid="4" x="3554" y="351"/>
+  <object name="bat" type="bat" gid="4" x="3553" y="544"/>
+  <object name="bat" type="bat" gid="4" x="3808" y="445"/>
+  <object name="bat" type="bat" gid="4" x="3329" y="351"/>
+  <object name="bat" type="bat" gid="4" x="3326" y="543"/>
+  <object name="bat" type="bat" gid="4" x="4191" y="544"/>
+  <object name="bat" type="bat" gid="4" x="4448" y="351"/>
+  <object name="bat" type="bat" gid="4" x="4192" y="351"/>
+  <object name="bat" type="bat" gid="4" x="4446" y="445"/>
+  <object name="bat" type="bat" gid="4" x="3967" y="351"/>
+  <object name="bat" type="bat" gid="4" x="3964" y="543"/>
+  <object name="bat" type="bat" gid="4" x="3965" y="638"/>
+  <object name="bat" type="bat" gid="4" x="4445" y="543"/>
+  <object name="bat" type="bat" gid="4" x="4192" y="639"/>
+  <object name="bat" type="bat" gid="4" x="4446" y="638"/>
+  <object name="bat" type="bat" gid="4" x="4192" y="446"/>
+  <object name="bat" type="bat" gid="4" x="3965" y="445"/>
  </objectgroup>
- <layer name="noncollidable" width="32" height="16">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwUgDAAgAAAE=
-  </data>
- </layer>
- <layer name="spikes" width="32" height="16">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwUgDAAgAAAE=
-  </data>
- </layer>
 </map>

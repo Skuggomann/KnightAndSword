@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="19" height="16" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="45" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="19" height="16">
+ <layer name="background" width="45" height="23">
   <data encoding="base64" compression="zlib">
-   eJzjZmBg4B7Fo3gUj+IhiAEmsQ0R
+   eJztzrENAAAIw7Du/f9fDmBFTI6U3U3So7+68jIzMzMzMzMzMzNLknYDnoANEQ==
   </data>
  </layer>
- <layer name="background lighting" width="19" height="16">
+ <layer name="background lighting" width="45" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjY2BgYBvFo3gUj+IhiAH/8Ach
+   eJztzrENAAAIw7BO/f9kDmBFTI6U3U3So7+68jIzMzMzMzMzMzNLknYDuuAHIQ==
   </data>
  </layer>
- <layer name="ground" width="19" height="16">
+ <layer name="ground" width="45" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEKEipgYYSWZRI2wHux8p0UsoDMgJu8Hix5FsFrUwADVvBx0=
+   eJztlsEJACAMxG6I7j+rIxTkuFpMwK8JYsWSVKaVwuWiOeOiuXc55oxzzrg2NL/2Pt/c7enmyX2SLpozLpp717a/KADADxwkLwcd
   </data>
  </layer>
- <layer name="non colidable" width="19" height="16">
+ <layer name="noncollidable" width="45" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYBi8QBeI9YBYH4gNKTTLFIjNgNicUkdR2ayBApSG5ygYBYMBAAA3eAIx
+   eJzt0rsJACAQBFFza1ExUPvvzK1AEOXwMwsvn2Cd2zdvZOcsm4NESZIvaS5SpS300vzmn2c2+vupzaPRTDPNNNP8dzMA/KAD3mshmg==
   </data>
  </layer>
- <objectgroup name="spawns" width="19" height="16">
+ <objectgroup name="spawns" width="45" height="23">
   <object name="player" type="player" gid="1" x="472" y="437"/>
   <object name="end" type="end" gid="2" x="64" y="132"/>
   <object name="skeleton" type="skeleton" gid="3" x="197" y="440"/>
   <object name="skeleton" type="skeleton" gid="3" x="160" y="127"/>
  </objectgroup>
- <layer name="spikes" width="19" height="16">
+ <layer name="spikes" width="45" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIKhCQAEwAAB
+   eJztwTEBAAAAwqD1T+1pCaAAAAAAbhAsAAE=
   </data>
  </layer>
 </map>
