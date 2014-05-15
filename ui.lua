@@ -8,8 +8,9 @@ UI = Class{
     sword = love.graphics.newImage("assets/art/sword.png"),
     frostbolt = love.graphics.newImage("assets/art/Frostbolt1.png"),
     playerhed = love.graphics.newImage("assets/art/playerhed.png"),
-    mace = love.graphics.newImage("assets/art/blackMaceAthumbnail.png")
-
+    mace = love.graphics.newImage("assets/art/blackMaceAthumbnail.png"),
+	levitate = love.graphics.newImage("assets/art/levitate.png")
+	
 }
 
 function UI:update(dt)
@@ -105,7 +106,7 @@ function UI:getWeaponAbility(Name)
     if self.player.currentAbility == "frostbolt" then
         ability = self.frostbolt
     elseif self.player.currentAbility == "telekinesis" then
-        ability = self.mace
+        ability = self.levitate
     end
 
     return weapon,ability
