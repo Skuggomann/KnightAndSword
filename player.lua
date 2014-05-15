@@ -321,7 +321,7 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 			-- collision with frozen skeleton same as tile(ground)
 			self:collisionWithSolid(mtv_x,mtv_y)
 		end
-    elseif other.type = "healthvial" then
+    elseif other.type == "healthvial" then
         self:recoverHealth(1)
         other.ref.pickedUp = true
     elseif other.type =="TheVeil" then
