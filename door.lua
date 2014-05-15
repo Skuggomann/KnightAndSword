@@ -4,7 +4,8 @@ Door = Class{
         self.bbox.type = "door"
         self.bbox.ref = self
         self.collider = collider
-        self.sprite = love.graphics.newImage('/assets/art/tiles/door.png')
+		self.spriteOpen = love.graphics.newImage('/assets/art/tiles/gateOpen.png')
+        self.spriteClosed = love.graphics.newImage('/assets/art/tiles/gateClosed.png')
         self.sensors = {}
         self.isOpen = false
     end
@@ -23,8 +24,12 @@ end
 
 function Door:draw()
     local x,y = self.bbox:center()
-    if not self.isOpen then
-        love.graphics.draw(self.sprite, x-16, y-32)
+	
+	
+    if self.isOpen then
+		love.graphics.draw(self.spriteOpen, x-16, y-32)
+	else
+        love.graphics.draw(self.spriteClosed, x-16, y-32)
     end
     if debug then
         if self.isOpen then
