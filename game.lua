@@ -30,6 +30,8 @@ local gravity = 2000
 local levelname = nil
 local veil = nil
 local veilstart = 0
+local weapons = {}
+local abilities = {}
 
 function game:init() -- run only once
 	--rip = RIP()
@@ -58,44 +60,68 @@ function game:enter(previous,filename) -- run every time the state is entered
 	end
 	cam = Camera(W/2,H/2,1)--456, 256,1)--1.40)
 	readLevelSettings(filepath)
+	knight:disallowWeaponsAbilities(weapons,abilities)
+
 	self:registerSignals()
 end
 function readLevelSettings(filepath)
-		local settings = filepath.."xx"
+	local settings = filepath.."xx"
+	weapons = {}
+	abilities = {}
 
-		local file = io.open(settings)
-		if file then
-			for line in file:lines() do
-				local i = line:find("=")
+	local file = io.open(settings)
+	if file then
+		for line in file:lines() do
+			local i = line:find("=")
 
-				toMatch = line:sub(1,i-1)
-				if toMatch == "VeilOfSouls" then
-					local x = tonumber(line:sub(i+1))
-					if x then 
-						veilstart = x
-						veil = TheVeil(veilstart,collider)
-					end
-				elseif toMatch == "SpeechText" then
-					local str = line:sub(i+1)
-					speech = {}
-					local j = str:find('"')
-					while j ~= nil do
-						k = str:find('"',j+1)
-						local who = str:sub(j+1,k-1)
-						j = str:find('"',k+1)
-						k = str:find('"',j+1)
-						local what = str:sub(j+1,k-1)
-						what = what:gsub("\\n","\n")
-						table.insert(speech,{who,what})
-						j = str:find('"',k+1)
-					end
-					if #speech ~= 0 then
-						controls:clear()
-						Gamestate.push(Gamestate.speechstate,ui,speech)
-					end
+
+
+			toMatch = line:sub(1,i-1)
+			if toMatch == "VeilOfSouls" then
+				local x = tonumber(line:sub(i+1))
+				if x then 
+					veilstart = x
+					veil = TheVeil(veilstart,collider)
+				end
+			elseif toMatch == "SpeechText" then
+				local str = line:sub(i+1)
+				local speech = {}
+				local j = str:find('"')
+				while j ~= nil do
+					k = str:find('"',j+1)
+					local who = str:sub(j+1,k-1)
+					j = str:find('"',k+1)
+					k = str:find('"',j+1)
+					local what = str:sub(j+1,k-1)
+					what = what:gsub("\\n","\n")
+					table.insert(speech,{who,what})
+					j = str:find('"',k+1)
+				end
+				if #speech ~= 0 then
+					controls:clear()
+					Gamestate.push(Gamestate.speechstate,ui,speech)
+				end
+			elseif toMatch == "BannedWeapons" then
+				local str = line:sub(i+1)
+				local j = str:find('"')
+				while j ~= nil do
+					k = str:find('"',j+1)
+					local weapon = str:sub(j+1,k-1)
+					j = str:find('"',k+1)
+					table.insert(weapons,weapon)
+				end
+			elseif toMatch == "BannedAbilities" then
+				local str = line:sub(i+1)
+				local j = str:find('"')
+				while j ~= nil do
+					k = str:find('"',j+1)
+					local ability = str:sub(j+1,k-1)
+					j = str:find('"',k+1)
+					table.insert(abilities,ability)
 				end
 			end
 		end
+	end
 end
 function game:registerSignals()
 	Signal.register('cast', function()
@@ -201,6 +227,7 @@ function game:reset()
 		veil = TheVeil(veilstart,collider) 
 	end
 	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
+	knight:disallowWeaponsAbilities(weapons,abilities)
 	ui = UI(knight)
 	resetEnemies(map)
 	resetObjects(map)
@@ -269,7 +296,11 @@ end
 function resetObjects(map)
 	for i = 1,#objects do
 		collider:remove(objects[#objects - (i-1)].bbox)
+	end	
+	for i = 1,#doors do
+		doors[i]:destructor()
 	end
+	doors = {}
 	objects = {}
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'breakable' then
@@ -278,12 +309,14 @@ function resetObjects(map)
 			objects[#objects+1] = Movable(obj.x,obj.y-32,collider,gravity)
 		elseif obj.name == 'healthvial' then
 			objects[#objects+1] = HealthVial(obj.x,obj.y-32,collider)
+		elseif obj.type == 'door' then
+			doors[obj.name] = Door(obj.x,obj.y-32,collider)
+		elseif obj.type == 'sensor' then
+			doors[obj.name]:newSensor(obj.x,obj.y-32)
 		end
 	end
-	for i = 1,#doors do
-		doors[i]:destructor()
-	end
-	doors = {}
+
+
 end
 
 function mapSetup(map)
@@ -485,17 +518,17 @@ function stop_collide(dt, shape_a, shape_b)
     elseif shape_b.type == "player" and shape_a.type == "breakable" then
         shape_b.ref.jumping = true
     elseif shape_a.type == "sensor" and shape_b.type == "player" then
-    	shape_a.active = false
+    	shape_a.delay = shape_a.MAXDELAY
     elseif shape_b.type == "sensor" and shape_a.type == "player" then
-    	shape_b.active = false
+    	shape_b.delay = shape_b.MAXDELAY
     elseif shape_a.type == "sensor" and shape_b.type == "skeleton" then
-    	shape_a.active = false
+    	shape_a.delay = shape_a.MAXDELAY
     elseif shape_b.type == "sensor" and shape_a.type == "skeleton" then
-    	shape_b.active = false
+    	shape_b.delay = shape_b.MAXDELAY
     elseif shape_a.type == "sensor" and shape_b.type == "movable" then
-    	shape_a.active = false
+    	shape_a.delay = shape_a.MAXDELAY
     elseif shape_b.type == "sensor" and shape_a.type == "movable" then
-    	shape_b.active = false
+    	shape_b.delay = shape_b.MAXDELAY
     end
 end
 

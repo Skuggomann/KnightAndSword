@@ -23,9 +23,11 @@ end
 function Movable:draw()
     local x,y = self.bbox:center()
     love.graphics.draw(self.sprite, x-16, y-16)
-    love.graphics.setColor(0,255,255, 120)
-    self.bbox:draw("fill")
-    love.graphics.setColor(255,255,255, 255)
+    if debug then
+        love.graphics.setColor(0,255,255, 120)
+        self.bbox:draw("fill")
+        love.graphics.setColor(255,255,255, 255)
+    end
 end
 
 function Movable:isDead()
