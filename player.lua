@@ -25,13 +25,11 @@ Player = Class{
 	    self.MAXINVULN = 1
 		self.sprite = love.graphics.newImage('/assets/art/player2.png')
 		self.spriteJumping = love.graphics.newImage('/assets/art/player2jumping.png')
-		self.spriteWalkin = love.graphics.newImage('/assets/art/player2short.png')
-		
-		local grid = anim8.newGrid(32, 64, self.spriteWalkin:getWidth(), self.spriteWalkin:getHeight(), 0, 0, 0)
-		self.animationWalkinR = anim8.newAnimation(grid('1-4',1), 0.3)
-		self.animationWalkinL = anim8.newAnimation(grid('1-4',1), 0.3):flipH()
+        self.spriteWalkin = love.graphics.newImage('/assets/art/player2short.png')
+        local grid = anim8.newGrid(32, 64, self.spriteWalkin:getWidth(), self.spriteWalkin:getHeight(), 0, 0, 0)
+        self.animationWalkinR = anim8.newAnimation(grid('1-4',1), 0.3)
+        self.animationWalkinL = anim8.newAnimation(grid('1-4',1), 0.3):flipH()
 
-		
 		--self.sword = Sword(x,y,collider, self)
         --self.frostbolt = Frostbolt(collider, self)
 
@@ -86,12 +84,11 @@ function Player:update(dt)
 
     self.abilities["frostbolt"]:update(dt)
     self.abilities["telekinesis"]:update(dt)
-    --self.frostbolt:update(dt)
-	
-	
-	
-	self.animationWalkinR:update(dt)
-	self.animationWalkinL:update(dt)
+
+    -- update animations
+    self.animationWalkinR:update(dt)
+    self.animationWalkinL:update(dt)
+
 end
 
 function Player:attack()
@@ -121,26 +118,28 @@ function Player:draw()
 	-- Sets the sprite to draw depending on some variables
 	if(self.jumping) then
 		currentSprite = self.spriteJumping
-	elseif (controls:isDown("right") or controls:isDown("left")) and not self.jumping then		
+	elseif (controls:isDown("right") or controls:isDown("left")) and not self.jumping then	
 		currentSprite = nil
 	else
 		currentSprite = self.sprite
 	end
 	
 	
-	if currentSprite == nil then
-		if self.facingRight then
-			self.animationWalkinR:draw(self.spriteWalkin, x - 16, y - 37)
-		else
-			self.animationWalkinL:draw(self.spriteWalkin, x - 16, y - 37)
-		end
-	else
-		if self.facingRight then
-			love.graphics.draw(currentSprite, x - 16, y - 37)
-		else
-			love.graphics.draw(currentSprite, x + 16, y - 37, 0, -1, 1)
-		end
-	end
+
+    if currentSprite == nil then
+        if self.facingRight then
+            self.animationWalkinR:draw(self.spriteWalkin, x - 16, y - 37)
+        else
+            self.animationWalkinL:draw(self.spriteWalkin, x - 16, y - 37)
+        end
+    else
+        if self.facingRight then
+            love.graphics.draw(currentSprite, x - 16, y - 37)
+        else
+            love.graphics.draw(currentSprite, x + 16, y - 37, 0, -1, 1)
+        end
+    end
+
 
 	-- draw weapon... (just sword now)
 	self.weapons[self.currentWeapon]:draw()
@@ -154,6 +153,7 @@ function Player:recoverHealth(health)
     self.hp = self.hp+health
     if self.hp > self.maxhp then self.hp = self.maxhp end
 end
+
 function Player:isInvuln()
 	return self.invuln > 0
 end
