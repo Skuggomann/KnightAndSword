@@ -1,11 +1,11 @@
-HealthVialM = Class{
+HealthVial = Class{
     init = function(self, x, y, collider)
         self.bbox = collider:addRectangle(x,y,32,32)
         self.bbox.type = "healthvial"
         self.bbox.ref = self
         self.collider = collider
-        self.collider:setGhost(self.bbox)
-        self.sprite = love.graphics.newImage('/assets/art/tiles/largeHealthVial.png')
+        --self.collider:setGhost(self.bbox)
+        self.sprite = love.graphics.newImage('/assets/art/largeHealthVial.png')
         self.pickedUp = false
     end
 }
@@ -16,9 +16,11 @@ end
 function HealthVial:draw()
     local x,y = self.bbox:center()
     love.graphics.draw(self.sprite, x-16, y-16)
-    love.graphics.setColor(255,255,255, 120)
-    self.bbox:draw("fill")
-    love.graphics.setColor(255,255,255, 255)
+    if debug then
+        love.graphics.setColor(255,255,255, 120)
+        self.bbox:draw("fill")
+        love.graphics.setColor(255,255,255, 255)
+    end
 end
 
 function HealthVial:isDead()

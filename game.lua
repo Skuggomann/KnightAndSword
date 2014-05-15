@@ -16,6 +16,7 @@ require 'breakable'
 require 'movable'
 require 'theveil'
 require 'door'
+require 'healthvial'
 local knight = nil
 local enemies = {}
 local objects = {} -- breakable objects and movable objects.
@@ -274,6 +275,8 @@ function resetObjects(map)
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
 		elseif obj.name == 'movable' then
 			objects[#objects+1] = Movable(obj.x,obj.y-32,collider,gravity)
+		elseif obj.name == 'healthvial' then
+			objects[#objects+1] = HealthVial(obj.x,obj.y-32,collider)
 		end
 	end
 end
@@ -298,6 +301,8 @@ function mapSetup(map)
 			objects[#objects+1] = Breakable(obj.x,obj.y-32,collider)
 		elseif obj.name == 'movable' then
 			objects[#objects+1] = Movable(obj.x,obj.y-32,collider, gravity)
+		elseif obj.name == 'healthvial' then
+			objects[#objects+1] = HealthVial(obj.x,obj.y-32,collider)
 		elseif obj.type == 'door' then
 			doors[obj.name] = Door(obj.x,obj.y-32,collider)
 		elseif obj.type == 'sensor' then
