@@ -30,6 +30,8 @@ local gravity = 2000
 local levelname = nil
 local veil = nil
 local veilstart = 0
+local weapons = {}
+local abilities = {}
 
 function game:init() -- run only once
 	--rip = RIP()
@@ -58,44 +60,68 @@ function game:enter(previous,filename) -- run every time the state is entered
 	end
 	cam = Camera(W/2,H/2,1)--456, 256,1)--1.40)
 	readLevelSettings(filepath)
+	knight:disallowWeaponsAbilities(weapons,abilities)
+
 	self:registerSignals()
 end
 function readLevelSettings(filepath)
-		local settings = filepath.."xx"
+	local settings = filepath.."xx"
+	weapons = {}
+	abilities = {}
 
-		local file = io.open(settings)
-		if file then
-			for line in file:lines() do
-				local i = line:find("=")
+	local file = io.open(settings)
+	if file then
+		for line in file:lines() do
+			local i = line:find("=")
 
-				toMatch = line:sub(1,i-1)
-				if toMatch == "VeilOfSouls" then
-					local x = tonumber(line:sub(i+1))
-					if x then 
-						veilstart = x
-						veil = TheVeil(veilstart,collider)
-					end
-				elseif toMatch == "SpeechText" then
-					local str = line:sub(i+1)
-					speech = {}
-					local j = str:find('"')
-					while j ~= nil do
-						k = str:find('"',j+1)
-						local who = str:sub(j+1,k-1)
-						j = str:find('"',k+1)
-						k = str:find('"',j+1)
-						local what = str:sub(j+1,k-1)
-						what = what:gsub("\\n","\n")
-						table.insert(speech,{who,what})
-						j = str:find('"',k+1)
-					end
-					if #speech ~= 0 then
-						controls:clear()
-						Gamestate.push(Gamestate.speechstate,ui,speech)
-					end
+
+
+			toMatch = line:sub(1,i-1)
+			if toMatch == "VeilOfSouls" then
+				local x = tonumber(line:sub(i+1))
+				if x then 
+					veilstart = x
+					veil = TheVeil(veilstart,collider)
+				end
+			elseif toMatch == "SpeechText" then
+				local str = line:sub(i+1)
+				local speech = {}
+				local j = str:find('"')
+				while j ~= nil do
+					k = str:find('"',j+1)
+					local who = str:sub(j+1,k-1)
+					j = str:find('"',k+1)
+					k = str:find('"',j+1)
+					local what = str:sub(j+1,k-1)
+					what = what:gsub("\\n","\n")
+					table.insert(speech,{who,what})
+					j = str:find('"',k+1)
+				end
+				if #speech ~= 0 then
+					controls:clear()
+					Gamestate.push(Gamestate.speechstate,ui,speech)
+				end
+			elseif toMatch == "BannedWeapons" then
+				local str = line:sub(i+1)
+				local j = str:find('"')
+				while j ~= nil do
+					k = str:find('"',j+1)
+					local weapon = str:sub(j+1,k-1)
+					j = str:find('"',k+1)
+					table.insert(weapons,weapon)
+				end
+			elseif toMatch == "BannedAbilities" then
+				local str = line:sub(i+1)
+				local j = str:find('"')
+				while j ~= nil do
+					k = str:find('"',j+1)
+					local ability = str:sub(j+1,k-1)
+					j = str:find('"',k+1)
+					table.insert(abilities,ability)
 				end
 			end
 		end
+	end
 end
 function game:registerSignals()
 	Signal.register('cast', function()
@@ -201,6 +227,7 @@ function game:reset()
 		veil = TheVeil(veilstart,collider) 
 	end
 	knight = Player(spawnPoint.x, spawnPoint.y, collider, gravity)
+	knight:disallowWeaponsAbilities(weapons,abilities)
 	ui = UI(knight)
 	resetEnemies(map)
 	resetObjects(map)
