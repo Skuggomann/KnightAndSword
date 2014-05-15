@@ -6,6 +6,8 @@ Door = Class{
         self.collider = collider
 		self.spriteOpen = love.graphics.newImage('/assets/art/tiles/gateOpen.png')
         self.spriteClosed = love.graphics.newImage('/assets/art/tiles/gateClosed.png')
+        self.spriteUp = love.graphics.newImage('/assets/art/tiles/gateButtonUp.png')
+        self.spriteDown = love.graphics.newImage('/assets/art/tiles/gateButtonDown.png')
         self.sensors = {}
         self.isOpen = false
     end
@@ -30,6 +32,15 @@ function Door:draw()
 		love.graphics.draw(self.spriteOpen, x-16, y-32)
 	else
         love.graphics.draw(self.spriteClosed, x-16, y-32)
+    end
+
+    for i = 1, #self.sensors do
+        x,y = self.sensors[i]:center()
+        if self.sensors[i].active then
+            love.graphics.draw(self.spriteDown, x-16, y-16)
+        else
+            love.graphics.draw(self.spriteUp, x-16, y-16)
+        end
     end
     if debug then
         if self.isOpen then

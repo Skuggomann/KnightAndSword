@@ -33,7 +33,8 @@
   <object name="end" type="end" gid="2" x="799" y="450"/>
   <object name="skeleton" type="skeleton" gid="3" x="352" y="446"/>
   <object name="door1" type="door" gid="15" x="416" y="449"/>
-  <object name="door1" type="sensor" gid="14" x="33" y="477"/>
-  <object name="door1" type="sensor" gid="14" x="66" y="477"/>
+  <object name="door1" type="sensor" gid="14" x="32" y="481"/>
+  <object name="door1" type="sensor" gid="14" x="64" y="481"/>
+  <object name="movable" type="movable" gid="5" x="226" y="456"/>
  </objectgroup>
 </map>

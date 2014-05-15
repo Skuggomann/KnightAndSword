@@ -269,7 +269,11 @@ end
 function resetObjects(map)
 	for i = 1,#objects do
 		collider:remove(objects[#objects - (i-1)].bbox)
+	end	
+	for i = 1,#doors do
+		doors[i]:destructor()
 	end
+	doors = {}
 	objects = {}
 	for i, obj in pairs( map("spawns").objects ) do
 		if obj.name == 'breakable' then
@@ -278,12 +282,14 @@ function resetObjects(map)
 			objects[#objects+1] = Movable(obj.x,obj.y-32,collider,gravity)
 		elseif obj.name == 'healthvial' then
 			objects[#objects+1] = HealthVial(obj.x,obj.y-32,collider)
+		elseif obj.type == 'door' then
+			doors[obj.name] = Door(obj.x,obj.y-32,collider)
+		elseif obj.type == 'sensor' then
+			doors[obj.name]:newSensor(obj.x,obj.y-32)
 		end
 	end
-	for i = 1,#doors do
-		doors[i]:destructor()
-	end
-	doors = {}
+
+
 end
 
 function mapSetup(map)
