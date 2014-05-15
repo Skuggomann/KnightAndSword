@@ -150,6 +150,10 @@ function Player:takeDamage(damage)
 	self.hp = self.hp-damage
 	self.invuln = self.MAXINVULN
 end
+function Player:recoverHealth(health)
+    self.hp = self.hp+health
+    if self.hp > self.maxhp then self.hp = self.maxhp end
+end
 function Player:isInvuln()
 	return self.invuln > 0
 end
@@ -312,6 +316,9 @@ function Player:collide(dt, me, other, mtv_x, mtv_y)
 			-- collision with frozen skeleton same as tile(ground)
 			self:collisionWithSolid(mtv_x,mtv_y)
 		end
+    elseif other.type = "healthvial" then
+        self:recoverHealth(1)
+        other.ref.pickedUp = true
     elseif other.type =="TheVeil" then
         self:takeDamage(100)
 	elseif other.type == "end" then
