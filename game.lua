@@ -38,6 +38,10 @@ function game:enter(previous,filename) -- run every time the state is entered
 	enemies = {}
 	objects = {}
 	gametime = 0
+	if veil then
+		veil:destroy()
+		veil = nil
+	end
 	local filepath = "assets/maps/"..filename
 	collider = HC(100, on_collide, stop_collide)
 	map = loader.load(filepath)
