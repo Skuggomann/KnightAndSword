@@ -1,3 +1,4 @@
+local OFFSET = 58
 TheVeil = Class{
     init = function(self, x, collider)
         self.bbox = collider:addRectangle(x-75,0,75,H)
@@ -21,14 +22,14 @@ function TheVeil:draw()
     local x1,y1, x2,y2 = self.bbox:bbox()
     print(x2 .. " " .. y2)
     local quad = love.graphics.newQuad(0,0,75,H,75,128)
-    love.graphics.draw(self.sprite, quad,x1,y1)
+    love.graphics.draw(self.sprite, quad,x1+OFFSET,y1)
     if debug then
         love.graphics.setColor(255,0,0, 192)
         self.bbox:draw("fill")
         love.graphics.setColor(255,255,255, 255)
     end
     love.graphics.setColor(0,0,0, 255)
-    love.graphics.rectangle("fill",x1,y1,-W,H)
+    love.graphics.rectangle("fill",x1+OFFSET,y1,-W,H)
 
     --self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
