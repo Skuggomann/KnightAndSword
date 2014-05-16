@@ -60,12 +60,12 @@ function Skeleton:draw()
     love.graphics.setColor(255,255,255, 255)
     local x,y = self.bbox:center()
     if self.facingRight then
-        love.graphics.draw(self.sprite, x - 16, y - 32)
+        love.graphics.draw(sprites.skeleton, x - 16, y - 32)
     else
-        love.graphics.draw(self.sprite, x + 16, y - 32, 0, -1, 1)
+        love.graphics.draw(sprites.skeleton, x + 16, y - 32, 0, -1, 1)
     end
     if self:isFrozen() then
-        love.graphics.draw(self.icecube, x - 16, y - 32)
+        love.graphics.draw(sprites.icecube, x - 16, y - 32)
     end
 	
 end

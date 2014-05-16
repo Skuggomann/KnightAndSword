@@ -11,7 +11,6 @@ Sword = Class{
         self.bluntDamage = 0
         self.cooldown = 0
         self.isGhost = true
-        self.image = love.graphics.newImage("assets/art/sword2.png")
         --self.bbox:setRotation(math.pi*1.5)
     end
 }
@@ -51,9 +50,9 @@ function Sword:draw()
     love.graphics.setColor(255,255,255, 255)
     x,y = self.bbox:center()
     if self.player.facingRight then
-        love.graphics.draw(self.image, x-26, y+18, math.pi*1.5+math.pi*0.5*self.cooldown/self.MAXCOOLDOWN, 1, 1, 8)
+        love.graphics.draw(sprites.sword2, x-26, y+18, math.pi*1.5+math.pi*0.5*self.cooldown/self.MAXCOOLDOWN, 1, 1, 8)
     else
-        love.graphics.draw(self.image, x+26, y+18, -math.pi*1.5-math.pi*0.5*self.cooldown/self.MAXCOOLDOWN, -1, 1, 8)
+        love.graphics.draw(sprites.sword2, x+26, y+18, -math.pi*1.5-math.pi*0.5*self.cooldown/self.MAXCOOLDOWN, -1, 1, 8)
     end
 
 

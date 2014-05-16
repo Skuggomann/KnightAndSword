@@ -6,8 +6,6 @@ Breakable = Class{
         self.hp = 4
         self.invuln = 0
         self.MAXINVULN = 0.3
-        self.sprite = love.graphics.newImage('/assets/art/tiles/Brick-breakable1.png')
-        self.sprite2 = love.graphics.newImage('/assets/art/tiles/Brick-breakable2.png')
     end
 }
 
@@ -24,9 +22,9 @@ end
 function Breakable:draw()
     local x,y = self.bbox:center()
     if self.hp > 2 then 
-    love.graphics.draw(self.sprite, x-16, y-16)
+    love.graphics.draw(sprites.brick_breakable1, x-16, y-16)
     else
-        love.graphics.draw(self.sprite2, x-16, y-16)
+        love.graphics.draw(sprites.brick_breakable2, x-16, y-16)
     end
 
     if debug then

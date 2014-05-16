@@ -10,8 +10,6 @@ Frostbolt = Class{
         self.MAXCOOLDOWN = 1
         self.cooldown = 0
 
-        self.image = love.graphics.newImage('assets/art/FrostboltHand.png')
-        self.fimage = love.graphics.newImage('assets/art/Frostbolt-animation.png')
         self.g = anim8.newGrid(30, 30, 68, 34, -2,-2,4)
         --self.animation = anim8.newAnimation(self.g('1-2',1), 0.2)
         self.activeFrostbolts = {}
@@ -90,7 +88,7 @@ function Frostbolt:draw()
     if not self.player.facingRight then
         x = x - 16
     end
-    love.graphics.draw(self.image,x,y-10)
+    love.graphics.draw(sprites.frostboltHand,x,y-10)
 
     for i = 1, #self.activeFrostbolts do
         -- do not draw bounding box
@@ -100,9 +98,9 @@ function Frostbolt:draw()
 
         x,y = self.activeFrostbolts[i]:center()
         if self.activeFrostbolts[i].facingRight then
-            self.activeFrostbolts[i].animation:draw(self.fimage,x-22, y-15)
+            self.activeFrostbolts[i].animation:draw(sprites.frostbolt_animation,x-22, y-15)
         else
-            self.activeFrostbolts[i].animation:draw(self.fimage,x+22, y-15,0,-1,1)
+            self.activeFrostbolts[i].animation:draw(sprites.frostbolt_animation,x+22, y-15,0,-1,1)
         end
         --x,y = x-16,y-16
         --self.animation:draw(self.fimage,x, y)

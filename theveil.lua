@@ -6,8 +6,6 @@ TheVeil = Class{
         self.bbox.ref = self
         self.velocityX = 60
         self.collider = collider
-		self.sprite = love.graphics.newImage('/assets/art/VeilOfSOUUUUUULS.png')
-        self.sprite:setWrap("clamp","repeat")
 
     end
 }
@@ -22,7 +20,7 @@ function TheVeil:draw()
     local x1,y1, x2,y2 = self.bbox:bbox()
     print(x2 .. " " .. y2)
     local quad = love.graphics.newQuad(0,0,75,H,75,128)
-    love.graphics.draw(self.sprite, quad,x1+OFFSET,y1)
+    love.graphics.draw(sprites.veilOfSouls, quad,x1+OFFSET,y1)
     if debug then
         love.graphics.setColor(255,0,0, 192)
         self.bbox:draw("fill")

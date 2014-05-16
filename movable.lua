@@ -5,7 +5,6 @@ Movable = Class{
         self.bbox.ref = self
         self.gravity = gravity
         self.beingHeld = false
-        self.sprite = love.graphics.newImage('/assets/art/tiles/box.png')
         self.velocity = {["x"] = 0, ["y"] = 0}
         self.falling = true
     end
@@ -22,7 +21,7 @@ end
 
 function Movable:draw()
     local x,y = self.bbox:center()
-    love.graphics.draw(self.sprite, x-16, y-16)
+    love.graphics.draw(sprites.box, x-16, y-16)
     if debug then
         love.graphics.setColor(0,255,255, 120)
         self.bbox:draw("fill")

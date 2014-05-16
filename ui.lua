@@ -2,15 +2,7 @@ UI = Class{
     init = function(self, Player)
         self.player = Player
         self.textTable = {}   --1 = who, 2 = text, 3 = ttl, 
-    end,
-    heart = love.graphics.newImage("assets/art/LivingHeart2.png"),
-    deadHeart = love.graphics.newImage("assets/art/DeadHeart2.png"),
-    sword = love.graphics.newImage("assets/art/sword.png"),
-    frostbolt = love.graphics.newImage("assets/art/Frostbolt1.png"),
-    playerhed = love.graphics.newImage("assets/art/playerhed.png"),
-    mace = love.graphics.newImage("assets/art/blackMaceAthumbnail.png"),
-	levitate = love.graphics.newImage("assets/art/levitate.png")
-	
+    end
 }
 
 function UI:update(dt)
@@ -38,10 +30,10 @@ function UI:draw()
         love.graphics.setColor(255,255,255,255)
 
         if self.textTable[1] == "sword" then 
-            love.graphics.draw(self.sword, 118, H-68, math.pi * 1.5, 2, 2)
+            love.graphics.draw(sprites.sword, 118, H-68, math.pi * 1.5, 2, 2)
 
         elseif self.textTable[1] == "player" then 
-            love.graphics.draw(self.playerhed, 100, H-132, 0,2,2)
+            love.graphics.draw(sprites.playerhed, 100, H-132, 0,2,2)
         else
             love.graphics.print(self.textTable[1], 100, H-100) -- Placeholder for image of talker
         end
@@ -53,9 +45,9 @@ function UI:draw()
     --Draw Hearts
     for i = 1, self.player.maxhp, 1 do
         if self.player.hp >= i then
-            love.graphics.draw(self.heart, i*self.heart:getWidth(), 20)
+            love.graphics.draw(sprites.livingHeart2, i*sprites.livingHeart2:getWidth(), 20)
         else
-            love.graphics.draw(self.deadHeart, i*self.deadHeart:getWidth(), 20)
+            love.graphics.draw(sprites.deadHeart2, i*sprites.deadHeart2:getWidth(), 20)
         end
     end
     --Draw Manabar
@@ -99,14 +91,14 @@ end
 function UI:getWeaponAbility(Name)
     weapon, ability = nil,nil
     if self.player.currentWeapon == "sword" then
-        weapon = self.sword 
+        weapon = sprites.sword
     elseif self.player.currentWeapon == "mace" then
-        weapon = self.mace
+        weapon = sprites.blackMaceAthumbnail
     end
     if self.player.currentAbility == "frostbolt" then
-        ability = self.frostbolt
+        ability = sprites.frostbolt1
     elseif self.player.currentAbility == "telekinesis" then
-        ability = self.levitate
+        ability = sprites.levitate
     end
 
     return weapon,ability

@@ -3,8 +3,7 @@ local death = Gamestate.death
 function death:enter(from)
     self.from = from -- record previous state
     self.selected = 1
-    self.fimage = love.graphics.newImage('assets/art/rip-small-animation.png')
-    self.g = anim8.newGrid(30, 30, self.fimage:getWidth(), self.fimage:getHeight(), -2,-2,4)
+    self.g = anim8.newGrid(30, 30, sprites.rip_small_animation:getWidth(), sprites.rip_small_animation:getHeight(), -2,-2,4)
     self.animation = anim8.newAnimation(self.g('1-11',1), 0.1, function() self.animation:pauseAtEnd() end)
     self.fadeTime = 4
     self.fadeTimedx = 0
@@ -63,5 +62,5 @@ function death:draw()
     end
     love.graphics.setColor(255,255,255,255)
 
-    self.animation:draw(self.fimage, W/2-32,H/2+100,0,2,2 )
+    self.animation:draw(sprites.rip_small_animation, W/2-32,H/2+100,0,2,2 )
 end

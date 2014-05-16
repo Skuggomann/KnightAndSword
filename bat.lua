@@ -7,8 +7,6 @@ Bat = Class{__includes = Enemy,
         --self.bbox.ref = self
         self.player = player
         self.collider = collider
-		self.spriteOne = love.graphics.newImage('/assets/art/bat2down.png')
-        self.spriteTwo = love.graphics.newImage('/assets/art/bat2up.png')
         self.bbox = nil
         self.MAXCOOLDOWN = 1
         self.cooldown = 0
@@ -107,15 +105,15 @@ function Bat:draw()
         local x,y = self.bbox:center()
         if self.bbox.facingRight then
             if self.wingsDown then
-                love.graphics.draw(self.spriteOne, x - 16, y - 10)
+                love.graphics.draw(sprites.bat2down, x - 16, y - 10)
             else
-                love.graphics.draw(self.spriteTwo, x - 16, y - 22)
+                love.graphics.draw(sprites.bat2up, x - 16, y - 22)
             end
         else
             if self.wingsDown then
-                love.graphics.draw(self.spriteOne, x + 16, y - 10, 0, -1, 1)
+                love.graphics.draw(sprites.bat2down, x + 16, y - 10, 0, -1, 1)
             else
-                love.graphics.draw(self.spriteTwo, x + 16, y - 22, 0, -1, 1)
+                love.graphics.draw(sprites.bat2up, x + 16, y - 22, 0, -1, 1)
             end
         end
     end

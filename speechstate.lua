@@ -43,16 +43,13 @@ function speechstate:draw()
         love.graphics.setColor(255,255,255,255)
 
         if self.textTable[1][1] == "sword" then 
-            love.graphics.draw(self.ui.sword, 118, H-68, math.pi * 1.5, 2, 2)
+            love.graphics.draw(sprites.sword, 118, H-68, math.pi * 1.5, 2, 2)
 
         elseif self.textTable[1][1] == "player" then 
-            love.graphics.draw(self.ui.playerhed, 100, H-132, 0,2,2)
+            love.graphics.draw(sprites.playerhed, 100, H-132, 0,2,2)
         else
             love.graphics.print(self.textTable[1][1], 100, H-100) -- Placeholder for image of talker
         end
         love.graphics.print(self.textTable[1][2], 170, H-128) -- Print what he says
-        
-
     end
-
 end

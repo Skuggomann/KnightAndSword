@@ -27,10 +27,7 @@ Player = Class{
 	    self.velocity = {["x"] = 0, ["y"] = 0}
 	    self.invuln = 0
 	    self.MAXINVULN = 1
-		self.sprite = love.graphics.newImage('/assets/art/player2.png')
-		self.spriteJumping = love.graphics.newImage('/assets/art/player2jumping.png')
-        self.spriteWalkin = love.graphics.newImage('/assets/art/player2short.png')
-        local grid = anim8.newGrid(32, 64, self.spriteWalkin:getWidth(), self.spriteWalkin:getHeight(), 0, 0, 0)
+        local grid = anim8.newGrid(32, 64, sprites.player2short:getWidth(), sprites.player2short:getHeight(), 0, 0, 0)
         self.animationWalkinR = anim8.newAnimation(grid('1-4',1), 0.3)
         self.animationWalkinL = anim8.newAnimation(grid('1-4',1), 0.3):flipH()
 
@@ -167,20 +164,20 @@ function Player:draw()
 
 	-- Sets the sprite to draw depending on some variables
 	if(self.jumping) then
-		currentSprite = self.spriteJumping
+		currentSprite = sprites.player2jumping
 	elseif (controls:isDown("right") or controls:isDown("left")) and not self.jumping then	
 		currentSprite = nil
 	else
-		currentSprite = self.sprite
+		currentSprite = sprites.player2
 	end
 	
 	
 
     if currentSprite == nil then
         if self.facingRight then
-            self.animationWalkinR:draw(self.spriteWalkin, x - 16, y - 37)
+            self.animationWalkinR:draw(sprites.player2short, x - 16, y - 37)
         else
-            self.animationWalkinL:draw(self.spriteWalkin, x - 16, y - 37)
+            self.animationWalkinL:draw(sprites.player2short, x - 16, y - 37)
         end
     else
         if self.facingRight then

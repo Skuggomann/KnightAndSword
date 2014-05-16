@@ -5,7 +5,6 @@ HealthVial = Class{
         self.bbox.ref = self
         self.collider = collider
         --self.collider:setGhost(self.bbox)
-        self.sprite = love.graphics.newImage('/assets/art/largeHealthVial.png')
         self.pickedUp = false
     end
 }
@@ -15,7 +14,7 @@ end
 
 function HealthVial:draw()
     local x,y = self.bbox:center()
-    love.graphics.draw(self.sprite, x-16, y-16)
+    love.graphics.draw(sprites.largeHealthVial, x-16, y-16)
     if debug then
         love.graphics.setColor(255,255,255, 120)
         self.bbox:draw("fill")

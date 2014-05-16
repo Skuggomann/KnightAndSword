@@ -4,12 +4,6 @@ Door = Class{
         self.bbox.type = "door"
         self.bbox.ref = self
         self.collider = collider
-		self.spriteOpen = love.graphics.newImage('/assets/art/tiles/gateOpen.png')
-        self.spriteClosed = love.graphics.newImage('/assets/art/tiles/gateClosed.png')
-        self.spriteUp = love.graphics.newImage('/assets/art/tiles/gateButtonUp.png')
-        self.spriteDown = love.graphics.newImage('/assets/art/tiles/gateButtonDown.png')
-        self.red = love.graphics.newImage('/assets/art/red.png')
-        self.green = love.graphics.newImage('/assets/art/green.png')
         self.sensors = {}
         self.isOpen = false
     end
@@ -40,24 +34,24 @@ function Door:draw()
     for i = 1, #self.sensors do
         x,y = self.sensors[i]:center()
         if self.sensors[i].active then
-            love.graphics.draw(self.spriteDown, x-16, y-16)
+            love.graphics.draw(sprites.gateButtonDown, x-16, y-16)
         else
-            love.graphics.draw(self.spriteUp, x-16, y-16)
+            love.graphics.draw(sprites.gateButtonUp, x-16, y-16)
         end
     end
 
     local x,y = self.bbox:center()
 	
     if self.isOpen then
-        love.graphics.draw(self.spriteOpen, x-16, y-32)
+        love.graphics.draw(sprites.gateOpen, x-16, y-32)
     else
-        love.graphics.draw(self.spriteClosed, x-16, y-32)
+        love.graphics.draw(sprites.gateClosed, x-16, y-32)
     end
 	for i = 1,#self.sensors do
         if self.sensors[i].active then
-            love.graphics.draw(self.green, x-22+(i*8), y-35)
+            love.graphics.draw(sprites.green, x-22+(i*8), y-35)
         else
-            love.graphics.draw(self.red, x-22+(i*8), y-35)
+            love.graphics.draw(sprites.red, x-22+(i*8), y-35)
         end
     end
 
