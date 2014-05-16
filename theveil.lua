@@ -4,13 +4,13 @@ TheVeil = Class{
         self.bbox = collider:addRectangle(x-75,0,75,H)
         self.bbox.type = "TheVeil"
         self.bbox.ref = self
-        self.velocityXCUR = 60
-        self.velocityXMIN = 40
-        self.velocityXMAX = 80
+        self.velocityXCUR = 70
+        self.velocityXMIN = 50
+        self.velocityXMAX = 90
         self.increasing = false
         self.collider = collider
         self.tentacleTimer = 0
-        self.TENTACLEMAX = 0.5
+        self.TENTACLEMAX = 0.8
     end
 }
 
@@ -48,9 +48,15 @@ function TheVeil:draw()
     elseif self.tentacleTimer <= 0.3 then
         sprite = sprites.veilOfSouls3
     elseif self.tentacleTimer <= 0.4 then
-        sprite = sprites.veilOfSouls2
+        sprite = sprites.veilOfSouls4
     elseif self.tentacleTimer <= 0.5 then
-        sprite = sprites.veilOfSouls
+        sprite = sprites.veilOfSouls5
+    elseif self.tentacleTimer <= 0.6 then
+        sprite = sprites.veilOfSouls4
+    elseif self.tentacleTimer <= 0.7 then
+        sprite = sprites.veilOfSouls3
+    elseif self.tentacleTimer <= 0.8 then
+        sprite = sprites.veilOfSouls2
     end
     local quad = love.graphics.newQuad(0,0,75,H,75,128)
     love.graphics.draw(sprite, quad,x1+OFFSET,y1)
