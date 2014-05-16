@@ -1,7 +1,7 @@
 AudioController = Class{
     init = function(self)
 	    self.music = {}
-	    self.sounds = {	["swordhit"] = love.audio.newSource("assets/sounds/swords_x_2_hit_001.mp3", "static")
+	    self.sounds = {	--["swordhit"] = love.audio.newSource("assets/sounds/swords_x_2_hit_001.mp3", "static")
 
 		}
 
