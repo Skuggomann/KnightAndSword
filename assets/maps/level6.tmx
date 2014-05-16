@@ -29,12 +29,15 @@
   <object name="skeleton" type="skeleton" gid="3" x="324" y="420"/>
   <object name="skeleton" type="skeleton" gid="3" x="928" y="516"/>
   <object name="skeleton" type="skeleton" gid="3" x="607" y="414"/>
-  <object name="skeleton" type="skeleton" gid="3" x="324" y="224"/>
+  <object name="skeleton" type="skeleton" gid="3" x="384" y="225"/>
   <object name="skeleton" type="skeleton" gid="3" x="327" y="324"/>
   <object name="skeleton" type="skeleton" gid="3" x="1346" y="511"/>
   <object name="skeleton" type="skeleton" gid="3" x="1748" y="511"/>
   <object name="skeleton" type="skeleton" gid="3" x="2129" y="510"/>
   <object name="skeleton" type="skeleton" gid="3" x="1631" y="286"/>
+  <object name="skeleton" type="skeleton" gid="3" x="450" y="127"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1249" y="127"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1889" y="512"/>
  </objectgroup>
  <layer name="spikes" width="100" height="23">
   <data encoding="base64" compression="zlib">

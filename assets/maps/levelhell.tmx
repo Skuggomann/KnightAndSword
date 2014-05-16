@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="64" height="16" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="65" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="64" height="16">
+ <layer name="background" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJztw8EJAAAMA6H7Z/99u0dRcNVUVVXV1w98oCwB
+   eJztw0ENAAAMA6H717/fWZgASFg1VVVVVVX1/QAMTUA+
   </data>
  </layer>
- <layer name="background lighting" width="64" height="16">
+ <layer name="background lighting" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJztw8EJAAAMA6F7Zf+Ru0dRcNVUVVXV1w9LQBgB
+   eJzt0CEKAAAIBEGT/3+y2SI2QeZg+zERtl0+jgEDBgwYdIPrD9cxYMCAAQMGDBgwYMCAAQMGDOYK4A0fvQ==
   </data>
  </layer>
- <layer name="ground" width="64" height="16">
+ <layer name="ground" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlkEOwCAIBHmE/3+r8a4iuiirTtIbdB1IWpOIpIcfjZEaVr4/poaV74+pYSWq/67MqP678Pav9fbeh5619o9H3RE88cxf9Wv1Wvc+k4fIiLLfU2ewZkeYFxK0D9tsbtunFYbvvyfFLQNAVAoB
+   eJztllsOgCAMBDkE9z+r6S/hWbelSzqJiYng2qmCpaypjx877I5jJB2kAyEdpAMhHeD3D0Z269M6OJ13w7e1AxSWbrwd9PL+3LsOzmfjeteQDhjXDoQDtppbIq8HXpkaB+x9b/F4D3pzPb+tVY0s/0iW+Yj6RvNP+6/JQ2RE6LFw8zk02VG8obCoh83Paz3VwLIvWCK1fZPzDSE=
   </data>
  </layer>
- <layer name="noncolidable" width="64" height="16">
+ <layer name="noncolidable" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1zEKACAMQ1FvYi4gTuL9b6aL4BZwKY158MdCO7YUs39VkjqQ1IGkDiR1IKkDyczM8mu7Hr1EoLGbD3PsR8jSuf/+bRZ3Ag15
+   eJzt1zEKgEAMRNG9iXOB1Uq9/8025RbCgM2i8x/8MhDSpTUAAADg2WZKIFMCmRLIlECmBDIBAP6nV3t1rF5kobO6qvvlvPspvtB8g/kXGgVQDfQ=
   </data>
  </layer>
- <layer name="morelava" width="64" height="16">
+ <layer name="morelava" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAIA7A5wb9Lnh1oIG3SBAAAAPhk+loUXAA/
+   eJztwzENAAAMA6A6mX+Xe3tUAiQkAAAAAADAcrU9HqAAXg==
   </data>
  </layer>
- <objectgroup name="spawns" width="64" height="16">
-  <object name="player" type="player" gid="1" x="72" y="445"/>
-  <object name="end" type="end" gid="2" x="1904" y="482"/>
-  <object name="skeleton" type="skeleton" gid="3" x="184" y="447"/>
+ <objectgroup name="spawns" width="65" height="23">
+  <object name="player" type="player" gid="1" x="104" y="669"/>
+  <object name="end" type="end" gid="2" x="1920" y="706"/>
+  <object name="skeleton" type="skeleton" gid="3" x="216" y="671"/>
  </objectgroup>
- <layer name="spikes" width="64" height="16">
+ <layer name="spikes" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+   eJztwTEBAAAAwqD1T20Gf6AAAAAAAIDHABdcAAE=
   </data>
  </layer>
 </map>

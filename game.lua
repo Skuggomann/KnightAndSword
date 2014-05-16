@@ -360,6 +360,7 @@ function mapSetup(map)
 
     for x, y, tile in map("ground"):iterate() do
     	groundTiles[#groundTiles+1] = {x,y}
+    	print(x,y)
 		--[[
 		local ctile = collider:addRectangle((x)*32,(y)*32,32,32)
         ctile.type = "tile"
