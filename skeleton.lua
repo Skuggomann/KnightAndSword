@@ -91,9 +91,9 @@ function Skeleton:draw()
         end
     else
         if self.facingRight then
-            love.graphics.draw(sprites.skeleton, x - 16, y - 32)
+            love.graphics.draw(sprites.skeletonDmg, x - 16, y - 32)
         else
-            love.graphics.draw(sprites.skeleton, x + 16, y - 32, 0, -1, 1)
+            love.graphics.draw(sprites.skeletonDmg, x + 16, y - 32, 0, -1, 1)
         end
     end
     if self:isFrozen() then
@@ -103,8 +103,10 @@ function Skeleton:draw()
 end
 
 function Skeleton:takeDamage(damage)
-    self.hp = self.hp - damage
-    self.invuln = self.MAXINVULN
+    if damage > 0 then
+        self.hp = self.hp - damage
+        self.invuln = self.MAXINVULN
+    end
 end
 
 
