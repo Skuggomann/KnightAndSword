@@ -12,7 +12,7 @@ Bat = Class{__includes = Enemy,
         self.bbox = nil
         self.MAXCOOLDOWN = 1
         self.cooldown = 0
-        self.wings = 0.5
+        self.wings = 0.2
         self.wingTimer = 0
         self.wingsDown = true
     end

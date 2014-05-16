@@ -8,6 +8,8 @@ Door = Class{
         self.spriteClosed = love.graphics.newImage('/assets/art/tiles/gateClosed.png')
         self.spriteUp = love.graphics.newImage('/assets/art/tiles/gateButtonUp.png')
         self.spriteDown = love.graphics.newImage('/assets/art/tiles/gateButtonDown.png')
+        self.red = love.graphics.newImage('/assets/art/red.png')
+        self.green = love.graphics.newImage('/assets/art/green.png')
         self.sensors = {}
         self.isOpen = false
     end
@@ -35,15 +37,6 @@ function Door:update(dt)
 end
 
 function Door:draw()
-    local x,y = self.bbox:center()
-	
-	
-    if self.isOpen then
-		love.graphics.draw(self.spriteOpen, x-16, y-32)
-	else
-        love.graphics.draw(self.spriteClosed, x-16, y-32)
-    end
-
     for i = 1, #self.sensors do
         x,y = self.sensors[i]:center()
         if self.sensors[i].active then
@@ -52,6 +45,23 @@ function Door:draw()
             love.graphics.draw(self.spriteUp, x-16, y-16)
         end
     end
+
+    local x,y = self.bbox:center()
+	
+    if self.isOpen then
+        love.graphics.draw(self.spriteOpen, x-16, y-32)
+    else
+        love.graphics.draw(self.spriteClosed, x-16, y-32)
+    end
+	for i = 1,#self.sensors do
+        if self.sensors[i].active then
+            love.graphics.draw(self.green, x-22+(i*8), y-35)
+        else
+            love.graphics.draw(self.red, x-22+(i*8), y-35)
+        end
+    end
+
+
     if debug then
         if self.isOpen then
             love.graphics.setColor(0,255,0, 120)

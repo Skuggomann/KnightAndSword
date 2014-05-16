@@ -28,7 +28,7 @@ function love.load()
 	Font36p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 36)
 
 	AudioController = AudioController()
-
+	love.graphics.setDefaultFilter("nearest","nearest")
 	math.randomseed( os.time())
 	
     Gamestate.registerEvents()
