@@ -160,24 +160,62 @@ function Player:draw()
 	
 	local x,y = self.bbox:center()
 	local currentSprite
-	
+
+    local blink = false
+    if self.invuln <= 0.1 then
+        blink = false
+    elseif self.invuln <= 0.2 then
+        blink = true
+    elseif self.invuln <= 0.3 then
+        blink = false
+    elseif self.invuln <= 0.4 then
+        blink = true
+    elseif self.invuln <= 0.5 then
+        blink = false
+    elseif self.invuln <= 0.6 then
+        blink = true
+    elseif self.invuln <= 0.7 then
+        blink = false
+    elseif self.invuln <= 0.8 then
+        blink = true
+    elseif self.invuln <= 0.9 then
+        blink = false
+    elseif self.invuln <= 1 then
+        blink = true
+    end	
 
 	-- Sets the sprite to draw depending on some variables
 	if(self.jumping) then
-		currentSprite = sprites.player2jumping
+        if not blink then
+    		currentSprite = sprites.player2jumping
+        else
+            currentSprite = sprites.player2jumpingDmg
+        end
 	elseif (controls:isDown("right") or controls:isDown("left")) and not self.jumping then	
 		currentSprite = nil
 	else
-		currentSprite = sprites.player2
+        if not blink then
+            currentSprite = sprites.player2
+        else
+            currentSprite = sprites.player2Dmg
+        end
 	end
 	
 	
 
     if currentSprite == nil then
-        if self.facingRight then
-            self.animationWalkinR:draw(sprites.player2short, x - 16, y - 37)
+        if not blink then
+            if self.facingRight then
+                self.animationWalkinR:draw(sprites.player2short, x - 16, y - 37)
+            else
+                self.animationWalkinL:draw(sprites.player2short, x - 16, y - 37)
+            end
         else
-            self.animationWalkinL:draw(sprites.player2short, x - 16, y - 37)
+            if self.facingRight then
+                self.animationWalkinR:draw(sprites.player2shortDmg, x - 16, y - 37)
+            else
+                self.animationWalkinL:draw(sprites.player2shortDmg, x - 16, y - 37)
+            end
         end
     else
         if self.facingRight then
