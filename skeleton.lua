@@ -58,11 +58,43 @@ function Skeleton:draw()
     love.graphics.setColor(255,0,0, 255)
     --self.bbox:draw("fill")
     love.graphics.setColor(255,255,255, 255)
+
+    local blink = false
+    if self.invuln <= 0.1 then
+        blink = false
+    elseif self.invuln <= 0.2 then
+        blink = true
+    elseif self.invuln <= 0.3 then
+        blink = false
+    elseif self.invuln <= 0.4 then
+        blink = true
+    elseif self.invuln <= 0.5 then
+        blink = false
+    elseif self.invuln <= 0.6 then
+        blink = true
+    elseif self.invuln <= 0.7 then
+        blink = false
+    elseif self.invuln <= 0.8 then
+        blink = true
+    elseif self.invuln <= 0.9 then
+        blink = false
+    elseif self.invuln <= 1 then
+        blink = true
+    end 
+
     local x,y = self.bbox:center()
-    if self.facingRight then
-        love.graphics.draw(sprites.skeleton, x - 16, y - 32)
+    if not blink then
+        if self.facingRight then
+            love.graphics.draw(sprites.skeleton, x - 16, y - 32)
+        else
+            love.graphics.draw(sprites.skeleton, x + 16, y - 32, 0, -1, 1)
+        end
     else
-        love.graphics.draw(sprites.skeleton, x + 16, y - 32, 0, -1, 1)
+        if self.facingRight then
+            love.graphics.draw(sprites.skeleton, x - 16, y - 32)
+        else
+            love.graphics.draw(sprites.skeleton, x + 16, y - 32, 0, -1, 1)
+        end
     end
     if self:isFrozen() then
         love.graphics.draw(sprites.icecube, x - 16, y - 32)
