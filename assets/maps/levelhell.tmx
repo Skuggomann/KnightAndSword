@@ -15,12 +15,12 @@
  </layer>
  <layer name="ground" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJztllsOgCAMBDkE9z+r6S/hWbelSzqJiYng2qmCpaypjx877I5jJB2kAyEdpAMhHeD3D0Z269M6OJ13w7e1AxSWbrwd9PL+3LsOzmfjeteQDhjXDoQDtppbIq8HXpkaB+x9b/F4D3pzPb+tVY0s/0iW+Yj6RvNP+6/JQ2RE6LFw8zk02VG8obCoh83Paz3VwLIvWCK1fZPzDSE=
+   eJztmFsOgCAMBDkE9z+r6S/hUeq2sKSTmJgI1p0qGktZUx/fNGjHMZIO0oGQDtKBkA7w7w9GtPmsDnbnnfDt7QCFp5toB716f85dB/uzcb1jSAeMawfCAVvmlpvXg6iaFgfsfW+JuA96cyOfrVVGlm8kz/qIfKP5u/231EPUuKHHwsnrsNS+xRsKjzxsfl7rqRbPf6+MSLYP07MNXQ==
   </data>
  </layer>
  <layer name="noncolidable" width="65" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1zEKgEAMRNG9iXOB1Uq9/8025RbCgM2i8x/8MhDSpTUAAADg2WZKIFMCmRLIlECmBDIBAP6nV3t1rF5kobO6qvvlvPspvtB8g/kXGgVQDfQ=
+   eJzt1zEOgCAUA1Bu4r+AGgf1/jfzuzmYlCDSD+lLupcKgymJiEhEG7tAcKPs8+c5omwUpYeUmUAYWt8pA3ka9b4byBcRNsvpYCBsLXY0kKhqbmMgLUR4M1KPvmcfZs/iWdlFiHbP4TnZRYi0QTn0T9FD3s5zuwDLzxBx
   </data>
  </layer>
  <layer name="morelava" width="65" height="23">
@@ -30,7 +30,7 @@
  </layer>
  <objectgroup name="spawns" width="65" height="23">
   <object name="player" type="player" gid="1" x="104" y="669"/>
-  <object name="end" type="end" gid="2" x="1920" y="706"/>
+  <object name="end" type="end" gid="2" x="1984" y="639"/>
   <object name="skeleton" type="skeleton" gid="3" x="216" y="671"/>
  </objectgroup>
  <layer name="spikes" width="65" height="23">
