@@ -29,6 +29,7 @@ function love.load()
 
 	AudioController = AudioController()
 	love.graphics.setDefaultFilter("nearest","nearest")
+
 	math.randomseed( os.time())
 	
     Gamestate.registerEvents()
