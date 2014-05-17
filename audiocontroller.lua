@@ -74,7 +74,7 @@ end
 function AudioController:setMusicVolume(volume)
 	if volume >= 0.0 and volume <= 1.0 then
 		self.musicVolume = volume
-		for i,v in ipairs(self.music) do 
+		for i,v in pairs(self.music) do 
            	v:setVolume(self.musicVolume) 
         end
 	end
@@ -83,7 +83,7 @@ end
 function AudioController:setSoundsVolume(volume)
 	if volume >= 0.0 and volume <= 1.0 then
 		self.soundsVolume = volume
-		for i,v in ipairs(self.sounds) do 
+		for i,v in pairs(self.sounds) do 
            	v:setVolume(self.soundsVolume)
         end
 	end

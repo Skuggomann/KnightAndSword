@@ -141,6 +141,8 @@ end
 
 function Player:attack()
 	if self.weapons[self.currentWeapon]:canAttack() and self.canAttack then
+        AudioController.sounds[self.currentWeapon.."hit"]:rewind()
+        AudioController.sounds[self.currentWeapon.."hit"]:play()
     	self.weapons[self.currentWeapon]:attack()
     end
 end
