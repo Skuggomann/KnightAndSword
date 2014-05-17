@@ -52,10 +52,10 @@ AudioController = Class{
 
 	    love.audio.setVolume(self.masterVolume)
 
-        for i,v in ipairs(self.music) do 
+        for i,v in pairs(self.music) do 
            	v:setVolume(self.musicVolume) 
         end
-        for i,v in ipairs(self.sounds) do 
+        for i,v in pairs(self.sounds) do 
            	v:setVolume(self.soundsVolume)
         end
 

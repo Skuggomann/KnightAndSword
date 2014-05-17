@@ -17,6 +17,7 @@ require 'win'
 require 'optionsmenu'
 require 'audiocontroller'
 require 'speechstate'
+require 'howto'
 
 sprites = {}
 debug = false

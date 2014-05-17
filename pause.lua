@@ -4,6 +4,7 @@ local menuOptions = {}
 table.insert(menuOptions,"Resume")
 table.insert(menuOptions,"Retry level")
 table.insert(menuOptions,"Settings")
+table.insert(menuOptions,"How To Play")
 table.insert(menuOptions,"Exit to main menu")
 local selected = 1
 local pause = Gamestate.pause
@@ -35,7 +36,10 @@ function pause:registerSignals()
     		Gamestate.switch(Gamestate.menu)
 		elseif menuOptions[selected] == "Settings" then
 			controls:clear()
-			Gamestate.push(Gamestate.optionsmenu, self.from)
+			Gamestate.push(Gamestate.optionsmenu)
+		elseif menuOptions[selected] == "How To Play" then
+			controls:clear()
+			Gamestate.push(Gamestate.howto)
 		end
 	end)
 	Signal.register('up', function()
