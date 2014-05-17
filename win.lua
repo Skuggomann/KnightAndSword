@@ -2,6 +2,8 @@ Gamestate.win = {}
 local win = Gamestate.win
 local selected = 1
 function win:enter(from, time)
+    love.audio.pause()
+    AudioController.sounds["victory"]:play()
     self.from = from -- record previous state
     self.fadeTime = 4
     self.fadeTimedx = 0
@@ -17,14 +19,21 @@ function win:enter(from, time)
     Signal.register('enter', function()
         if selected == 1 then 
             --nextelevel
+            love.audio.stop()
             Gamestate.levelselect:switchToNextLevel()
         elseif selected == 2 then
             --retry
+            for k,v in pairs(AudioController.sounds) do
+                v:stop()
+            end
+            love.audio.rewind()
+            love.audio.resume()
             self.from:reset()
             Gamestate.pop()
             Gamestate:registerSignals()
         elseif selected == 3 then
             --quit to main menu
+            love.audio.stop()
             Gamestate.switch(Gamestate.menu)
         end
     end)

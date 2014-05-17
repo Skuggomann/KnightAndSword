@@ -39,6 +39,8 @@ function game:init() -- run only once
 end
 
 function game:enter(previous,filename) -- run every time the state is entered
+	AudioController.music["game"]:rewind()
+	AudioController.music["game"]:play()
 	enemies = {}
 	objects = {}
 	doors = {}
@@ -241,6 +243,7 @@ end
 
 
 function game:leave()
+	love.audio.stop()
 end
 
 function winGame()
@@ -360,7 +363,6 @@ function mapSetup(map)
 
     for x, y, tile in map("ground"):iterate() do
     	groundTiles[#groundTiles+1] = {x,y}
-    	print(x,y)
 		--[[
 		local ctile = collider:addRectangle((x)*32,(y)*32,32,32)
         ctile.type = "tile"

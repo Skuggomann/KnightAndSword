@@ -10,19 +10,28 @@ local pause = Gamestate.pause
 function pause:enter(from)
     self.from = from -- record previous state
 	selected = 1
+	love.audio.pause()
+	AudioController.music["pause"]:play()
 	self:registerSignals()
 end
 
 function pause:registerSignals()
 	Signal.register('enter', function()
 		if menuOptions[selected] == "Resume" then
+			love.audio.resume()
     		Gamestate.pop()
     		Gamestate:registerSignals()
     	elseif menuOptions[selected] == "Retry level" then
+    		for k,v in pairs(AudioController.sounds) do
+    			v:stop()
+    		end
+    		love.audio.rewind()
+    		love.audio.resume()
     		self.from:reset()
     		Gamestate.pop()
     		Gamestate:registerSignals()
 		elseif menuOptions[selected] == "Exit to main menu" then
+			love.audio.stop()
     		Gamestate.switch(Gamestate.menu)
 		elseif menuOptions[selected] == "Settings" then
 			controls:clear()
@@ -43,6 +52,7 @@ function pause:registerSignals()
 	end)
 end
 function pause:leave()
+	AudioController.music["pause"]:stop()
 	controls:clear()
 end
 function pause:update(dt)

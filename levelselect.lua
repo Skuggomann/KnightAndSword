@@ -25,6 +25,8 @@ function levelselect:init() -- run only once
 end
 
 function levelselect:enter(previous) -- run every time the state is entered
+	AudioController.music["levelselect"]:rewind()
+	AudioController.music["levelselect"]:play()
 	Signal.register('enter', function()
     	local filename = levels[selected].filename
         Gamestate.switch(Gamestate.game,filename)
@@ -44,6 +46,7 @@ function levelselect:enter(previous) -- run every time the state is entered
 end
 
 function levelselect:leave()
+	love.audio.stop()
 	controls:clear()
 end
 

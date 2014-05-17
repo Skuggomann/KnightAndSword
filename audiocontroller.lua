@@ -1,8 +1,33 @@
 AudioController = Class{
     init = function(self)
-	    self.music = {}
-	    self.sounds = {	--["swordhit"] = love.audio.newSource("assets/sounds/swords_x_2_hit_001.mp3", "static")
+	    self.music = {
+		    ["pause"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+			["mainmenu"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+			["levelselect"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+			["game"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+			["death"] = love.audio.newSource("assets/sounds/HIT.mp3", "static")  --ekki static í music þegar actualy music er komin ef hún er stór
+		}
 
+	    self.sounds = {	
+		    ["swordhit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["macehit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["batshit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["skeletonhit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["frostboltcast"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["frostbolthitwalls"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["frostbolthitenemy"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["jump"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["damage"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["death"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["levitatepickup"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["levitatedrop"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["levitatepassive"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["footsteps"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["healthvial"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["swapweapons"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["swapabilities"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["victory"] = love.audio.newSource("assets/sounds/HIT.mp3", "static")
+			--add speech?
 		}
 
 		local file = io.open("settings.txt")

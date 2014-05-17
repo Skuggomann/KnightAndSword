@@ -31,7 +31,8 @@ function Frostbolt:use()
     bbbox.ttl = 5
 
     table.insert(self.activeFrostbolts, bbbox)
-     
+    AudioController.sounds["frostboltcast"]:rewind()
+    AudioController.sounds["frostboltcast"]:play()
 end
 
 function Frostbolt:update(dt)
@@ -109,6 +110,13 @@ function Frostbolt:draw()
 end
 function Frostbolt:collide(dt, me, other, mtv_x, mtv_y)
     if other.type == "tile" or other.type == "skeleton" or other.type == "bat" then
+        if other.type=="tile" then 
+            AudioController.sounds["frostbolthitwalls"]:rewind()
+            AudioController.sounds["frostbolthitwalls"]:play()
+        else
+            AudioController.sounds["frostbolthitenemy"]:rewind()
+            AudioController.sounds["frostbolthitenemy"]:play()
+        end
         me.ttl = 0
     end
 end

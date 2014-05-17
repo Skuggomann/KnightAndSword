@@ -1,6 +1,10 @@
 Gamestate.death = {}
 local death = Gamestate.death
 function death:enter(from)
+    love.audio.pause()
+    AudioController.music["death"]:play()
+    AudioController.sounds["death"]:play()
+
     self.from = from -- record previous state
     self.selected = 1
     self.g = anim8.newGrid(30, 30, sprites.rip_small_animation:getWidth(), sprites.rip_small_animation:getHeight(), -2,-2,4)
@@ -10,9 +14,15 @@ function death:enter(from)
 
     Signal.register('enter', function()
         if self.selected == 1 then
+            for k,v in pairs(AudioController.sounds) do
+                v:stop()
+            end
+            love.audio.rewind()
+            love.audio.resume()
             Gamestate.pop()
             Gamestate:registerSignals()
         elseif self.selected == 2 then
+            love.audio.stop()
             Gamestate.switch(Gamestate.menu)
         end
     end)
@@ -24,6 +34,7 @@ function death:enter(from)
     end)
 end
 function death:leave()
+    AudioController.music["death"]:stop()
     controls:clear()
 end
 function death:update(dt)
