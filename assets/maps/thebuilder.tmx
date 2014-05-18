@@ -10,12 +10,12 @@
  </layer>
  <layer name="background lighting" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMBKGb3r/kuugECaumqqq+PGPNEUE=
+   eJxjY2BgYBvFo3gUj+JRPIpH8SgeARgGBtLugbAfHQyk3fS0n1RAL3sBtJ4QdQ==
   </data>
  </layer>
  <layer name="ground" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEBlgPFBg1P5R+0ftH7V/1P5R+0ftHxi7B8J+ESSa3vaLoLHpaT+6XfS0H5s9tG4XEjJroNu9IAwAIh8JYQ==
+   eJwTYWBgEBlgPFBg1P6hZf9Apj9ahBU+M+mRT4Za/I/aTz/7ic0r+OQJpV1S8yUhdaTmmcEc/sPd/oGs/9HTzEDZTW/7ceWpgbIbJk6rdiElZtGrbQEA93MMWQ==
   </data>
  </layer>
  <layer name="noncollidable" width="32" height="23">
@@ -25,7 +25,7 @@
  </layer>
  <layer name="spikes" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJztw0EJAAAIBLCrYf+ihriPwgZLAADghil/sEDvAZE=
+   eJxjYBgFo2AUjIJRMFKBJBZMrFp88qNgFIyCUUAuwFYukYKHAgAAf7kCvQ==
   </data>
  </layer>
  <objectgroup name="spawns" width="32" height="23">
@@ -33,5 +33,8 @@
   <object name="end" type="end" gid="2" x="927" y="159"/>
   <object name="movable" type="movable" gid="5" x="33" y="669"/>
   <object name="movable" type="movable" gid="5" x="192" y="670"/>
+  <object name="skeleton" type="skeleton" gid="3" x="672" y="363"/>
+  <object name="skeleton" type="skeleton" gid="3" x="418" y="364"/>
+  <object name="skeleton" type="skeleton" gid="3" x="95" y="366"/>
  </objectgroup>
 </map>

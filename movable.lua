@@ -56,7 +56,7 @@ function Movable:collisionWithSolid(mtv_x,mtv_y)
                 self.falling = false
             end
         elseif fromdown then
-            self.velocity.y = 0
+            --self.velocity.y = 0
         elseif mtv_y == 0 then
             self.velocity.x = 0
         end
