@@ -88,3 +88,22 @@ function AudioController:setSoundsVolume(volume)
         end
 	end
 end
+
+function AudioController:playSound(sound)
+	self.sounds[sound]:play()
+end
+function AudioController:playAndRewindSound(sound)
+	self.sounds[sound]:rewind()
+	self.sounds[sound]:play()
+end
+function AudioController:playAndRewindSoundPitchy(sound)
+	pitch = math.random(95,105)/100
+	self.sounds[sound]:rewind()
+	self.sounds[sound]:setPitch(pitch)
+	self.sounds[sound]:play()
+end
+function AudioController:playMusic(music)
+	self.music[music]:setLooping(true)
+	self.music[music]:rewind()
+	self.music[music]:play()
+end

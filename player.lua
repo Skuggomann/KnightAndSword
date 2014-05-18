@@ -48,8 +48,10 @@ function Player:update(dt)
         self.facingRight = true
     end
     if controls:isDown("up") and not self.jumping and self:canMove() then
-        AudioController.sounds["jump"]:rewind()
+        --[[AudioController.sounds["jump"]:rewind()
         AudioController.sounds["jump"]:play()
+        ]]
+        AudioController:playAndRewindSoundPitchy("jump")
         self.velocity.y = self.jumpHeight
     	self.jumping = true
     end
