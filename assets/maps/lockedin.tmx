@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="32" height="23" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="70" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="32" height="23">
+ <layer name="background" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMBKHb37/fuugECaumqqq+PC1qH6E=
+   eJztw0ENAAAMA6H717/fCRkkrJqqqqqqqurDB/0WRS8=
   </data>
  </layer>
- <layer name="background lighting" width="32" height="23">
+ <layer name="background lighting" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztzcENACAMw8C8uv/IrEAhKCqypXu7JBUAfGan5PvVv1Py7f6flHy7/jcl344/MNkCfegO6Q==
+   eJzt1bENgEAMBEFH9F8yBbABCXr0PyNdAd7EM0/X4v2VLk2XpkvTpenSdGm6NF3aafe+pUvTpOnRdGmaNC2aLu2Lf7RDW12aLk2XpkvTZeYGGDUOyw==
   </data>
  </layer>
- <layer name="ground" width="32" height="23">
+ <layer name="ground" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEBlgTCtAyOxR+0ftp6X9hMBwt38g8z+x5tLCPaSYQW3/k2oeNe0nxyxq2U+uOdj0kZpOKfEDpf4fSP30zivo+gZ7e2Sg65+Btp8QGCz2DyQGALlQC+E=
+   eJztmckNACAIBC3C/mv1r5tgUA5xJ/ELOMbg0dpKDx5ZsaxNik0v/rlPoRcMvWDoBRNZG73kyy1hURvPL34xvbFYwypebsV5YX/sctNLJegFg+az0zte6i0atPOp5mGGXjAnXqq/S1nVynujLvavXjLnlqAXTORfQBYvA4oADJU=
   </data>
  </layer>
- <layer name="noncollidable" width="32" height="23">
+ <layer name="noncollidable" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BkAF0g1gNi/QGy3xSIzYDYfITaPwpGwSgYBaNgFIwCCAAAjRoBzw==
+   eJzt1VEKgCAQBUAvVNFHdf+btQcI1CArdgbejwiKwttSAP5tbVi72pPVFJkjy9sX6TDi/7bIHjkGnPUVLe+a8V3IrTY/zBOgh84AnlbrmTs9pLuAjE73SQQb
   </data>
  </layer>
- <layer name="spikes" width="32" height="23">
+ <layer name="spikes" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAHwaGSgAAQ==
   </data>
  </layer>
- <objectgroup name="spawns" width="32" height="23">
-  <object name="player" type="player" gid="1" x="65" y="670"/>
-  <object name="end" type="end" gid="2" x="898" y="225"/>
-  <object name="skeleton" type="skeleton" gid="3" x="512" y="672"/>
-  <object name="door1" type="door" gid="15" x="736" y="672"/>
-  <object name="door2" type="door" gid="15" x="737" y="224"/>
-  <object name="door2" type="sensor" gid="14" x="831" y="704"/>
-  <object name="door1" type="sensor" gid="14" x="161" y="704"/>
-  <object name="door2" type="sensor" gid="14" x="65" y="321"/>
-  <object name="movable" type="movable" gid="5" x="928" y="670"/>
+ <objectgroup name="spawns" width="70" height="23">
+  <object name="player" type="player" gid="1" x="225" y="670"/>
+  <object name="end" type="end" gid="2" x="1058" y="225"/>
+  <object name="skeleton" type="skeleton" gid="3" x="672" y="672"/>
+  <object name="door1" type="door" gid="15" x="896" y="672"/>
+  <object name="door2" type="door" gid="15" x="897" y="224"/>
+  <object name="door2" type="sensor" gid="14" x="991" y="704"/>
+  <object name="door1" type="sensor" gid="14" x="321" y="704"/>
+  <object name="door2" type="sensor" gid="14" x="225" y="321"/>
+  <object name="movable" type="movable" gid="5" x="1088" y="670"/>
  </objectgroup>
 </map>

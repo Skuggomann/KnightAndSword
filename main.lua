@@ -20,7 +20,7 @@ require 'speechstate'
 require 'howto'
 
 sprites = {}
-debug = true
+debug = false
 
 function love.load()
 	--Loading fonts
