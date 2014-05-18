@@ -38,8 +38,11 @@ function Telekinesis:use()
     --for _, shape in ipairs(self.collider:shapesAt(x,y)) do
     for shape in pairs(self.collider:shapesInRange(self.bbox:bbox())) do
         if shape.type == "movable" and shape:collidesWith(self.bbox) then
-            print(x,y)
-            print(shape:center())
+            for other in pairs(shape:neighbors()) do
+                if other.type == "movable" then
+                    other.ref.falling = true
+                end
+            end
             self.activeTelekinesis = shape
             self.activeTelekinesis.ref.beingHeld = true
             self.activeTelekinesis.ref.falling = false

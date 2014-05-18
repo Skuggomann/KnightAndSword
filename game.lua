@@ -533,6 +533,10 @@ function stop_collide(dt, shape_a, shape_b)
     	shape_a.delay = shape_a.MAXDELAY
     elseif shape_b.type == "sensor" and shape_a.type == "movable" then
     	shape_b.delay = shape_b.MAXDELAY
+    elseif shape_a.type == "movable" and shape_b.type == "movable" then
+    	shape_a.falling = true
+    elseif shape_b.type == "movable" and shape_a.type == "movable" then
+    	shape_a.falling = true
     end
 end
 
