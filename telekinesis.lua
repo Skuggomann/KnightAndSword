@@ -76,7 +76,7 @@ end
 function Telekinesis:drop()
     if self.activeTelekinesis ~= nil then
         for other in pairs(self.activeTelekinesis:neighbors()) do
-            if other.type ~= "player" and other.type ~= "mace" and other.type ~= "sword" and other.type ~= "telekinesis" and self.activeTelekinesis:collidesWith(other)   then
+            if other.type ~= "player" and other.type ~= "mace" and other.type ~= "sword" and other.type ~= "telekinesis" and other.type ~= "sensor" and self.activeTelekinesis:collidesWith(other)   then
                 return false
             end
         end
