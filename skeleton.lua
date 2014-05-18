@@ -104,8 +104,11 @@ end
 
 function Skeleton:takeDamage(damage)
     if damage > 0 then
+        AudioController:playAndRewindSoundPitchy("skeletonhit")
+        --[[
         AudioController.sounds["skeletonhit"]:rewind()
         AudioController.sounds["skeletonhit"]:play()
+        ]]
         self.hp = self.hp - damage
         self.invuln = self.MAXINVULN
     end

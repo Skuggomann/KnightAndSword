@@ -48,9 +48,11 @@ function Telekinesis:use()
             self.player.canAttack = false
 
             self.manacost = 0
-
+            AudioController:playAndRewindSound("levitatepickup")
+            --[[
             AudioController.sounds["levitatepickup"]:rewind()
             AudioController.sounds["levitatepickup"]:play()
+            ]]
             --self.activeTelekinesis:move(0,-10)
             return
         end
@@ -82,8 +84,11 @@ function Telekinesis:drop()
         self.player.canAttack = true
         self.player.manaregen = self.player.MAXMANAREGEN
         self.manacost = self.MAXMANACOST
+        AudioController:playAndRewindSound("levitatedrop")
+        --[[
         AudioController.sounds["levitatedrop"]:rewind()
         AudioController.sounds["levitatedrop"]:play()
+        ]]
         return true
     end
     return true
@@ -106,7 +111,8 @@ function Telekinesis:update(dt)
     y = y +50
     self.bbox:moveTo(x+10,y-26)
     if self.activeTelekinesis ~= nil then
-        AudioController.sounds["levitatepassive"]:play()
+        AudioController:playSound("levitatepassive")
+        --AudioController.sounds["levitatepassive"]:play()
         x,y = self.player.bbox:center()
         if not self.player.facingRight then
             x = x-35

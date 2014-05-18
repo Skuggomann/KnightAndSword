@@ -143,8 +143,11 @@ end
 
 function Player:attack()
 	if self.weapons[self.currentWeapon]:canAttack() and self.canAttack then
+        AudioController:playAndRewindSoundPitchy(self.currentWeapon.."hit")
+        --[[
         AudioController.sounds[self.currentWeapon.."hit"]:rewind()
         AudioController.sounds[self.currentWeapon.."hit"]:play()
+        ]]
     	self.weapons[self.currentWeapon]:attack()
     end
 end
@@ -238,14 +241,20 @@ end
 function Player:takeDamage(damage)
 	self.hp = self.hp-damage
 	self.invuln = self.MAXINVULN
+    AudioController:playAndRewindSoundPitchy("damage")
+    --[[
     AudioController.sounds["damage"]:rewind()
     AudioController.sounds["damage"]:play()
+    ]]
 end
 function Player:recoverHealth(health)
     self.hp = self.hp+health
     if self.hp > self.maxhp then self.hp = self.maxhp end
+    AudioController:playAndRewindSound("healthvial")
+    --[[
     AudioController.sounds["healthvial"]:rewind()
     AudioController.sounds["healthvial"]:play()
+    ]]
 end
 
 function Player:isInvuln()
@@ -282,8 +291,11 @@ function Player:swapWeaponsBackwards()
             a = next(self.allowedWeapons,k)
             if a == nil and v == true then
                 self.currentWeapon = k
+                AudioController:playAndRewindSoundPitchy("swapweapons")
+                --[[
                 AudioController.sounds["swapweapons"]:rewind()
                 AudioController.sounds["swapweapons"]:play()
+                ]]
                 return
             end
         end
@@ -293,8 +305,11 @@ function Player:swapWeaponsBackwards()
             if a == self.currentWeapon or found then
                 if v == true then
                 self.currentWeapon = k
+                AudioController:playAndRewindSoundPitchy("swapweapons")
+                --[[
                 AudioController.sounds["swapweapons"]:rewind()
                 AudioController.sounds["swapweapons"]:play()
+                ]]
                 return
                 else
                     found = true
@@ -326,8 +341,11 @@ function Player:swapAbilitiesBackwards()
             for k,v in pairs(self.allowedAbilities) do
                 a = next(self.allowedAbilities,k)
                 if a == nil and v == true then
+                    AudioController:playAndRewindSoundPitchy("swapabilities")
+                    --[[
                     AudioController.sounds["swapabilities"]:rewind()
                     AudioController.sounds["swapabilities"]:play()
+                    ]]
                     self.currentAbility = k
                     return
                 end
@@ -337,8 +355,11 @@ function Player:swapAbilitiesBackwards()
                 a = next(self.allowedAbilities,k) 
                 if a == self.currentAbility then
                     if v == true then
+                        AudioController:playAndRewindSoundPitchy("swapabilities")
+                        --[[
                         AudioController.sounds["swapabilities"]:rewind()
                         AudioController.sounds["swapabilities"]:play()
+                        ]]
                         self.currentAbility = k
                         return
                     else

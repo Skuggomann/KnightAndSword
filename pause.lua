@@ -12,6 +12,7 @@ function pause:enter(from)
     self.from = from -- record previous state
 	selected = 1
 	love.audio.pause()
+	--AudioController:playMusic("pause")
 	AudioController.music["pause"]:play()
 	self:registerSignals()
 end

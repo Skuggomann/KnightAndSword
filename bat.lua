@@ -131,8 +131,11 @@ function Bat:takeDamage(damage)
     if self.bbox ~= nil then
         if damage > 0 then
             self.bbox.hp = self.bbox.hp - damage
+            AudioController:playAndRewindSoundPitchy("batshit")
+            --[[
             AudioController.sounds["batshit"]:rewind()
             AudioController.sounds["batshit"]:play()
+            ]]
         end
     end
 end

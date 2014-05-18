@@ -25,6 +25,7 @@ function levelselect:init() -- run only once
 end
 
 function levelselect:enter(previous) -- run every time the state is entered
+	--AudioController:playMusic("levelselect")
 	AudioController.music["levelselect"]:rewind()
 	AudioController.music["levelselect"]:play()
 	Signal.register('enter', function()
