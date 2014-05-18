@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="70" height="23" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="75" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="70" height="23">
+ <layer name="background" width="75" height="23">
   <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6H717/fCRkkrJqqqqqqqurDB/0WRS8=
+   eJztw8EJAAAMA6H7Z/99O0dBwVVTVVVVVVXVxw/PgUog
   </data>
  </layer>
- <layer name="background lighting" width="70" height="23">
+ <layer name="background lighting" width="75" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt0LENADAIA0Gq7D9yFkAiVHbkf4kKGu5U1RGOa0oTZzv1z7jgggsuuPiNIvXPv7lM+3SX6S7J5fUuyWV7n+CyvU9xcR1F6p9x8fn5JTz6MOnDpA+TPkxo0wU4YhKL
+   eJzt0DEKADAIBEGr/P/JeUAgOUlxirtgd4VMxNkyX6fcVp083Q5YYYVV/auS2wErrLC6/+d26mT12k23UnfTrbL7qVbZ/WSrqlcltwNW/RyUMNLDSQ8nPZz0cKLfNuS9Eos=
   </data>
  </layer>
- <layer name="ground" width="70" height="23">
+ <layer name="ground" width="75" height="23">
   <data encoding="base64" compression="zlib">
-   eJztmEEOwCAIBHkE/39r452ECIVlWybxVCM4UbGqiChB6wYR85b1YrNebNaLzXqxYfBi1YdoTflaPYrknZnvNC9T9tgkL+p872SKF+v8QDLBi7d+EKC9ePFRblBeqv7t3qqz6PWSHafq3sHspZI/edn3lxkxb+nOkcHJoTNPFieHrlyZnByybwLRfoysA5EHA7UPAQ==
+   eJztmEkSgCAMwPoI/v9WpwdPSlGWNkUz40lGYg6AilwpSS4CFA8LiiPFw4LiSPGwoDhSPCwojhQPC4rjW4+7fal3L/vCPtjzLiMNMrTK4OhJzaM07ntCcFBq60hrjCfR85887RLpS2zVcopyJrVa9X07a98ntZr1nFXnot1arYTiGLkGfeHcnnHOGXh7Z+2keLpn7qR4+WfvpIz+P+kdtwt/F5EDHJIPFQ==
   </data>
  </layer>
- <layer name="noncollidable" width="70" height="23">
+ <layer name="noncollidable" width="75" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1mEKABAMhmEXQn7g/jezAyhT08T71PdDWS2KhQCcVRZrTc2qrij2/ChKkiR7NzLheVdV0iTdsYcbcS7AGyze191/GIANzbwLAD/QziLMLAAAKwMziATf
+   eJzt1kEKgCAQBdAuVOGiuv/NGmgbOIEwCe/BXwgOiIL8ZYH/ap11ZqY31xJ7eKyRLbJXHySp8k2PyBm5Cs8wC3cFvBnxh3/tBEC9TG8HYIxsV9KpAJjJDfwjBN8=
   </data>
  </layer>
- <layer name="spikes" width="70" height="23">
+ <layer name="spikes" width="75" height="23">
   <data encoding="base64" compression="zlib">
-   eJzt1rENACAMA7C+0f8fZWUsdKgQtpQxcxIBAO/KLTedkx4A0GeHAYBJ1S/is/xlAUYqAdw=
+   eJzt1jEKADAIBEG/kf9/1NZGiJIqzMCV128EAPDCKdt8Jj8A4C+aAACgd9tKmooEeLUB3A==
   </data>
  </layer>
- <objectgroup name="spawns" width="70" height="23">
-  <object name="player" type="player" gid="1" x="96" y="637"/>
-  <object name="end" type="end" gid="2" x="1248" y="160"/>
-  <object name="healthvial" type="healthvial" gid="16" x="32" y="416"/>
-  <object name="healthvial" type="healthvial" gid="16" x="1280" y="510"/>
+ <objectgroup name="spawns" width="75" height="23">
+  <object name="player" type="player" gid="1" x="256" y="637"/>
+  <object name="end" type="end" gid="2" x="1408" y="160"/>
+  <object name="healthvial" type="healthvial" gid="16" x="192" y="416"/>
+  <object name="healthvial" type="healthvial" gid="16" x="1440" y="510"/>
  </objectgroup>
 </map>
