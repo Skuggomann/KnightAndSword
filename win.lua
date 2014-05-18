@@ -3,7 +3,8 @@ local win = Gamestate.win
 local selected = 1
 function win:enter(from, time)
     love.audio.pause()
-    AudioController.sounds["victory"]:play()
+    AudioController:playAndRewindSound("victory")
+    --AudioController.sounds["victory"]:play()
     self.from = from -- record previous state
     self.fadeTime = 4
     self.fadeTimedx = 0

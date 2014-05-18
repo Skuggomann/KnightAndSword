@@ -13,23 +13,23 @@ AudioController = Class{
 		    ["macehit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["batshit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["skeletonhit"] = love.audio.newSource("assets/sounds/skeltonhit.mp3", "static"),
-		    ["frostboltcast"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["frostboltcast"] = love.audio.newSource("assets/sounds/frostbolt1.mp3", "static"),
 		    ["frostbolthitwalls"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["frostbolthitenemy"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["jump"] = love.audio.newSource("assets/sounds/jump2.mp3", "static"),
 		    ["damage"] = love.audio.newSource("assets/sounds/PHIT.mp3", "static"),
-		    ["death"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-		    ["levitatepickup"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["death"] = love.audio.newSource("assets/sounds/death2.mp3", "static"),
+		    ["levitatepickup"] = love.audio.newSource("assets/sounds/meow.mp3", "static"),
 		    ["levitatedrop"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-		    ["levitatepassive"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["levitatepassive"] = love.audio.newSource("assets/sounds/levitatepassive2.mp3", "static"),
 		    ["footsteps"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["healthvial"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["swapweapons"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["swapabilities"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-		    ["victory"] = love.audio.newSource("assets/sounds/HIT.mp3", "static")
+		    ["victory"] = love.audio.newSource("assets/sounds/victorystutt.mp3", "static")
 			--add speech?
 		}
-
+		self.sounds["levitatepassive"]:setLooping(true)
 		local file = io.open("settings.txt")
 		if file then
 			for line in file:lines() do
@@ -106,4 +106,8 @@ function AudioController:playMusic(music)
 	self.music[music]:setLooping(true)
 	self.music[music]:rewind()
 	self.music[music]:play()
+end
+
+function AudioController:stopSound(sound)
+	self.sounds[sound]:stop()
 end
