@@ -2,6 +2,7 @@
 2. Jumping Loin,level2.tmx
 3. Icy freeze,level3.tmx
 4. Cliffhanger,level4.tmx
+5. Revitalized,revitalized.tmx
 5. Ice age,level5.tmx
 6. The arena of DEATH,level6.tmx
 7. Hell level,levelhell.tmx
