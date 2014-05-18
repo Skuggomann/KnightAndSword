@@ -35,6 +35,7 @@ function Bat:spawn()
 
 end
 function Bat:update(dt)
+    local playerx = self.player.bbox:center()
     if self.bbox ~= nil then
         --update status effects
         if self:isFrozen() then
@@ -68,7 +69,6 @@ function Bat:update(dt)
             self.bbox:move(self.bbox.velocity.x*dt,self.bbox.velocity.y*dt)
         end
 
-        local playerx = self.player.bbox:center()
         local batx = self.bbox:center()
         if playerx-1000 > batx or playerx+1000 < batx then
             self.bbox.hp = 0 -- kill it
@@ -82,7 +82,9 @@ function Bat:update(dt)
         end
     else
         if self.cooldown <= 0 then
-            self:spawn()
+            if playerx-self.pos.x > 50 or playerx-self.pos.x < -50 then 
+                self:spawn()
+            end
         else
             self.cooldown = self.cooldown-dt
             if self.cooldown <= 0 then
