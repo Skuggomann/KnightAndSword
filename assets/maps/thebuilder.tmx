@@ -15,7 +15,7 @@
  </layer>
  <layer name="ground" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEBlgPFBg1P5R+0ftH7V/1P6Rbf9A1XODxf8DafdA2C+CRNPbfhE0Nj3tR7eLnvbjS/+ktgvJUUeMOQOBARbWC7k=
+   eJwTYWBgEBlgPFBg1P5R+0ftH7V/1P5R+0ftHxi7B8J+ESSa3vaLoLHpaT+6XfS0H5s9tG4XEjJroNu9IAwAIh8JYQ==
   </data>
  </layer>
  <layer name="noncollidable" width="32" height="23">
@@ -25,13 +25,13 @@
  </layer>
  <layer name="spikes" width="32" height="23">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBaNgcABJHJhcdYMRAADziAEt
+   eJztw0EJAAAIBLCrYf+ihriPwgZLAADghil/sEDvAZE=
   </data>
  </layer>
  <objectgroup name="spawns" width="32" height="23">
   <object name="player" type="player" gid="1" x="129" y="639"/>
-  <object name="end" type="end" gid="2" x="65" y="444"/>
+  <object name="end" type="end" gid="2" x="927" y="159"/>
   <object name="movable" type="movable" gid="5" x="33" y="669"/>
-  <object name="movable" type="movable" gid="5" x="416" y="667"/>
+  <object name="movable" type="movable" gid="5" x="192" y="670"/>
  </objectgroup>
 </map>

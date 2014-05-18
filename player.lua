@@ -266,6 +266,7 @@ function Player:destructor()
 	self.collider:remove(self.bbox)	
 	self.collider:remove(self.weapons["sword"].bbox)
 	self.collider:remove(self.weapons["mace"].bbox)
+    self.collider:remove(self.abilities["telekinesis"].bbox)
 end
 function Player:swapWeaponsBackwards()
 

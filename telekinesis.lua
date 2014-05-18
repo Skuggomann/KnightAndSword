@@ -9,7 +9,7 @@ Telekinesis = Class{
         self.manacost = 20
         self.MAXCOOLDOWN = 0.5
         self.cooldown = 0
-        self.bbox = collider:addRectangle(0,0,45,50)
+        self.bbox = collider:addRectangle(0,0,35,50)
         self.bbox.type = "telekinesis"
         --self.fimage = love.graphics.newImage('assets/art/Telekinesis-animation.png')
         --self.g = anim8.newGrid(30, 30, 68, 34, -2,-2,4)
@@ -99,9 +99,9 @@ function Telekinesis:update(dt)
 
     local x,y = self.player.bbox:center()
     if not self.player.facingRight then
-        x = x-35
+        x = x-45
     else
-        x = x+15
+        x = x+25
     end
     y = y +50
     self.bbox:moveTo(x+10,y-26)
