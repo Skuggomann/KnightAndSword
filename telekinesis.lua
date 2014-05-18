@@ -113,7 +113,7 @@ function Telekinesis:update(dt)
         else
             x = x+15
         end
-        self.activeTelekinesis:moveTo(x+10,y-26)
+        self.activeTelekinesis:moveTo(x+10,y-16)
         --self.activeTelekinesis:move(0,-1)
     end    
 end
