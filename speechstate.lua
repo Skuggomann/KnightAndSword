@@ -9,11 +9,17 @@ function speechstate:enter(from,ui,textTable) -- run every time the state is ent
     self.from = from
     self.ui = ui
     self.textTable = textTable
-
+end
+function speechstate:registerSignals()
     Signal.register('enter', function()
         table.remove(self.textTable, 1)
     end)
+    Signal.register('start', function()
+        controls:clear()
+        Gamestate.push(Gamestate.pause)
+    end)
 end
+
 function speechstate:leave()
     controls:clear()
 end
