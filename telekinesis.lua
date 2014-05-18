@@ -9,7 +9,8 @@ Telekinesis = Class{
         self.manacost = 20
         self.MAXCOOLDOWN = 0.5
         self.cooldown = 0
-
+        self.bbox = collider:addRectangle(0,0,45,50)
+        self.bbox.type = "telekinesis"
         --self.fimage = love.graphics.newImage('assets/art/Telekinesis-animation.png')
         --self.g = anim8.newGrid(30, 30, 68, 34, -2,-2,4)
         --self.animation = anim8.newAnimation(self.g('1-2',1), 0.2)
@@ -28,14 +29,17 @@ function Telekinesis:use()
 
 
     local x, y = self.player.bbox:center()
-    y = y+10
+   --[[y = y-10
     if not self.player.facingRight then
-        x = x - 30
+        x = x - 50
     else
-        x = x + 30
-    end
-    for _, shape in ipairs(self.collider:shapesAt(x,y)) do
-        if shape.type == "movable" then
+        x = x + 10
+    end]]
+    --for _, shape in ipairs(self.collider:shapesAt(x,y)) do
+    for shape in pairs(self.collider:shapesInRange(self.bbox:bbox())) do
+        if shape.type == "movable" and shape:collidesWith(self.bbox) then
+            print(x,y)
+            print(shape:center())
             self.activeTelekinesis = shape
             self.activeTelekinesis.ref.beingHeld = true
             self.activeTelekinesis.ref.falling = false
@@ -66,7 +70,7 @@ end
 function Telekinesis:drop()
     if self.activeTelekinesis ~= nil then
         for other in pairs(self.activeTelekinesis:neighbors()) do
-            if other.type ~= "player" and other.type ~= "mace" and other.type ~= "sword" and self.activeTelekinesis:collidesWith(other)   then
+            if other.type ~= "player" and other.type ~= "mace" and other.type ~= "sword" and other.type ~= "telekinesis" and self.activeTelekinesis:collidesWith(other)   then
                 return false
             end
         end
@@ -93,10 +97,17 @@ function Telekinesis:update(dt)
         end
     end
 
+    local x,y = self.player.bbox:center()
+    if not self.player.facingRight then
+        x = x-35
+    else
+        x = x+15
+    end
+    y = y +50
+    self.bbox:moveTo(x+10,y-26)
     if self.activeTelekinesis ~= nil then
         AudioController.sounds["levitatepassive"]:play()
-
-        local x,y = self.player.bbox:center()
+        x,y = self.player.bbox:center()
         if not self.player.facingRight then
             x = x-35
         else
@@ -123,14 +134,15 @@ function Telekinesis:draw()
 
 
     if debug then
-        local x, y = self.player.bbox:center()
-        y = y+10
+        --[[local x, y = self.player.bbox:center()
+        y = y-10
         if not self.player.facingRight then
-            x = x - 30
+            x = x - 50
         else
-            x = x + 30
+            x = x + 10
         end
-        love.graphics.rectangle("fill",x,y,1,1)
+        love.graphics.rectangle("fill",x,y,1,1)]]
+        --self.bbox:draw('fill')
     end
     --love.graphics.draw(self.image,x,y-10)
 

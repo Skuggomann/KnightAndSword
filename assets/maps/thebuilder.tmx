@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="23" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
+  <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
+ </tileset>
+ <layer name="background" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMBKHb37/fuugECaumqqq+PC1qH6E=
+  </data>
+ </layer>
+ <layer name="background lighting" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMBKGb3r/kuugECaumqqq+PGPNEUE=
+  </data>
+ </layer>
+ <layer name="ground" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJwTYWBgEBlgPFBg1P5R+0ftH7V/1P5R+0ftHxi7B8J+ESSa3vaLoLHpaT+6XfS0H5s95LYLyVFHjDkDgQFf/wmx
+  </data>
+ </layer>
+ <layer name="noncollidable" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+  </data>
+ </layer>
+ <layer name="spikes" width="32" height="23">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBaNgcABJHJhcdYMRAADziAEt
+  </data>
+ </layer>
+ <objectgroup name="spawns" width="32" height="23">
+  <object name="player" type="player" gid="1" x="129" y="639"/>
+  <object name="end" type="end" gid="2" x="65" y="444"/>
+  <object name="movable" type="movable" gid="5" x="33" y="669"/>
+  <object name="movable" type="movable" gid="5" x="416" y="667"/>
+ </objectgroup>
+</map>
