@@ -1,36 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="32" height="23" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="70" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="32" height="23">
+ <layer name="background" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMBKHb37/fuugECaumqqq+PC1qH6E=
+   eJztw0ENAAAMA6H717/fCRkkrJqqqqqqqurDB/0WRS8=
   </data>
  </layer>
- <layer name="background lighting" width="32" height="23">
+ <layer name="background lighting" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMBKGb3r/kuugECaumqqq+PGPNEUE=
+   eJzt0DENADEAxLCbyh/yA2j2/mBLIZDtdh73V740X5ovzZfmS/Ol+dJ8ab40X5ovzZfmS/Ol+dJ8ab40X5ovzZfmS/Nl+wAHmxFB
   </data>
  </layer>
- <layer name="ground" width="32" height="23">
+ <layer name="ground" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEBlgPFBg1P5R+9Htp2d6J+R/aoUNLnNG7cdfFtHCflLKv5ES/oPJflrUTaP5f3Dbjy//06rMH23/DB77BxIDADS+Dtk=
+   eJzt2FEKgCAUBVEX4f7X2n9OPErBi80BIYgwBtGotVHfPFLtfDe75M1dsQuzC7ML67frp/Pi6zlT3UvlemF2YXZhM3vD7DPpXf44d8UuzC5sxd7g98s5c1fswuzC/H5hrhdmF2YX9va/yuqR4AI0Pw8B
   </data>
  </layer>
- <layer name="noncollidable" width="32" height="23">
+ <layer name="noncollidable" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+   eJzt1jkOgCAQBVAupIZCvf/NnNLGBZfg8l7yE2iAoZhMSlBH3th/SWltTaSNdDfe8UZ9ZIiMtR/yMP6FubVekBfWJWcA/3K2V+g1wB7mF+BK5hfgiAlcNgWj
   </data>
  </layer>
- <layer name="spikes" width="32" height="23">
+ <layer name="spikes" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAHwaGSgAAQ==
   </data>
  </layer>
- <objectgroup name="spawns" width="32" height="23">
-  <object name="player" type="player" gid="1" x="72" y="442"/>
-  <object name="end" type="end" gid="2" x="468" y="439"/>
-  <object name="skeleton" type="skeleton" gid="3" x="277" y="440"/>
+ <objectgroup name="spawns" width="70" height="23">
+  <object name="player" type="player" gid="1" x="256" y="670"/>
+  <object name="end" type="end" gid="2" x="671" y="161"/>
+  <object name="skeleton" type="skeleton" gid="3" x="257" y="417"/>
+  <object name="breakable" type="breakable" gid="13" x="960" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="992" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="768" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="736" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="576" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="544" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="352" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="320" y="608"/>
+  <object name="breakable" type="breakable" gid="13" x="992" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="736" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="960" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="576" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="544" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="352" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="320" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="768" y="352"/>
+  <object name="breakable" type="breakable" gid="13" x="1120" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="1088" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="896" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="864" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="672" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="640" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="448" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="416" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="224" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="192" y="480"/>
+  <object name="breakable" type="breakable" gid="13" x="416" y="224"/>
+  <object name="breakable" type="breakable" gid="13" x="1120" y="224"/>
+  <object name="breakable" type="breakable" gid="13" x="448" y="224"/>
+  <object name="breakable" type="breakable" gid="13" x="1088" y="224"/>
+  <object name="breakable" type="breakable" gid="13" x="224" y="224"/>
+  <object name="breakable" type="breakable" gid="13" x="192" y="224"/>
+  <object name="breakable" type="breakable" gid="13" x="864" y="224"/>
+  <object name="breakable" type="breakable" gid="13" x="896" y="224"/>
+  <object name="skeleton" type="skeleton" gid="3" x="289" y="545"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1025" y="544"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1057" y="417"/>
+  <object name="skeleton" type="skeleton" gid="3" x="608" y="417"/>
+  <object name="skeleton" type="skeleton" gid="3" x="705" y="418"/>
+  <object name="skeleton" type="skeleton" gid="3" x="928" y="289"/>
+  <object name="skeleton" type="skeleton" gid="3" x="385" y="289"/>
+  <object name="skeleton" type="skeleton" gid="3" x="641" y="289"/>
+  <object name="skeleton" type="skeleton" gid="3" x="673" y="289"/>
+  <object name="skeleton" type="skeleton" gid="3" x="768" y="160"/>
+  <object name="skeleton" type="skeleton" gid="3" x="544" y="160"/>
  </objectgroup>
 </map>
