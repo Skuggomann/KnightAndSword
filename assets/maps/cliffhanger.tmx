@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="45" height="23" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="55" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="45" height="23">
+ <layer name="background" width="55" height="23">
   <data encoding="base64" compression="zlib">
-   eJztz7ERADAMAjF677+vd0gRCou778UkmWIva3qZmZmZmZmZmZlvm9ufmJmZmX+YF6lgHTk=
+   eJztz7EJAAAIA8H07r+vI1iqcIHr85WkAAAAOG/a9j9t2rT9oO2nBqr/M/Q=
   </data>
  </layer>
- <layer name="background lighting" width="45" height="23">
+ <layer name="background lighting" width="55" height="23">
   <data encoding="base64" compression="zlib">
-   eJztz7ERADAMAjEq7z+yd0gRCou778UkmWIva3qZmZmZmZmZmZlvm9ufmJmZmX+YF9gTD/E=
+   eJztz7ENAAAIw7BO/H8yV1AWR8oBniTz+GWfLjY2NjY2NjY2NjY2tnZsbGy92NjatgVjiw/x
   </data>
  </layer>
- <layer name="ground" width="45" height="23">
+ <layer name="ground" width="55" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlsENACAIAxmC/Wd1A0JqqRpL4k+9A2IkIyKLNR0IQ+HF5k87Vz1Ee+k6a/h21vCZzsi7Ou2MhJ1753ZzvrnO/lP6+ybmpp/q/NosqrxPwbCzhmFnDcPOPMYCj8EGaQ==
+   eJztljEOACAIA3kE/3+rq4sMailNSuIoxyFRMyKyWOhAMjrqZ/HRbtVMoGfD56bJt5sm/2fum/tBxW0a327nfa+1TXS74fjt7s+N6vMEN0U+6x+78xlht/kMFtdumly7aXKRjAUqSwZp
   </data>
  </layer>
- <layer name="noncollidable" width="45" height="23">
+ <layer name="noncollidable" width="55" height="23">
   <data encoding="base64" compression="zlib">
-   eJztkkEKwCAMBL37llY81P7/Z+bgKZQSJVGDO7BIIIdxSQi2ZMFO7MwOwLkfyS1wVjuPAOd/Ru7gCw89Z/Z6cL4oNyW12dJZ6xYeSqG8bfbQs5Yz71CrUwkeeubAeQ4nOO/wHzjDGc5wtnauyAQRTg==
+   eJztkjEKwDAIRbP3LE3J0Pb+N6tDJulgRI0J/8EnCEF4aim+NMGfYzArAbf5bpIb5KzipgFusW6a+/sjo5uWxt6d3E5KpVy9zuBmdYM35aG8vc7gZkW0G9+J1Y4k7LQ3Dtzglg0vtwzzgRvcpH2jgBvcpH2j8HL7AC0MEU4=
   </data>
  </layer>
- <layer name="spikes" width="45" height="23">
+ <layer name="spikes" width="55" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1pCaAAAAAAbhAsAAE=
+   eJztwTEBAAAAwqD1T20ND6AAAAAAgGcDE8QAAQ==
   </data>
  </layer>
- <objectgroup name="spawns" width="45" height="23">
+ <objectgroup name="spawns" width="55" height="23">
   <object name="player" type="player" gid="1" x="72" y="442"/>
   <object name="end" type="end" gid="2" x="960" y="322"/>
   <object name="skeleton" type="skeleton" gid="3" x="640" y="191"/>

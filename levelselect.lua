@@ -4,21 +4,18 @@ local levels = {}
 local selected = 1
 local levelnr = 1
 function levelselect:init() -- run only once
-	local file = io.open("assets/maps/levels.txt")
-	if file then
-		for line in file:lines() do
-			local attr = 1
-			table.insert(levels,{})
-			for i in string.gmatch(line, '([^,]+)') do
-				if attr == 1 then
-					levels[levelnr].name = i
-				elseif attr == 2 then
-					levels[levelnr].filename = i
-				end
-				attr = attr+1
+	for line in love.filesystem.lines("/assets/maps/levels.txt") do
+		local attr = 1
+		table.insert(levels,{})
+		for i in string.gmatch(line, '([^,]+)') do
+			if attr == 1 then
+				levels[levelnr].name = i
+			elseif attr == 2 then
+				levels[levelnr].filename = i
 			end
-			levelnr = levelnr+1
+			attr = attr+1
 		end
+		levelnr = levelnr+1
 	end
 	levelnr = levelnr-1
 end

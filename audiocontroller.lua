@@ -33,26 +33,28 @@ AudioController = Class{
 		    ["victory"] = love.audio.newSource("assets/sounds/victorystutt.mp3", "static")
 			--add speech?
 		}
-		self.sounds["levitatepassive"]:setLooping(true)
-		local file = io.open("settings.txt")
-		if file then
-			for line in file:lines() do
-				i = line:find("=")
 
-				toMatch = line:sub(1,i-1)
-				if toMatch == "MasterVolume" then
-					self.masterVolume = tonumber(line:sub(i+1))
-				elseif toMatch == "SoundsVolume" then
-					self.soundsVolume = tonumber(line:sub(i+1))
-				elseif toMatch == "MusicVolume" then
-					self.musicVolume = tonumber(line:sub(i+1))
-				end
+	    self.masterVolume = 1.0
+	    self.musicVolume = 1.0
+	    self.soundsVolume = 1.0
+		self.sounds["levitatepassive"]:setLooping(true)
+		--local file = love.filesystem.newFile("settings.txt")
+		--if file then
+			--print(file)
+		for line in love.filesystem.lines("settings.txt") do
+			i = line:find("=")
+			toMatch = line:sub(1,i-1)
+			if toMatch == "MasterVolume" then
+				self.masterVolume = tonumber(line:sub(i+1))
+			elseif toMatch == "SoundsVolume" then
+				self.soundsVolume = tonumber(line:sub(i+1))
+			elseif toMatch == "MusicVolume" then
+				self.musicVolume = tonumber(line:sub(i+1))
 			end
-		else
-		    self.masterVolume = 1.0
-		    self.musicVolume = 1.0
-		    self.soundsVolume = 1.0
 		end
+		--else
+		--end
+		--file:close()
 
 	    love.audio.setVolume(self.masterVolume)
 

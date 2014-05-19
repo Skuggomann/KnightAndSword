@@ -74,56 +74,54 @@ function readLevelSettings(filepath)
 	weapons = {}
 	abilities = {}
 
-	local file = io.open(settings)
-	if file then
-		for line in file:lines() do
-			local i = line:find("=")
+
+	for line in love.filesystem.lines(settings) do
+		local i = line:find("=")
 
 
 
-			toMatch = line:sub(1,i-1)
-			if toMatch == "VeilOfSouls" then
-				local x = tonumber(line:sub(i+1))
-				if x then 
-					veilstart = x
-					veil = TheVeil(veilstart,collider)
-				end
-			elseif toMatch == "SpeechText" then
-				local str = line:sub(i+1)
-				local speech = {}
-				local j = str:find('"')
-				while j ~= nil do
-					k = str:find('"',j+1)
-					local who = str:sub(j+1,k-1)
-					j = str:find('"',k+1)
-					k = str:find('"',j+1)
-					local what = str:sub(j+1,k-1)
-					what = what:gsub("\\n","\n")
-					table.insert(speech,{who,what})
-					j = str:find('"',k+1)
-				end
-				if #speech ~= 0 then
-					controls:clear()
-					Gamestate.push(Gamestate.speechstate,ui,speech)
-				end
-			elseif toMatch == "BannedWeapons" then
-				local str = line:sub(i+1)
-				local j = str:find('"')
-				while j ~= nil do
-					k = str:find('"',j+1)
-					local weapon = str:sub(j+1,k-1)
-					j = str:find('"',k+1)
-					table.insert(weapons,weapon)
-				end
-			elseif toMatch == "BannedAbilities" then
-				local str = line:sub(i+1)
-				local j = str:find('"')
-				while j ~= nil do
-					k = str:find('"',j+1)
-					local ability = str:sub(j+1,k-1)
-					j = str:find('"',k+1)
-					table.insert(abilities,ability)
-				end
+		toMatch = line:sub(1,i-1)
+		if toMatch == "VeilOfSouls" then
+			local x = tonumber(line:sub(i+1))
+			if x then 
+				veilstart = x
+				veil = TheVeil(veilstart,collider)
+			end
+		elseif toMatch == "SpeechText" then
+			local str = line:sub(i+1)
+			local speech = {}
+			local j = str:find('"')
+			while j ~= nil do
+				k = str:find('"',j+1)
+				local who = str:sub(j+1,k-1)
+				j = str:find('"',k+1)
+				k = str:find('"',j+1)
+				local what = str:sub(j+1,k-1)
+				what = what:gsub("\\n","\n")
+				table.insert(speech,{who,what})
+				j = str:find('"',k+1)
+			end
+			if #speech ~= 0 then
+				controls:clear()
+				Gamestate.push(Gamestate.speechstate,ui,speech)
+			end
+		elseif toMatch == "BannedWeapons" then
+			local str = line:sub(i+1)
+			local j = str:find('"')
+			while j ~= nil do
+				k = str:find('"',j+1)
+				local weapon = str:sub(j+1,k-1)
+				j = str:find('"',k+1)
+				table.insert(weapons,weapon)
+			end
+		elseif toMatch == "BannedAbilities" then
+			local str = line:sub(i+1)
+			local j = str:find('"')
+			while j ~= nil do
+				k = str:find('"',j+1)
+				local ability = str:sub(j+1,k-1)
+				j = str:find('"',k+1)
+				table.insert(abilities,ability)
 			end
 		end
 	end

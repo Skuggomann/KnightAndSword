@@ -21,8 +21,10 @@ require 'howto'
 
 sprites = {}
 debug = false
-
+dirwork = "lol"
 function love.load()
+
+	dirwork = love.filesystem.getWorkingDirectory ()
 	--Loading fonts
 	Font12p = love.graphics.newFont("/assets/fonts/visitor1.ttf", 12)
 	Font18p = love.graphics.setNewFont("/assets/fonts/visitor1.ttf", 18)
@@ -36,8 +38,8 @@ function love.load()
 	sprites.rip_small_animation = love.graphics.newImage('assets/art/rip-small-animation.png')
 	sprites.gateOpen = love.graphics.newImage('/assets/art/tiles/gateOpen.png')
 	sprites.gateClosed = love.graphics.newImage('/assets/art/tiles/gateClosed.png')
-	sprites.gateButtonUp = love.graphics.newImage('/assets/art/tiles/gateButtonUp.png')
-	sprites.gateButtonDown = love.graphics.newImage('/assets/art/tiles/gateButtonDown.png')
+	sprites.gateButtonUp = love.graphics.newImage('/assets/art/tiles/GateButtonUp.png')
+	sprites.gateButtonDown = love.graphics.newImage('/assets/art/tiles/GateButtonDown.png')
 	sprites.red = love.graphics.newImage('/assets/art/red.png')
 	sprites.green = love.graphics.newImage('/assets/art/green.png')
 	sprites.frostboltHand = love.graphics.newImage('assets/art/FrostboltHand.png')
@@ -79,8 +81,8 @@ function love.load()
 	-- audio
 	AudioController = AudioController()
 	love.graphics.setDefaultFilter("nearest","nearest")
-
-	math.randomseed( os.time())
+	print("audiodone")
+	math.randomseed( love.timer.getTime())
 	
     Gamestate.registerEvents()
 	Gamestate.switch(Gamestate.menu)

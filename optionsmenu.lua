@@ -9,26 +9,17 @@ table.insert(optionsNames, "Music volume: ")
 
 local noOptions = 3 --Change this if you add more options
 function optionsmenu:init() -- run only once
-	local file = io.open("settings.txt")
-	if file then
-		for line in file:lines() do
-			i = line:find("=")
+	for line in love.filesystem.lines("settings.txt") do
+		i = line:find("=")
 
-			toMatch = line:sub(1,i-1)
-			if toMatch == "MasterVolume" then
-				AudioController:setMasterVolume(tonumber(line:sub(i+1)))
-			elseif toMatch == "SoundsVolume" then
-				AudioController:setSoundsVolume(tonumber(line:sub(i+1)))
-			elseif toMatch == "MusicVolume" then
-				AudioController:setMusicVolume(tonumber(line:sub(i+1)))
-			end
-
+		toMatch = line:sub(1,i-1)
+		if toMatch == "MasterVolume" then
+			AudioController:setMasterVolume(tonumber(line:sub(i+1)))
+		elseif toMatch == "SoundsVolume" then
+			AudioController:setSoundsVolume(tonumber(line:sub(i+1)))
+		elseif toMatch == "MusicVolume" then
+			AudioController:setMusicVolume(tonumber(line:sub(i+1)))
 		end
-
-	else
-		local file = io.open("settings.txt", "w")
-		file:write("MasterVolume=1.0\nSoundsVolume=1.0\nMusicVolume=1.0")
-		file:close()
 	end
 	--levelnr = levelnr-1
 end
@@ -49,7 +40,7 @@ function optionsmenu:enter(from) -- run every time the state is entered
         AudioController:setSoundsVolume(options[2]/10)
         AudioController:setMusicVolume(options[3]/10)
 
-        local file = io.open("settings.txt", "w")
+        local file = love.filesystem.newFile("settings.txt", "w")
         file:write("MasterVolume="..AudioController.masterVolume.."\nSoundsVolume="..AudioController.soundsVolume.."\nMusicVolume="..AudioController.musicVolume)
         file:close()
 
