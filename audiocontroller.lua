@@ -4,9 +4,9 @@ AudioController = Class{
     init = function(self)
 	    self.music = {
 		    ["pause"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-			["mainmenu"] = love.audio.newSource("assets/sounds/8bit Dungeon Boss.mp3"),
+			["mainmenu"] = love.audio.newSource("assets/sounds/8bit Dungeon Level.mp3"),
 			["levelselect"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-			["game"] = love.audio.newSource("assets/sounds/8bit Dungeon Level.mp3"),
+			["game"] = love.audio.newSource("assets/sounds/8bit Dungeon Boss.mp3"),
 			["death"] = love.audio.newSource("assets/sounds/HIT.mp3", "static")  --ekki static í music þegar actualy music er komin ef hún er stór
 		}
 
