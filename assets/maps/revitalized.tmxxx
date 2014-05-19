@@ -1,2 +1,4 @@
 VeilOfSouls=false
 SpeechText={{"sword", "Those spikes are dangerous, if you get hurt the health potions I sense over there might help.\n"}}
+BannedWeapons="mace"
+BannedAbilities="telekinesis"

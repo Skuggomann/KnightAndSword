@@ -1,2 +1,3 @@
 VeilOfSouls=false
-SpeechText={{"sword", "Our bond is becoming stronger, you can now pick up and levitate boxes.\n"}}
+SpeechText={{"sword", "Our bond is becoming stronger, I gave you the ability to move moderately weighed things.\n"}}
+BannedWeapons="mace"

@@ -1,2 +1,4 @@
 VeilOfSouls=false
 SpeechText=
+BannedWeapons="mace"
+BannedAbilities="telekinesis"
