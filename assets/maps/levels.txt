@@ -9,5 +9,5 @@
 9. There will be bats,bats.tmx
 10. Hell level,levelhell.tmx
 11. The Arena of DEATH,thearena.tmx
-12. Bat Country,level8.tmx
+12. Bat Country,batcountry.tmx
 13. This is puzzling,puzzle.tmx
