@@ -43,6 +43,11 @@ function pause:registerSignals()
 			Gamestate.push(Gamestate.howto)
 		end
 	end)
+    Signal.register('start', function()
+        love.audio.resume()
+        Gamestate.pop()
+        Gamestate:registerSignals()
+    end)
 	Signal.register('up', function()
     	selected = (selected-1)
     	if selected == 0 then

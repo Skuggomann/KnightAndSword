@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="32" height="23" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="70" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="32" height="23">
+ <layer name="background" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMA6D+9e93MnoMEpqkquqrwM4BQSsWAQ==
+   eJztw0ENAAAMA6H717/fCRkkrJqqqqqqqurDB/0WRS8=
   </data>
  </layer>
- <layer name="background lighting" width="32" height="23">
+ <layer name="background lighting" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMA6Be9S95MnoMEpqkquqrwM4BKMYMAQ==
+   eJzt0MEJACAMBEFf9l+yBQgiGEzQCew/N63N1x8s4rI3cOGSHRcuXLhw4VIhLmuXE7fsDVy4VI8Ll2iXH224cOHChQuXnR9vWwwqQR6F
   </data>
  </layer>
- <layer name="ground" width="32" height="23">
+ <layer name="ground" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEKEQUwIo1U8pGLV/1P5R+0ftH7V/1P6Bsn8g699RMApGwcABAMgkA8E=
+   eJzt2MsJwCAQAFGLsP9aczdD/LAQXeeBIAh7GBDEUt5qwhUhas4u7MLswuzC7MLswuzC7MLswuzCarNffQ9n7/J1PjonA7uw3p25tUuPXVimLn/8z5zQJZJdmF2YXZhd2EyX21brAVfvDsU=
   </data>
  </layer>
- <layer name="noncollidable" width="32" height="23">
+ <layer name="noncollidable" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAHwaGSgAAQ==
   </data>
  </layer>
- <layer name="spikes" width="32" height="23">
+ <layer name="spikes" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAHwaGSgAAQ==
   </data>
  </layer>
- <objectgroup name="spawns" width="32" height="23">
-  <object name="player" type="player" gid="1" x="72" y="442"/>
-  <object name="end" type="end" gid="2" x="468" y="439"/>
-  <object name="skeleton" type="skeleton" gid="3" x="277" y="440"/>
+ <objectgroup name="spawns" width="70" height="23">
+  <object name="player" type="player" gid="1" x="1921" y="671"/>
+  <object name="end" type="end" gid="2" x="2017" y="512"/>
+  <object name="door1" type="door" gid="15" x="1856" y="480"/>
+  <object name="door1" type="sensor" gid="14" x="1601" y="513"/>
+  <object name="movable" type="movable" gid="5" x="992" y="703"/>
+  <object name="movable" type="movable" gid="5" x="2020" y="701"/>
+  <object name="movable" type="movable" gid="5" x="2021" y="664"/>
  </objectgroup>
 </map>

@@ -92,9 +92,8 @@ function love.joystickpressed(joystick, button)
 	--elseif button == 9 then print("SELECT")
 	elseif button == 10 then --print("START")
 		controls.start[id] = true
-		if id == 1 then
-			Signal.emit('start')
-		end
+		--if id == 1 then
+		Signal.emit('start')
 	--elseif button == 11 then print("L3")
 	--elseif button == 12 then print("R3")
 	

@@ -62,7 +62,11 @@ function Movable:collisionWithSolid(mtv_x,mtv_y)
         end
 end
 function Movable:collide(dt, me, other, mtv_x, mtv_y)
-    if other.type == "tile" or other.type == "breakable" or other.type == "spike" or other.type == "movable"  then
+    if other.type == "tile" or other.type == "breakable" or other.type == "spike" or other.type == "movable" then
         self:collisionWithSolid(mtv_x,mtv_y)
+    elseif other.type == "door" then
+        if not other.ref.isOpen then
+            self:collisionWithSolid(mtv_x,mtv_y)
+        end
     end
 end
