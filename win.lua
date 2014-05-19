@@ -80,7 +80,7 @@ function win:draw()
     fade = self.fadeTimedx/self.fadeTime
     love.graphics.setFont(Font36p)
     love.graphics.setColor(255,255,255,255*fade)
-    love.graphics.printf('YOU ARE WINNAR\nYou finished the level in: '.. self.time ..' seconds', 0, H/2-200, W, 'center')
+    love.graphics.printf('VICTORY\nYou finished the level in: '.. self.time ..' seconds', 0, H/2-200, W, 'center')
     love.graphics.setFont(Font18p)
 
     if not self.islastlevel then
