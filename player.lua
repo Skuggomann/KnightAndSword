@@ -279,9 +279,7 @@ function Player:destructor()
 	self.collider:remove(self.weapons["mace"].bbox)
     self.collider:remove(self.abilities["telekinesis"].bbox)
 end
-function Player:swapWeaponsBackwards()
 
-end
 
 function Player:swapWeaponsBackwards()
     local found = false
@@ -353,7 +351,7 @@ function Player:swapAbilitiesBackwards()
         else
             for k,v in pairs(self.allowedAbilities) do
                 a = next(self.allowedAbilities,k) 
-                if a == self.currentAbility then
+                if a == self.currentAbility or found then
                     if v == true then
                         AudioController:playAndRewindSoundPitchy("swapabilities")
                         --[[
