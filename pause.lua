@@ -13,7 +13,7 @@ function pause:enter(from)
 	selected = 1
 	love.audio.pause()
 	--AudioController:playMusic("pause")
-	AudioController.music["pause"]:play()
+	--AudioController.music["pause"]:play()
 	self:registerSignals()
 end
 

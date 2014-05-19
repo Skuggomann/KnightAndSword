@@ -1,3 +1,3 @@
-MasterVolume=1
-SoundsVolume=0.5
-MusicVolume=0
+MasterVolume=0.5
+SoundsVolume=1
+MusicVolume=1

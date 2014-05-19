@@ -39,9 +39,11 @@ function game:init() -- run only once
 end
 
 function game:enter(previous,filename) -- run every time the state is entered
-	--AudioController:playMusic("game")
+	AudioController:playMusic("game")
+	--[[
 	AudioController.music["game"]:rewind()
 	AudioController.music["game"]:play()
+	]]
 	enemies = {}
 	objects = {}
 	doors = {}

@@ -5,6 +5,7 @@ function menu:init() -- run only once
 end
 
 function menu:enter(previous) -- run every time the state is entered
+	AudioController:playMusic("mainmenu")
 	Signal.register('enter', function()
     	Gamestate.switch(Gamestate.levelselect)
 	end)

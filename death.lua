@@ -3,7 +3,7 @@ local death = Gamestate.death
 function death:enter(from)
     love.audio.pause()
     --AudioController:playMusic("death")
-    AudioController.music["death"]:play()
+    --AudioController.music["death"]:play()
     AudioController:playSound("death")
     --AudioController.sounds["death"]:play()
 

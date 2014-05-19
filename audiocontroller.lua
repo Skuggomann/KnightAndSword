@@ -1,10 +1,12 @@
+local MUSICVOLMULTIPLYER = 0.5
+
 AudioController = Class{
     init = function(self)
 	    self.music = {
 		    ["pause"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-			["mainmenu"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+			["mainmenu"] = love.audio.newSource("assets/sounds/8bit Dungeon Boss.mp3"),
 			["levelselect"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-			["game"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+			["game"] = love.audio.newSource("assets/sounds/8bit Dungeon Level.mp3"),
 			["death"] = love.audio.newSource("assets/sounds/HIT.mp3", "static")  --ekki static í music þegar actualy music er komin ef hún er stór
 		}
 
@@ -55,7 +57,7 @@ AudioController = Class{
 	    love.audio.setVolume(self.masterVolume)
 
         for i,v in pairs(self.music) do 
-           	v:setVolume(self.musicVolume) 
+           	v:setVolume(self.musicVolume*MUSICVOLMULTIPLYER) 
         end
         for i,v in pairs(self.sounds) do 
            	v:setVolume(self.soundsVolume)
@@ -77,7 +79,7 @@ function AudioController:setMusicVolume(volume)
 	if volume >= 0.0 and volume <= 1.0 then
 		self.musicVolume = volume
 		for i,v in pairs(self.music) do 
-           	v:setVolume(self.musicVolume) 
+           	v:setVolume(self.musicVolume*MUSICVOLMULTIPLYER) 
         end
 	end
 end
