@@ -63,11 +63,11 @@ function game:enter(previous,filename) -- run every time the state is entered
 	if rip[levelname] == nil then
 		rip[levelname] = RIP()
 	end
+	self:registerSignals()
 	cam = Camera(W/2,H/2,1)--456, 256,1)--1.40)
 	readLevelSettings(filepath)
 	knight:disallowWeaponsAbilities(weapons,abilities)
 
-	self:registerSignals()
 end
 function readLevelSettings(filepath)
 	local settings = filepath.."xx"

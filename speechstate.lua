@@ -9,6 +9,7 @@ function speechstate:enter(from,ui,textTable) -- run every time the state is ent
     self.from = from
     self.ui = ui
     self.textTable = textTable
+    controls:clear()
     self:registerSignals()
 end
 function speechstate:registerSignals()
