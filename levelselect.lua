@@ -3,7 +3,6 @@ local levelselect = Gamestate.levelselect
 local levels = {}
 local selected = 1
 local levelnr = 1
-W, H = love.graphics.getWidth(), love.graphics.getHeight()
 function levelselect:init() -- run only once
 	local file = io.open("assets/maps/levels.txt")
 	if file then

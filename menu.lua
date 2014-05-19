@@ -1,5 +1,6 @@
 Gamestate.menu = {}
 local menu = Gamestate.menu
+W, H = love.graphics.getWidth(), love.graphics.getHeight()
 
 function menu:init() -- run only once
 end
@@ -16,7 +17,7 @@ end
 
 function menu:draw()
     love.graphics.draw(sprites.menubg, 0, 0)
-    love.graphics.print(string.format("press enter(x) to play"),10,10)
+    love.graphics.printf(string.format("press enter(x) to play"), 0,H/2-100,W,"center")
 end
 
 function menu:leave()
