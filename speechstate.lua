@@ -25,6 +25,12 @@ end
 function speechstate:leave()
     controls:clear()
 end
+function speechstate:reset()
+    self.from:reset()
+    Gamestate.pop()
+    controls:clear()
+    Gamestate:registerSignals()
+end
 function speechstate:update(dt)
     if next(self.textTable) == nil then  --check if table is empty
         Gamestate.pop()
