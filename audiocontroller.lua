@@ -9,8 +9,8 @@ AudioController = Class{
 		}
 
 	    self.sounds = {	
-		    ["swordhit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
-		    ["macehit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
+		    ["swordhit"] = love.audio.newSource("assets/sounds/hitwhoosh.mp3", "static"),
+		    ["macehit"] = love.audio.newSource("assets/sounds/hitwhoosh.mp3", "static"),
 		    ["batshit"] = love.audio.newSource("assets/sounds/HIT.mp3", "static"),
 		    ["skeletonhit"] = love.audio.newSource("assets/sounds/skeltonhit.mp3", "static"),
 		    ["frostboltcast"] = love.audio.newSource("assets/sounds/frostbolt1.mp3", "static"),
