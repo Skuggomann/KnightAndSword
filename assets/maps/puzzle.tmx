@@ -20,7 +20,7 @@
  </layer>
  <layer name="noncollidable" width="70" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgiD/r25IQAEAAAAAAHwaGSgAAQ==
+   eJzt1bsJACAMRVHXsVCxUPffzCwgflAS8B54jTEQLIxzAAAAf/GLZzv12Z2VfgB4LU/OR/VfBUmUJO1BjCmSKmnagxjDu8Cyk/99t+fWDmEXAdDQAdPCA/M=
   </data>
  </layer>
  <layer name="spikes" width="70" height="23">
