@@ -1,16 +1,13 @@
-1. Intro,level1.tmx
-2. Jumping Loin,level2.tmx
-3. Icy freeze,level3.tmx
-4. Cliffhanger,level4.tmx
+1. Intro,intro.tmx
+2. Jumping Loin,jumpingloin.tmx
+3. Icy freeze,icyfreeze.tmx
+4. Cliffhanger,cliffhanger.tmx
 5. Revitalized,revitalized.tmx
 6. The Builder,thebuilder.tmx
 7. Locked in,lockedin.tmx
 8. (un)Breakable,unbreakable.tmx
-6. The arena of DEATH,level6.tmx
-7. Hell level,levelhell.tmx
-8. Spiky,level7.tmx
-9. Bat country,level8.tmx
-10. Breakout,level9.tmx
-11. Test,level10.tmx
-12. healthTest,level11.tmx
-13. breakableTest,breakabletest.tmx
+9. There will be bats,bats.tmx
+10. Hell level,levelhell.tmx
+11. The Arena of DEATH,thearena.tmx
+12. Bat Country,batcountry.tmx
+13. This is puzzling,puzzle.tmx
