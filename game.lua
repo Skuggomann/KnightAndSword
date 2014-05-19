@@ -304,7 +304,6 @@ function resetObjects(map)
 		collider:remove(objects[#objects - (i-1)].bbox)
 	end	
 	for k,v in pairs(doors) do
-		print(inspect(v))
 		v:destructor()
 	end
 	doors = {}

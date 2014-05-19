@@ -1,36 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="32" height="23" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="100" height="23" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="KS Tiles" tilewidth="32" tileheight="32" spacing="2" margin="1">
   <image source="../art/tiles/tileset/tileset1.png" width="272" height="238"/>
  </tileset>
- <layer name="background" width="32" height="23">
+ <layer name="background" width="100" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMA6D+9e93MnoMEpqkquqrwM4BQSsWAQ==
+   eJzt1SEOADAIBEE8/f97q5pUFlVIRoxHXJaMiAQYYjW4gT7sAWCuXw33O4AKzeBmD8ArveCwBaBKNwCo2M5jYt4=
   </data>
  </layer>
- <layer name="background lighting" width="32" height="23">
+ <layer name="background lighting" width="100" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMA6Be9S95MnoMEpqkquqrwM4BKMYMAQ==
+   eJzt0TEKwDAMBEFX+f+T08YEg0lAWnO7oFpwM8a765BLqWNTPdbpwUoPXnqw0oOVHqz04FRlocdeerDSg9UJHklVW3z5mZQerPRgVeXx3FWPdXqw0oOVHqwqPf46JtS9tR5z3VtrMte9c7LHDScYFWc=
   </data>
  </layer>
- <layer name="ground" width="32" height="23">
+ <layer name="ground" width="100" height="23">
   <data encoding="base64" compression="zlib">
-   eJwTYWBgEKEQUwIo1U8pGLV/1P5R+0ftH7V/1P6Bsn8g699RMApGwcABAMgkA8E=
+   eJztmEsKwDAIRHOI3P+sXdsiVSP+Mg8CXVQSmaqZrvVlN1m3EJXrZp693p9CVT242OlAj1pE9em3HpqZcZse0fuczJLpZOuhjZ3OSa6aeyn0kMHl6uEDJPMA/oNStV9hnsftg37FAz1qYe3V2jj4DxnZ9QH/QcnWQxs7HehRiz8PB/8RS3Z9YH5QPL9/y/8S6EGJrA9rL4IetehwRi865NrhjF5I7zfZayIPQ1YTxQ==
   </data>
  </layer>
- <layer name="noncollidable" width="32" height="23">
+ <layer name="noncollidable" width="100" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+   eJzt10sKgDAMBcBeSMWF9v43M3TfjUqDdgbeshDST2gpfM2eXQD8jDs11pN+Z60FYIy7b7X5AECP/8cc9LvPOQbgbWbLvJbIGtmyC6E5ImekZhdCYz/IcgF1LgTf
   </data>
  </layer>
- <layer name="spikes" width="32" height="23">
+ <layer name="spikes" width="100" height="23">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAICXAQuAAAE=
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAIAXAyPwAAE=
   </data>
  </layer>
- <objectgroup name="spawns" width="32" height="23">
-  <object name="player" type="player" gid="1" x="72" y="442"/>
-  <object name="end" type="end" gid="2" x="468" y="439"/>
-  <object name="skeleton" type="skeleton" gid="3" x="277" y="440"/>
+ <objectgroup name="spawns" width="100" height="23">
+  <object name="player" type="player" gid="1" x="576" y="640"/>
+  <object name="end" type="end" gid="2" x="1345" y="671"/>
+  <object name="skeleton" type="skeleton" gid="3" x="1151" y="95"/>
+  <object name="bat" type="bat" gid="4" x="1024" y="543"/>
+  <object name="bat" type="bat" gid="4" x="1057" y="416"/>
+  <object name="bat" type="bat" gid="4" x="1024" y="288"/>
+  <object name="bat" type="bat" gid="4" x="1056" y="160"/>
+  <object name="bat" type="bat" gid="4" x="65" y="639"/>
+  <object name="bat" type="bat" gid="4" x="32" y="512"/>
+  <object name="bat" type="bat" gid="4" x="33" y="385"/>
+  <object name="bat" type="bat" gid="4" x="65" y="288"/>
+  <object name="bat" type="bat" gid="4" x="32" y="127"/>
+  <object name="finaldoor" type="door" gid="15" x="1055" y="673"/>
+  <object name="door4" type="door" gid="15" x="1184" y="480"/>
+  <object name="door3" type="door" gid="15" x="1376" y="352"/>
+  <object name="door2" type="door" gid="15" x="1184" y="224"/>
+  <object name="door1" type="door" gid="15" x="1376" y="96"/>
+  <object name="finaldoor" type="sensor" gid="14" x="1135" y="608"/>
+  <object name="door4" type="sensor" gid="14" x="929" y="512"/>
+  <object name="door3" type="sensor" gid="14" x="224" y="384"/>
+  <object name="door1" type="sensor" gid="14" x="224" y="128"/>
+  <object name="door2" type="sensor" gid="14" x="928" y="256"/>
+  <object name="healthvial" type="healthvial" gid="16" x="705" y="224"/>
+  <object name="healthvial" type="healthvial" gid="16" x="673" y="384"/>
+  <object name="healthvial" type="healthvial" gid="16" x="448" y="511"/>
  </objectgroup>
 </map>
