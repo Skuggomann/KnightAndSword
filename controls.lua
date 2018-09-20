@@ -63,9 +63,9 @@ controls = Controls();
 function love.joystickpressed(joystick, button)
 	local id, trash = joystick:getID()
 
-	if     button == 1 then --print("Triangle") 
+	if button == 3 then --print("Triangle") 
     --elseif button == 2 then print("Circle")
-    elseif button == 3 then --print("X")
+    elseif button == 1 then --print("X")
 		controls.x[id] = true
 		if id == 1 then
 			Signal.emit('cast')
@@ -76,14 +76,14 @@ function love.joystickpressed(joystick, button)
     --elseif button == 4 then print("Square")
     --elseif button == 5 then print("L1")
     --elseif button == 6 then print("R1")
-    elseif button == 7 then print("L2")
+    elseif button == 5 or button == 7 then --print("L1/L2")
     	if id == 1 then
     		Signal.emit('weaponsLeft')
     	elseif id == 2 then
     		Signal.emit('abilitiesLeft')
     	end
-    elseif button == 8 then print("R2")
-    	if id == 1 then
+    elseif button == 6 or button == 8 then --print("R1/R2")
+			if id == 1 then
     		Signal.emit('weaponsRight')
     	elseif id == 2 then
     		Signal.emit('abilitiesRight')
@@ -127,10 +127,50 @@ function love.joystickreleased( joystick, button )
     end
 end
 
+function love.gamepadpressed( joystick, button )
+	local id, trash = joystick:getID()
+	print(button)
+	if button == 'dpright' then
+		controls.right[id] = true
+		Signal.emit('right')
+	elseif button == 'dpleft' then
+		controls.left[id] = true
+		Signal.emit('left')
+	elseif button == 'dpdown' then
+		controls.down[id] = true
+		Signal.emit('down')
+	elseif button == 'dpup' then
+		controls.up[id] = true
+		Signal.emit('up')
+	end
+end
+
+
+function love.gamepadreleased( joystick, button )
+	local id, trash = joystick:getID()
+	print(button)
+	if button == 'dpright' then
+		controls.right[id] = false
+		Signal.emit('rightReleased')
+	elseif button == 'dpleft' then
+		controls.left[id] = false
+		Signal.emit('leftReleased')
+	elseif button == 'dpdown' then
+		controls.down[id] = false
+		Signal.emit('downReleased')
+	elseif button == 'dpup' then
+		controls.up[id] = false
+		Signal.emit('upReleased')
+	end
+end
+
+
+
+
 
 function love.joystickaxis( joystick, axis, value )
-
-local id, trash = joystick:getID()
+	
+	local id, trash = joystick:getID()
 --print(axis .. " " .. value)
 
 	if axis == 1 and value == 1 then --print("Right Down")
